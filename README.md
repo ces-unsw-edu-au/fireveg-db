@@ -10,6 +10,14 @@ psql -d fireveg -c "CREATE EXTENSION postgis_topology;"
 ```
 Update file ~/.pgpass
 
+
+Make sure we have a link between web repo and working repo:
+
+```sh
+ls -lah /var/www/html/fireveg/
+
+```
+
 ## Data model
 
 ## test site
@@ -32,3 +40,5 @@ Use 'dotnet --help' to see available commands or visit: https://aka.ms/dotnet-cl
 
 sudo apt-get install aspnetcore-runtime-3.1
 sudo apt-get install dotnet-runtime-3.1
+
+## graph database for data model: dFair67

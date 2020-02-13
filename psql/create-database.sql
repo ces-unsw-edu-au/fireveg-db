@@ -1,4 +1,34 @@
 
+CREATE TABLE IF NOT EXISTS form.field_visit (
+visit_id VARCHAR(10),
+visit_date date,
+description text,
+observer varchar(30),
+ PRIMARY KEY (visit_id)
+);
+
+--
+-- This is copied from tblObserver of Atlas data model
+
+CREATE TABLE IF NOT EXISTS form.observerID (
+UserKey SERIAL PRIMARY KEY,
+GivenNames varchar(60) NULL,
+Surname varchar(60) NOT NULL,
+AddressLine1 varchar(50) NULL,
+AddressLine2 varchar(50) NULL,
+City varchar(30) NULL,
+Postcode numeric(4) NULL,
+StateID int NULL,
+Email varchar(75) NULL,
+Occupation varchar(40) NULL,
+Notes varchar(255) NULL,
+RowTimeStamp timestamp NOT NULL,
+CreatedBySystemUserID int NOT NULL,
+DateCreated timestamp NOT NULL,
+UpdatedBySystemUserID int NOT NULL,
+DateUpdated timestamp NOT NULL
+);
+
 CREATE TABLE IF NOT EXISTS field_sample (
 fsid BIGINT PRIMARY KEY,
 sample_date datetime,
