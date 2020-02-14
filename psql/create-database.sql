@@ -1,10 +1,73 @@
 
 CREATE TABLE IF NOT EXISTS form.field_visit (
-visit_id VARCHAR(10),
+visit_id VARCHAR(10) ,
 visit_date date,
-description text,
-observer varchar(30),
- PRIMARY KEY (visit_id)
+visit_description text,
+location_description text,
+geom geometry,
+PlantCommunityType text,
+ThreatenedEcologicalCommunity text,
+observer INT REFERENCES form.observerID ON DELETE RESTRICT,
+tree_canopy_height_best int,
+tree_canopy_height_lower int,
+tree_canopy_height_upper int,
+tree_canopy_cover int,
+tree_canopy_scorch_best int,
+tree_canopy_scorch_lower int,
+tree_canopy_scorch_upper int,
+CHECK (tree_canopy_height_best >= tree_canopy_height_lower AND tree_canopy_height_best <= tree_canopy_height_upper),
+CHECK (tree_canopy_scorch_best >= tree_canopy_scorch_lower AND tree_canopy_scorch_best <= tree_canopy_scorch_upper),
+CHECK (tree_canopy_scorch_upper  <= tree_canopy_height_upper),
+mid_canopy_height_best int,
+mid_canopy_height_lower int,
+mid_canopy_height_upper int,
+mid_canopy_cover int,
+mid_canopy_scorch_best int,
+mid_canopy_scorch_lower int,
+mid_canopy_scorch_upper int,
+CHECK (mid_canopy_height_best >= mid_canopy_height_lower AND mid_canopy_height_best <= mid_canopy_height_upper),
+CHECK (mid_canopy_scorch_best >= mid_canopy_scorch_lower AND mid_canopy_scorch_best <= mid_canopy_scorch_upper),
+CHECK (mid_canopy_scorch_upper  <= mid_canopy_height_upper),
+shrub_height_best int,
+shrub_height_lower int,
+shrub_height_upper int,
+shrub_cover int,
+shrub_scorch_best int,
+shrub_scorch_lower int,
+shrub_scorch_upper int,
+CHECK (shrub_height_best >= shrub_height_lower AND shrub_height_best <= shrub_height_upper),
+CHECK (shrub_scorch_best >= shrub_scorch_lower AND shrub_scorch_best <= shrub_scorch_upper),
+CHECK (shrub_scorch_upper  <= shrub_height_upper),
+ground_burnt_best numeric,
+ground_burnt_lower numeric,
+ground_burnt_upper numeric,
+ground_cover int,
+CHECK (ground_burnt_best >= ground_burnt_lower AND ground_burnt_best <= ground_burnt_upper),
+tree_foliage_biomass_consumed_best int,
+tree_foliage_biomass_consumed_lower int,
+tree_foliage_biomass_consumed_upper int,
+CHECK (tree_foliage_biomass_consumed_best >= tree_foliage_biomass_consumed_lower AND tree_foliage_biomass_consumed_best <= tree_foliage_biomass_consumed_upper),
+shrub_foliage_biomass_consumed_best int,
+shrub_foliage_biomass_consumed_lower int,
+shrub_foliage_biomass_consumed_upper int,
+CHECK (shrub_foliage_biomass_consumed_best >= shrub_foliage_biomass_consumed_lower AND shrub_foliage_biomass_consumed_best <= shrub_foliage_biomass_consumed_upper),
+ground_foliage_biomass_consumed_best int,
+ground_foliage_biomass_consumed_lower int,
+ground_foliage_biomass_consumed_upper int,
+CHECK (ground_foliage_biomass_consumed_best >= ground_foliage_biomass_consumed_lower AND ground_foliage_biomass_consumed_best <= ground_foliage_biomass_consumed_upper),
+largest_twigs_consumed_best numeric,
+largest_twigs_consumed_lower numeric,
+largest_twigs_consumed_upper numeric,
+largest_twigs_consumed_raw varchar(255),
+CHECK (largest_twigs_consumed_best >= largest_twigs_consumed_lower AND largest_twigs_consumed_best <= largest_twigs_consumed_upper),
+peat_consumption_area numeric,
+peat_consumption_maxdepth numeric,
+CreatedBySystemUserID int NOT NULL,
+DateCreated timestamp NOT NULL,
+UpdatedBySystemUserID int NOT NULL,
+DateUpdated timestamp NOT NULL,
+PRIMARY KEY (visit_id)
+
 );
 
 --
@@ -27,6 +90,36 @@ CreatedBySystemUserID int NOT NULL,
 DateCreated timestamp NOT NULL,
 UpdatedBySystemUserID int NOT NULL,
 DateUpdated timestamp NOT NULL
+);
+
+--
+-- Test tables:
+
+CREATE TABLE IF NOT EXISTS form.fire_history (
+visit_id VARCHAR(10) REFERENCES form.field_visit ON DELETE CASCADE,
+fire_name varchar(100),
+fire_date date,
+fire_date_uncertain interval,
+how_inferred varchar(100),
+cause_of_ignition varchar(100),
+PRIMARY KEY (visit_id, fire_date)
+);
+
+
+--
+-- old/bad code:
+
+
+CREATE TABLE IF NOT EXISTS form.field_visit (
+visit_id VARCHAR(10),
+visit_date date,
+visit_description text,
+observer INT REFERENCES form.observerID ON DELETE RESTRICT,
+CreatedBySystemUserID int NOT NULL,
+DateCreated timestamp NOT NULL,
+UpdatedBySystemUserID int NOT NULL,
+DateUpdated timestamp NOT NULL,
+ PRIMARY KEY (visit_id)
 );
 
 CREATE TABLE IF NOT EXISTS field_sample (
