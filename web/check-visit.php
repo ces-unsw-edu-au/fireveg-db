@@ -8,14 +8,22 @@
     or die("Could not connect");
 $foot_msg .= "Connected successfully\n<br />\n";
 
- $qry = "SELECT visit_id,visit_date,visit_description,GivenNames,Surname FROM form.field_visit as v LEFT JOIN form.observerid as o ON v.observer::numeric=o.UserKey WHERE visit_id = '$vid'";
+ $qry = "SELECT * FROM form.field_visit as v LEFT JOIN form.observerid as o ON v.mainObserver::numeric=o.UserKey WHERE visit_id = '$vid'";
  $result = pg_query($dbconn, $qry);
  if (!$result) {
    echo "An error occurred.\n";
    exit;
  }
- while ($row = pg_fetch_row($result)) {
-    $main_content.= "visit_id: $row[0]<br/> visit_date: $row[1]<br/> description: $row[2]<br/> observer: $row[3] $row[4]<br/>";
+ while ($row = pg_fetch_assoc($result)) {
+    while(list($name,$value) = each($row)) {
+      if (is_null($value)) {
+         $outputvalue="<a style='color: #156565;'> is not set (NULL or empty)</a>";
+
+      } else {
+         $outputvalue=$value;
+      }
+      $main_content.= "<a style='color: #C56565;' href='alter-visit.php?visit_id=$vid&column=$name'>$name</a>: $outputvalue<br/> ";
+   }
  }
  pg_close($dbconn);
  include_once("skeleton.php");

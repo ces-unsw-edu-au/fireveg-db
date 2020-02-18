@@ -14,7 +14,9 @@ $foot_msg .= "Connected successfully\n<br />\n";
    exit;
  }
  while ($row = pg_fetch_row($result)) {
-   $observers .= "<option value='$row[0]'> $row[0]: $row[1], $row[2]</option>";
+    $observers .= "<option value='$row[0]'> $row[0]: $row[1], $row[2]</option>";
+    $observers2 .= "<input type='checkbox'  name='otherObserver' value='$row[0]'> <label>$row[0]: $row[1], $row[2]</label><br/>";
+
  }
  pg_close($dbconn);
 
@@ -187,16 +189,22 @@ $site_table = '
 </td>
 </tr>
 <tr>
-<th>Observers</th>
+<th>Main observer</th>
 <td>
-<select class="" name="visit[observer]">'.$observers.'
+<select class="" name="visit[mainObserver]">'.$observers.'
 </select>
+</td>
+</tr>
+<tr>
+<th>Other observer</th>
+<td>'.$observers2.'
+
 </td>
 </tr>
 <tr>
 <th>Sample identifier</th>
 <td>
-<input type="text" name="visit[visit_id]" value="000" /> (text)
+<input type="text" name="visit[visit_id]" value="" /> (text)
 </td>
 </tr>
 <tr>
@@ -227,6 +235,12 @@ $locs_table = '
 <th>Location</th>
 <td>
 <input type="text" name="visit[location_description]" value="" /> (text)
+</td>
+</tr>
+<tr>
+<th>Elevation</th>
+<td>
+<input type="text" name="elevation" size=5 />
 </td>
 </tr>
 <tr>
