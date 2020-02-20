@@ -6,7 +6,9 @@ visit_description text,
 location_description text,
 geom geometry,
 elevation numeric,
-PlantCommunityType text,
+VegType text,
+VegCategoryID int,
+ConfidenceID int,
 ThreatenedEcologicalCommunity text,
 mainObserver INT REFERENCES form.observerID ON DELETE RESTRICT,
 otherObserver VARCHAR(20),
@@ -106,6 +108,47 @@ how_inferred varchar(100),
 cause_of_ignition varchar(100),
 PRIMARY KEY (visit_id, fire_date)
 );
+
+CREATE TYPE sampling_method AS ENUM ('quadrat', 'transect', 'other');
+CREATE TABLE IF NOT EXISTS form.field_samples (
+visit_id VARCHAR(10) REFERENCES form.field_visit ON DELETE CASCADE,
+sample_nr SMALLINT,
+sample_method sampling_method,
+quadrat_area numeric,
+transect_length numeric,
+comments text,
+PRIMARY KEY (visit_id, sample_nr)
+);
+
+CREATE TYPE resprout_type AS ENUM ('epicormic', 'ligno', 'crown','basal','tuber','rhizoma','stolon', 'none', 'other');
+CREATE TYPE seedbank_type AS ENUM ('soil-persistent', 'transient', 'canopy','non-canopy','other');
+-- DROP TYPE seedbank_type CASCADE;
+-- ALTER TYPE seedbank_type ADD VALUE 'non-canopy' AFTER 'canopy';
+-- ALTER TYPE seedbank_type RENAME VALUE 'soil' TO 'soil-persistent';
+-- \dT
+CREATE TYPE age_group AS ENUM ('adult','juvenile', 'other');
+
+CREATE TABLE IF NOT EXISTS form.quadrat_samples (
+visit_id VARCHAR(10),
+sample_nr SMALLINT,
+species VARCHAR(255),
+species_code int,
+-- confidenceID int,
+agegroup age_group,
+resprout_organ resprout_type,
+seedbank seedbank_type,
+resprouts_live numeric,
+resprouts_died numeric,
+resprouts_kill numeric,
+resprouts_reproductive numeric,
+recruits_live numeric,
+recruits_reproductive numeric,
+recruits_died numeric,
+comments text,
+FOREIGN KEY (visit_id, sample_nr) REFERENCES form.field_samples (visit_id,sample_nr) ON DELETE CASCADE
+);
+
+
 
 
 --

@@ -31,6 +31,7 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
               <h2>Database prototype</h2>
               <div class="w3-container">
                  <p> <a href='index.php'>Home</a></p>
+                 <p> <a href='map.php'>Map</a></p>
                  <p>Step 1: <a href='new-observer.php'>ADD an observer</a></p>
                  <p>Step 2: <a href='new-visit.php'>ADD a new visit</a></p>
               <!--//
