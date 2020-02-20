@@ -67,7 +67,7 @@ L.tileLayer('https://tile.thunderforest.com/landscape/{z}/{x}/{y}.png?apikey=48a
 		maxZoom: 18,
 		attribution: 'Maps &copy; <a href="http://www.thunderforest.com/">Thunderforest</a>, Data &copy; ' +
 			'<a href="http://www.openstreetmap.org/copyright">OpenStreetMap contributors</a>',
-		id: 'mapbox/streets-v11',
+		id: 'thunderforest/landscape',
 		tileSize: 512,
 		zoomOffset: -1
 	}).addTo(mymap);
