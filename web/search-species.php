@@ -21,7 +21,7 @@ $foot_msg .= "Connected successfully\n<br />\n";
  }
  pg_close($dbconn);
 } else {
-   $result_table = "Ask and thou shall receive...";
+   $result_table = "";
 }
 
  $sample_table = '
@@ -30,10 +30,10 @@ $foot_msg .= "Connected successfully\n<br />\n";
  <th>Search by:</th>
  <td>
  <select name="term">
- <option value="FamilyName">family</option>
- <option value="GenusName">genus</option>
- <option value="SpeciesName">species epithet</option>
  <option value="ScientificName">species name</option>
+ <option value="SpeciesName">species epithet</option>
+ <option value="GenusName">genus</option>
+ <option value="FamilyName">family</option>
  </select>
  </td>
  </tr>

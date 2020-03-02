@@ -7,6 +7,21 @@
     or die("Could not connect");
 $foot_msg .= "Connected successfully\n<br />\n";
 
+if (isset($_REQUEST["ecode"])) {
+   $qry = "SELECT \"ScientificName\" FROM \"Species_list\" WHERE \"SpeciesCode\" = '".$_REQUEST["ecode"]."'";
+   $result = pg_query($dbconn, $qry);
+   if (!$result) {
+     echo "An error occurred.\n";
+     exit;
+   }
+   while ($row = pg_fetch_row($result)) {
+       $eName .= $row[0];
+   }
+
+} else {
+      $eName = "";
+}
+
  $qry = "SELECT visit_id,sample_nr FROM form.field_samples  ORDER BY visit_id DESC,sample_nr ASC";
  $result = pg_query($dbconn, $qry);
  if (!$result) {
@@ -16,6 +31,38 @@ $foot_msg .= "Connected successfully\n<br />\n";
  while ($row = pg_fetch_row($result)) {
      $visitids .= "<option value='$row[0]::$row[1]'> $row[0] sample $row[1] </option>";
  }
+
+  $qry = " select enumlabel from pg_type typ left join pg_enum enu on enu.enumtypid=typ.oid where typname ='age_group'";
+ $result = pg_query($dbconn, $qry);
+  if (!$result) {
+    echo "An error occurred.\n";
+    exit;
+  }
+  while ($row = pg_fetch_row($result)) {
+      $agegroups .= "<option value='$row[0]'> $row[0]</option>";
+  }
+
+
+   $qry = " select enumlabel from pg_type typ left join pg_enum enu on enu.enumtypid=typ.oid where typname ='resprout_type'";
+  $result = pg_query($dbconn, $qry);
+   if (!$result) {
+     echo "An error occurred.\n";
+     exit;
+   }
+   while ($row = pg_fetch_row($result)) {
+       $organs .= "<option value='$row[0]'> $row[0]</option>";
+   }
+
+   $qry = " select enumlabel from pg_type typ left join pg_enum enu on enu.enumtypid=typ.oid where typname ='seedbank_type'";
+  $result = pg_query($dbconn, $qry);
+   if (!$result) {
+     echo "An error occurred.\n";
+     exit;
+   }
+   while ($row = pg_fetch_row($result)) {
+       $seedbank .= "<option value='$row[0]'> $row[0]</option>";
+   }
+
  pg_close($dbconn);
 
 
@@ -47,7 +94,7 @@ $foot_msg .= "Connected successfully\n<br />\n";
  <input type="text" name="quadrat[species_code]" value="'.$_REQUEST["ecode"].'" size="4" />
  </td>
  <td>
- <input type="text" name="quadrat[species_name]" value="" size="14"/>
+ <input type="text" name="quadrat[species_name]" value="'.$eName.'" size="14"/>
  </td>
  <td>
  <input type="text" name="quadrat[resprouts_live]" value="" size="4" />
@@ -74,10 +121,20 @@ $foot_msg .= "Connected successfully\n<br />\n";
  </tr>
 
  </table>
- agegroup
- resprout_organ
- seedbank
- comments
+ Age group:
+ <select class="" name="quadrat[agegroup]">
+ <option value=""> (empty)</option>'.$agegroups.'
+ </select><br/>
+ Resprout organ:
+ <select class="" name="quadrat[resprout_organ]">
+ <option value=""> (empty)</option>'.$organs.'
+ </select><br/>
+ Seedbank:
+ <select class="" name="quadrat[seedbank]">
+ <option value=""> (empty)</option>'.$seedbank.'
+ </select><br/>
+Comments<br/>
+ <textarea name="quadrat[comments]" rows="4" cols="40"></textarea>
  ';
 
 
