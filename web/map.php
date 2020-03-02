@@ -75,26 +75,45 @@ L.tileLayer('https://tile.thunderforest.com/landscape/{z}/{x}/{y}.png?apikey=48a
 // Create a new Wicket instance
 var wkt = new Wkt.Wkt();
 
-// Read in any kind of WKT string
-//wkt.read("POINT(151.031024039124 -34.1480144699649)");
-wkt.read("POINT(151.12337 -33.63982)");
-var marker = wkt.toObject().bindPopup('BER1');
-marker.addTo(mymap);
-wkt.read("POINT(151.032276564831 -34.157601293261)");
-var marker = wkt.toObject().bindPopup('ROY001');
-marker.addTo(mymap);
-wkt.read("POINT(151.03314 -34.14428)");
-var marker = wkt.toObject().bindPopup('ROY003');
-marker.addTo(mymap);
-wkt.read("POINT(151.04979 -34.17011)");
-var marker = wkt.toObject().bindPopup('ROY005');
-marker.addTo(mymap);
-wkt.read("POINT(151.20192 -33.72486)");
-var marker = wkt.toObject().bindPopup('Ka5');
-marker.addTo(mymap);
-wkt.read("POINT(151.031024039124 -34.1480144699649)");
-var marker = wkt.toObject().bindPopup('ROY002');
-marker.addTo(mymap);
+<?php
+include("/home/jferrer/.pgpass.php");
+//connect to a database on "localhost" and set the command line parameter which tells the encoding is in UTF-8
+
+$dbconn = pg_connect("host=localhost dbname=fireveg user=jferrer password=$clavepasajera options='--client_encoding=UTF8'")
+or die("Could not connect");
+
+$qry = "select visit_id,ST_AsText(ST_Transform(geom,4326)) from form.field_visit" ;
+ $result = pg_query($dbconn, $qry);
+		if (!$result) {
+		  $foot_msg .="An error occurred.\n";
+		  exit;
+		}
+	 while ($row = pg_fetch_row($result)) {
+	   echo  "wkt.read(\"".$row[1]."\");\n";
+       echo  "var marker = wkt.toObject().bindPopup('<a href=\"check-visit.php?visit_id=".$row[0]."\">".$row[0]."</a>');\n";
+       echo "marker.addTo(mymap);\n";
+   }
+
+pg_close($dbconn);
+
+ ?>
+// // Read in any kind of WKT string
+// //wkt.read("POINT(151.031024039124 -34.1480144699649)");
+/// wkt.read("POINT(151.032276564831 -34.157601293261)");
+// var marker = wkt.toObject().bindPopup('<a href="check-visit.php?visit_id=ROY001">ROY001</a>');
+// marker.addTo(mymap);
+// wkt.read("POINT(151.03314 -34.14428)");
+// var marker = wkt.toObject().bindPopup('<a href="check-visit.php?visit_id=ROY003">ROY003</a>');
+// marker.addTo(mymap);
+// wkt.read("POINT(151.04979 -34.17011)");
+// var marker = wkt.toObject().bindPopup('<a href="check-visit.php?visit_id=R0Y005">ROY005</a>');
+// marker.addTo(mymap);
+// wkt.read("POINT(151.20192 -33.72486)");
+// var marker = wkt.toObject().bindPopup('<a href="check-visit.php?visit_id=Ka5">Ka5</a>');
+// marker.addTo(mymap);
+// wkt.read("POINT(151.031024039124 -34.1480144699649)");
+// var marker = wkt.toObject().bindPopup('<a href="check-visit.php?visit_id=ROY002">ROY002</a>');
+// marker.addTo(mymap);
 
 
 

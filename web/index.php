@@ -61,7 +61,7 @@ while ($row = pg_fetch_row($result)) {
    } else {
       $mas = "";
    }
-  $main_content .= "<li> Species ID: <a href='check-spp.php?species_code=$row[0]'>$row[0]</a>   Name: <i>$row[1]</i> $mas</li>\n";
+  $main_content .= "<li> Species ID: <a href='qry-species.php?species_code=$row[0]'>$row[0]</a>   Name: <i>$row[1]</i> $mas</li>\n";
 }
 
 $qry = "SELECT distinct species FROM form.quadrat_samples WHERE species_code IS NULL ORDER BY species";
