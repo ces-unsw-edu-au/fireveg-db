@@ -30,7 +30,7 @@ $foot_msg .= "Connected successfully\n<br />\n";
   <tr>
  <th>Select a site</th>
  <td>
- <select class="" name="sample[visit_id]">'.$visitids.'
+ <select class="" name="sample_code">'.$visitids.'
  </select>
  </td>
  </tr>

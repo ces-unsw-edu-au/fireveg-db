@@ -94,7 +94,7 @@ if (isset($_REQUEST["ecode"])) {
  <input type="text" name="quadrat[species_code]" value="'.$_REQUEST["ecode"].'" size="4" />
  </td>
  <td>
- <input type="text" name="quadrat[species_name]" value="'.$eName.'" size="14"/>
+ <input type="text" name="quadrat[species]" value="'.$eName.'" size="14"/>
  </td>
  <td>
  <input type="text" name="quadrat[resprouts_live]" value="" size="4" />
@@ -138,7 +138,7 @@ Comments<br/>
  ';
 
 
- $main_content .= ' <form action="add-sample.php" method="post">
+ $main_content .= ' <form action="add-quadrat-species.php" method="post">
      <div class="site">
      '.$sample_table.'
     </div>

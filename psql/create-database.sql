@@ -148,9 +148,12 @@ comments text,
 FOREIGN KEY (visit_id, sample_nr) REFERENCES form.field_samples (visit_id,sample_nr) ON DELETE CASCADE
 );
 
+ALTER TABLE form.quadrat_samples ADD column record_id SERIAL before visit_id;
+ALTER TABLE  form.quadrat_samples ADD PRIMARY KEY (record_id);
+ALTER TABLE  form.quadrat_samples DROP INDEX ix_quadrat;
 
-
-
+CREATE PRIMARY KEY ix_quadrat ON form.quadrat_samples (record_id);
+CONSTRAINT rec_quadrat PRIMARY KEY(column_1, column_2,...);
 --
 -- old/bad code:
 

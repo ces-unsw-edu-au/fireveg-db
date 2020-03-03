@@ -35,6 +35,19 @@ while ($row = pg_fetch_row($result)) {
 $main_content .= "</ol>\n";
 
 
+$qry = "SELECT visit_id,sample_nr FROM form.field_samples ORDER BY visit_id ASC, sample_nr ASC";
+$result = pg_query($dbconn, $qry);
+if (!$result) {
+  $foot_msg .="An error occurred.\n";
+  exit;
+}
+$main_content .= "<ol> List of registered quadrat samples:\n";
+while ($row = pg_fetch_row($result)) {
+  $main_content .= "<li> Site ID: $row[0] Sample Nr $row[1] : <a href='list-quadrat-species.php?visit_id=$row[0]&sample_nr=$row[1]'>Species list</a></li>\n";
+}
+$main_content .= "</ol>\n";
+
+
 $qry = "SELECT visit_id,fire_date FROM form.fire_history ORDER BY visit_id ASC,fire_date DESC";
 $result = pg_query($dbconn, $qry);
 if (!$result) {
