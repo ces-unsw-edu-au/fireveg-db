@@ -1,6 +1,5 @@
 <?php
 $page_title="Adding sample";
-
 ## read the password from a file in user directory
 include("/home/jferrer/.pgpass.php");
 //connect to a database on "localhost" and set the command line parameter which tells the encoding is in UTF-8
@@ -48,6 +47,7 @@ if ($_POST["sample"]["visit_id"]==NULL) {
 
 
 pg_close($dbconn);
+
 include_once("skeleton.php");
 
 ?>
