@@ -35,12 +35,8 @@ td {background-color:pink; text-align:left; font-size: 85%; color: "#675622"}
               <div class="w3-container">
                  <p> <a href='index.php'>Home</a></p>
                  <p> <a href='map.php'>Map</a></p>
-                 <p>Step 1: <a href='new-observer.php'>ADD an observer</a></p>
-                 <p>Step 2: <a href='new-visit.php'>ADD a new visit</a></p>
-                 <p>Step 3: <a href='new-sample.php'>ADD a new sample</a></p>
-                 <p>Step 4a: <a href='search-species.php'>search species</a></p>
-                 <p>Step 4b: <a href='new-quadrat-species.php'>ADD species to quadrat</a></p>
-              <!--//
+                 <p> <a href='species-list.php'>Taxonomic list</a></p>
+                 <!--//
 
                 <p><i class="fa fa-briefcase fa-fw w3-margin-right w3-large w3-text-teal"></i>Designer</p>
                 <p><i class="fa fa-home fa-fw w3-margin-right w3-large w3-text-teal"></i>London, UK</p>
