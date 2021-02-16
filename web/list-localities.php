@@ -4,7 +4,7 @@ $page_title="Adding visit";
 include("inc/hello.php");
 
 $table_rslts = "";
-$qry = "select visit_id,st_x(geom),st_y(geom),st_srid(geom) from form.field_visit order by st_srid,st_x,st_y";
+$qry = "select visit_id,visit_date,st_x(geom),st_y(geom),st_srid(geom) from form.field_visit order by visit_id, visit_date, st_srid,st_x,st_y";
 
 $sridnames = array(
   "4326" => "LAT LONG WGS84",
@@ -28,7 +28,13 @@ $sridnames = array(
      $clr = "#D71211";
      $msg = "mismatch between coordinates and projection";
    }
-    $table_rslts.= "<tr> <th>$row[visit_id]</th><td>$row[st_x]</td><td>$row[st_y]</td><td>".$sridnames[$row["st_srid"]]."</td><td style='background-color:$clr; color:white;'>$msg</td><td style='background-color:$clr; color:white;'><a href='edit-coords.php?visit_id=$row[visit_id]'>EDIT</a></td></tr> ";
+    $table_rslts.= "<tr> <th><a href='check-visit.php?visit_id=$row[visit_id]'>$row[visit_id]</a></th>
+    <td>$row[visit_date]</td>
+    <td>$row[st_x]</td>
+    <td>$row[st_y]</td>
+    <td>".$sridnames[$row["st_srid"]]."</td>
+    <td style='background-color:$clr; color:white;'>$msg</td>
+    <td style='background-color:$clr; color:white;'><a href='edit-coords.php?visit_id=$row[visit_id]'>EDIT</a></td></tr> ";
 
  }
 
@@ -37,6 +43,7 @@ pg_close($dbconn);
 
 $table_hdr="<tr>
 <th>Site id</th>
+<th>Date</th>
 <th>Longitude</th>
 <th>Latitude</th>
 <th>SRID</th>

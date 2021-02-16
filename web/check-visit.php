@@ -1,13 +1,9 @@
  <?php
  $vid = $_GET["visit_id"];
  $page_title="Data for visit $vid";
- ## read the password from a file in user directory
- include("/home/jferrer/.pgpass.php");
- //connect to a database on "localhost" and set the command line parameter which tells the encoding is in UTF-8
- $dbconn = pg_connect("host=localhost dbname=fireveg user=jferrer password=$clavepasajera options='--client_encoding=UTF8'")
-    or die("Could not connect");
-$foot_msg .= "Connected successfully\n<br />\n";
+ include("inc/hello.php");
 
+$main_content = "";
  $qry = "SELECT * FROM form.field_visit as v LEFT JOIN form.observerid as o ON v.mainObserver::numeric=o.UserKey WHERE visit_id = '$vid'";
  $result = pg_query($dbconn, $qry);
  if (!$result) {
@@ -15,7 +11,8 @@ $foot_msg .= "Connected successfully\n<br />\n";
    exit;
  }
  while ($row = pg_fetch_assoc($result)) {
-    while(list($name,$value) = each($row)) {
+
+foreach($row as $name => $value) {
       if (is_null($value)) {
          $outputvalue="<a style='color: #156565;'> is not set (NULL or empty)</a>";
 

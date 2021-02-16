@@ -1,19 +1,15 @@
  <?php
  $vid = $_REQUEST["visit_id"];
  $column = $_REQUEST["column"];
- $newval = $_REQUEST["newval"];
  $page_title="Data for visit $vid";
- ## read the password from a file in user directory
- include("/home/jferrer/.pgpass.php");
- //connect to a database on "localhost" and set the command line parameter which tells the encoding is in UTF-8
- $dbconn = pg_connect("host=localhost dbname=fireveg user=jferrer password=$clavepasajera options='--client_encoding=UTF8'")
-    or die("Could not connect");
-$foot_msg .= "Connected successfully\n<br />\n";
+
+ include("inc/hello.php");
 
 $schema="form";
    $table="field_visit";
 
-if (isset($newval)) {
+   if (isset($_REQUEST["newval"])) {
+    $newval = $_REQUEST["newval"];
    $foot_msg .= "New value is".$newval;
    $qry = "UPDATE $schema.$table set $column='$newval' where visit_id='$vid'";
 
@@ -32,7 +28,7 @@ if (isset($newval)) {
    exit;
  }
  while ($row = pg_fetch_assoc($result)) {
-    while(list($name,$value) = each($row)) {
+   foreach($row as $name => $value) {
       $colmod = " <a style='color: #C56565;'>$name</a><br/><input type='text' name='newval' value='$value'><br/>";
    }
  }

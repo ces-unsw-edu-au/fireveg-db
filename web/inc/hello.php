@@ -20,5 +20,6 @@ $map_content = "";
 ## print "Connected successfully<br/>";
 $ROOTDIR = pathinfo($_SERVER['PHP_SELF'])['dirname'];
 
+ $main_content = "";
 
 ?>
