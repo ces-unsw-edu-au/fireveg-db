@@ -1,13 +1,6 @@
-
-
 <?php
 $page_title="Database overview";
- ## read the password from a file in user directory
-include("/home/jferrer/.pgpass.php");
-//connect to a database on "localhost" and set the command line parameter which tells the encoding is in UTF-8
-$dbconn = pg_connect("host=localhost dbname=fireveg user=jferrer password=$clavepasajera options='--client_encoding=UTF8'")
-   or die("Could not connect");
-$foot_msg .="Connected successfully\n<br />\n";
+include("inc/hello.php");
 
 $qry = "SELECT count(distinct userkey) FROM form.observerID";
 $result = pg_query($dbconn, $qry);
@@ -28,7 +21,7 @@ if (!$result) {
   exit;
 }
 while ($row = pg_fetch_row($result)) {
-  $main_content .= "<li> $row[0] visits with $row[1] samples</li>\n";
+  $main_content .= "<li> $row[0] visits with $row[1] samples: <a href='list-localities.php'>check coordinates</a></li>\n";
 }
 
 
