@@ -1,3 +1,4 @@
+ALTER TABLE form.field_visit ALTER COLUMN visit_id TYPE varchar(30);
 
 CREATE TABLE IF NOT EXISTS form.field_visit (
 visit_id VARCHAR(10) ,
@@ -108,6 +109,7 @@ how_inferred varchar(100),
 cause_of_ignition varchar(100),
 PRIMARY KEY (visit_id, fire_date)
 );
+ALTER TABLE form.fire_history ALTER COLUMN visit_id TYPE varchar(30);
 
 
 CREATE TYPE sampling_method AS ENUM ('quadrat', 'transect', 'other');
@@ -122,6 +124,8 @@ comments text,
 PRIMARY KEY (visit_id, sample_nr)
 );
 
+ALTER TABLE form.field_samples ALTER COLUMN visit_id TYPE varchar(30);
+
  ALTER TABLE form.field_samples
    DROP CONSTRAINT field_samples_visit_id_fkey;
 ALTER TABLE form.field_samples
@@ -131,6 +135,18 @@ ALTER TABLE form.field_samples
   ON DELETE CASCADE ON UPDATE CASCADE;
 
 CREATE TYPE resprout_type AS ENUM ('epicormic', 'ligno', 'crown','basal','tuber','rhizoma','stolon', 'none', 'other');
+
+CREATE TYPE resprout_type AS ENUM ('epicormic', 'ligno', 'crown','basal','tuber','rhizoma','stolon', 'none', 'other');
+
+ALTER TYPE resprout_type ADD VALUE 'lignotuber';
+ALTER TYPE resprout_type ADD VALUE 'postfire recruit';
+ALTER TYPE resprout_type ADD VALUE 'root';
+ALTER TYPE resprout_type ADD VALUE 'tiller';
+ALTER TYPE resprout_type ADD VALUE 'tussock';
+ALTER TYPE resprout_type ADD VALUE 'basal, epicormic';
+ALTER TYPE resprout_type ADD VALUE 'basal, root';
+ALTER TYPE resprout_type ADD VALUE 'apical';
+
 CREATE TYPE seedbank_type AS ENUM ('soil-persistent', 'transient', 'canopy','non-canopy','other');
 -- DROP TYPE seedbank_type CASCADE;
 -- ALTER TYPE seedbank_type ADD VALUE 'non-canopy' AFTER 'canopy';
