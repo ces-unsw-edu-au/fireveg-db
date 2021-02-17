@@ -21,5 +21,7 @@ $map_content = "";
 $ROOTDIR = pathinfo($_SERVER['PHP_SELF'])['dirname'];
 
  $main_content = "";
+ $table_spp = "";
+ $table_rslts = "";
 
 ?>

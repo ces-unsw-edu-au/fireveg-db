@@ -3,12 +3,7 @@
 
 
 
- ## read the password from a file in user directory
- include("/home/jferrer/.pgpass.php");
- //connect to a database on "localhost" and set the command line parameter which tells the encoding is in UTF-8
- $dbconn = pg_connect("host=localhost dbname=fireveg user=jferrer password=$clavepasajera options='--client_encoding=UTF8'")
-    or die("Could not connect");
-$foot_msg .= "Connected successfully\n<br />\n";
+ include("inc/hello.php");
 
 $qry = "SELECT \"SpeciesCode\",\"FamilyName\",\"GenusName\",\"ScientificName\" FROM  public.\"Species_list\" WHERE \"SpeciesCode\"  = '$ecode'";
 $result = pg_query($dbconn, $qry);
@@ -18,8 +13,9 @@ $result = pg_query($dbconn, $qry);
  }
  while ($row = pg_fetch_assoc($result)) {
     $table_spp.= "<tr> ";
-    while(list($name,$value) = each($row)) {
-      $table_spp.= "<th>$name</th><td>$value</td> ";
+
+    foreach($row as $name => $value) {
+        $table_spp.= "<th>$name</th><td>$value</td> ";
       if ($name="ScientificName") {$spName=$value;}
    }
    $table_spp.= "</tr> ";
@@ -34,8 +30,16 @@ $result = pg_query($dbconn, $qry);
  }
  while ($row = pg_fetch_assoc($result)) {
     $table_rslts.= "<tr> ";
-    while(list($name,$value) = each($row)) {
-      $table_rslts.= "<td>$value</td> ";
+
+    foreach($row as $name => $value) {
+      switch($name) {
+        case "visit_id":
+        $table_rslts.= "<td><a href='table-species-sample.php?visit_id=$value'>$value</a></td> ";
+        break;
+
+        default:
+        $table_rslts.= "<td>$value</td> ";
+      }
    }
    $table_rslts.= "</tr> ";
 

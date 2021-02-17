@@ -15,8 +15,9 @@ if (isset($_REQUEST["record_id"])) {
      exit;
    }
    while ($row = pg_fetch_assoc($result)) {
-    while(list($name,$value) = each($row)) {
-      switch ($name) {
+
+     foreach($row as $name => $value) {
+           switch ($name) {
          case "record_id":
             $table_rslts.= "<tr><th>Record ID</th><td><input type='hidden' name='record_id' value='$value'/>$value</td></tr>";
             break;
