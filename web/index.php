@@ -21,7 +21,8 @@ if (!$result) {
   exit;
 }
 while ($row = pg_fetch_row($result)) {
-  $main_content .= "<li> $row[0] visits with $row[1] samples: <a href='list-localities.php'>check coordinates</a></li>\n";
+  $main_content .= "<li> $row[0] visits: <a href='list-localities.php'>check coordinates</a></li>
+  <li> $row[1] samples: <a href='list-samples.php'>check list of samples</a></li>\n";
 }
 
 

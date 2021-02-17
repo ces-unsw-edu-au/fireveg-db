@@ -1,5 +1,5 @@
 <?php
-$page_title="Adding visit";
+$page_title="Overview of visits (coordinates)";
 
 include("inc/hello.php");
 
@@ -51,8 +51,6 @@ $table_hdr="<tr>
 
 $main_content="<table>$table_hdr $table_rslts</table>";
 
-
-$page_title="Coordinates of visits";
 
 include_once("skeleton.php");
 

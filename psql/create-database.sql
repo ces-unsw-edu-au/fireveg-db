@@ -109,7 +109,9 @@ cause_of_ignition varchar(100),
 PRIMARY KEY (visit_id, fire_date)
 );
 
+
 CREATE TYPE sampling_method AS ENUM ('quadrat', 'transect', 'other');
+
 CREATE TABLE IF NOT EXISTS form.field_samples (
 visit_id VARCHAR(10) REFERENCES form.field_visit ON DELETE CASCADE,
 sample_nr SMALLINT,
@@ -119,6 +121,14 @@ transect_length numeric,
 comments text,
 PRIMARY KEY (visit_id, sample_nr)
 );
+
+ ALTER TABLE form.field_samples
+   DROP CONSTRAINT field_samples_visit_id_fkey;
+ALTER TABLE form.field_samples
+  ADD CONSTRAINT field_samples_visit_id_fkey
+  FOREIGN KEY (visit_id)
+  REFERENCES form.field_visit(visit_id)
+  ON DELETE CASCADE ON UPDATE CASCADE;
 
 CREATE TYPE resprout_type AS ENUM ('epicormic', 'ligno', 'crown','basal','tuber','rhizoma','stolon', 'none', 'other');
 CREATE TYPE seedbank_type AS ENUM ('soil-persistent', 'transient', 'canopy','non-canopy','other');
