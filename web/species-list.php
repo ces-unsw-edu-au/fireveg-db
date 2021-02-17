@@ -2,12 +2,8 @@
 
 <?php
 $page_title="List of species";
- ## read the password from a file in user directory
-include("/home/jferrer/.pgpass.php");
-//connect to a database on "localhost" and set the command line parameter which tells the encoding is in UTF-8
-$dbconn = pg_connect("host=localhost dbname=fireveg user=jferrer password=$clavepasajera options='--client_encoding=UTF8'")
-   or die("Could not connect");
-$foot_msg .="Connected successfully\n<br />\n";
+
+include("inc/hello.php");
 
 
 $qry = "SELECT s.species_code,MAX(s.species),MAX(\"FamilyName\"),MAX(\"ScientificName\") FROM form.quadrat_samples s LEFT JOIN \"Species_list\" l ON s.species_code=l.\"SpeciesCode\" GROUP BY s.species_code ORDER BY MAX(\"SortOrder\")";

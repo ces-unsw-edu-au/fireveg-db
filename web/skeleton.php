@@ -36,6 +36,7 @@ td {background-color:pink; text-align:left; font-size: 85%; color: "#675622"}
                  <p> <a href='index.php'>Home</a></p>
                  <p> <a href='map.php'>Map</a></p>
                  <p> <a href='species-list.php'>Taxonomic list</a></p>
+                 <p> <a href='list-localities.php'>List of sites (coordinates)</a></p>
                  <!--//
 
                 <p><i class="fa fa-briefcase fa-fw w3-margin-right w3-large w3-text-teal"></i>Designer</p>

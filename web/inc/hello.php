@@ -23,5 +23,7 @@ $ROOTDIR = pathinfo($_SERVER['PHP_SELF'])['dirname'];
  $main_content = "";
  $table_spp = "";
  $table_rslts = "";
+ $page_title = "";
+ 
 
 ?>

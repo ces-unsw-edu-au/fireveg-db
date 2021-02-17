@@ -48,6 +48,9 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif};
              https://tile.thunderforest.com/landscape/{z}/{x}/{y}.png?apikey=<insert-your-apikey-here> //-->
 
              <?php
+
+             include("inc/hello.php");
+
               echo "<h1>$page_title</h1>";
 
 ##select ST_AsText(ST_Transform(geom,4326)) from form.field_visit ;
@@ -61,7 +64,7 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif};
 
 
 
-var mymap = L.map('mapid').setView([-34, 151], 8);
+var mymap = L.map('mapid').setView([-33, 151], 6);
 
 L.tileLayer('https://tile.thunderforest.com/landscape/{z}/{x}/{y}.png?apikey=48a1c0019a434234b88d1dbf22da8c8a', {
 		maxZoom: 18,
@@ -76,11 +79,6 @@ L.tileLayer('https://tile.thunderforest.com/landscape/{z}/{x}/{y}.png?apikey=48a
 var wkt = new Wkt.Wkt();
 
 <?php
-include("/home/jferrer/.pgpass.php");
-//connect to a database on "localhost" and set the command line parameter which tells the encoding is in UTF-8
-
-$dbconn = pg_connect("host=localhost dbname=fireveg user=jferrer password=$clavepasajera options='--client_encoding=UTF8'")
-or die("Could not connect");
 
 $qry = "select visit_id,ST_AsText(ST_Transform(geom,4326)) from form.field_visit" ;
  $result = pg_query($dbconn, $qry);
