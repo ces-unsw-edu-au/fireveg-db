@@ -37,12 +37,12 @@ if ($_POST["visit"]["visit_id"]==NULL) {
    $strn[strlen($strn)-1] = ')';
    $strv[strlen($strv)-1] = ')';
    $str .= $strn . $strv;
-   $foot_msg .= $str;
+   $foot_msg .= "<p>QUERY = $str</p>";
    $res = pg_query($dbconn, $str);
    if ($res) {
       $main_content .= "<BR/>POST data is successfully logged<BR/><a href='index.php'>Go back home an continue with step 2</a>\n";
    } else {
-      $main_content .= "<BR/>User must have sent wrong inputs<BR/><a href='new-visit.php'>please go back and fix this</a>\n";
+      $main_content .= "<BR/>User must have sent wrong inputs<BR/><a href='new-visit.php'>please go back and fix this</a>\n <p>QUERY = $str</p>";
    }
 
 
@@ -70,12 +70,12 @@ if ($_POST["visit"]["visit_id"]==NULL) {
          $strn[strlen($strn)-1] = ')';
          $strv[strlen($strv)-1] = ')';
          $str .= $strn . $strv;
-         $foot_msg .= $str;
+         $foot_msg .= "<p>QUERY = $str</p>";
          $res = pg_query($dbconn, $str);
          if ($res) {
             $main_content .= "<BR/>POST data is successfully logged<BR/><a href='index.php'>Go back home an continue with step 2</a>\n";
          } else {
-            $main_content .= "<BR/>User must have sent wrong inputs<BR/><a href='new-visit.php'>please go back and fix this</a>\n";
+            $main_content .= "<BR/>User must have sent wrong inputs<BR/><a href='new-visit.php'>please go back and fix this</a>\n <p>QUERY = $str</p>";
          }
       }
    }
