@@ -1,14 +1,16 @@
 <?php
-$page_title="List of species";
+$family = $_REQUEST["family"];
+$page_title="List of species in $family";
 
 include("inc/hello.php");
 
 
 
-$qry = "SELECT \"FamilyName\",count(distinct \"SpeciesName\") as nn, count(distinct l.species) as rr, count(distinct s.species) as mm, max(\"SortOrder\") as oo FROM \"Species_list\"
+$qry = "SELECT \"ScientificName\", \"SpeciesCode\",count(distinct l.attribute) as rr, count(distinct s.visit_id) as mm, max(\"SortOrder\") as oo FROM \"Species_list\"
 LEFT JOIN form.quadrat_samples s ON s.species_code=\"SpeciesCode\"
 LEFT JOIN litrev.raw_annotations l ON l.species_code=\"SpeciesCode\"
-GROUP BY \"FamilyName\" ORDER BY oo";
+WHERE \"FamilyName\" = '$family'
+GROUP BY \"ScientificName\", \"SpeciesCode\" ORDER BY oo";
 
 
 
@@ -19,18 +21,16 @@ if (!$result) {
 }
 while ($row = pg_fetch_assoc($result)) {
  $table_rws .= "<tr>
- <th>$row[FamilyName]</th>
- <th><a href='list-species-family.php?family=$row[FamilyName]'>+</a></th>
- <td style='text-align:center;'>$row[nn]</td>
+ <th>$row[ScientificName]</th>
+ <th><a href='qry-species.php?species_code=$row[SpeciesCode]'>$row[SpeciesCode]</a></th>
  <td style='text-align:center;'>$row[rr]</td>
  <td style='text-align:center;'>$row[mm]</td>
  </tr>";
 }
 $table_hdr .= "<tr>
-<th colspan=2>Family</th>
-<th>Total nr. of species</th>
-<th>Species in literature</th>
-<th>Species in samples</th>
+<th colspan=2>Species</th>
+<th>Attributes in literature</th>
+<th>Samples with records</th>
  </tr>";
 $main_content = "<p> List of families</p>
 <table>
