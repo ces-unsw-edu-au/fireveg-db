@@ -27,16 +27,23 @@ while ($row = pg_fetch_row($result)) {
 
 
 
-$qry = "SELECT count(distinct fire_date) FROM form.fire_history ";
+$qry = "SELECT count(*) FROM form.fire_history ";
 $result = pg_query($dbconn, $qry);
 if (!$result) {
   $foot_msg .="An error occurred.\n";
   exit;
 }
 while ($row = pg_fetch_row($result)) {
-  $main_content .= "<li> $row[0] fire records</li>\n";
+  $main_content .= "<li> $row[0] fire records: <a href='list-fires.php'>check list of fire events</a></li>\n";
 }
 $main_content .= "</ol>\n";
+
+$qry = "select count(distinct species_code) from litrev.raw_annotations";
+$result = pg_query($dbconn, $qry);
+if (!$result) {$foot_msg .="An error occurred.\n";exit;}
+while ($row = pg_fetch_row($result)) {
+  $main_content .= "<li> <a href='species-list.php'>$row[0]</a> species with attributes extracted from the literature</li>\n";
+}
 
 
 $qry = "SELECT count(distinct species_code),COUNT(distinct species) AS alt_names FROM form.quadrat_samples ";
@@ -46,7 +53,7 @@ if (!$result) {
   exit;
 }
 while ($row = pg_fetch_row($result)) {
-  $main_content .= "<li> $row[1] taxa, including <a href='species-list.php'>$row[0] identified to species</a></li>\n";
+  $main_content .= "<li> Field data for $row[1] taxa, including <a href='species-list.php'>$row[0] identified to species</a></li>\n";
 }
 
 

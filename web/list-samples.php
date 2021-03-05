@@ -16,7 +16,7 @@ ORDER BY visit_id";
  }
  while ($row = pg_fetch_assoc($result)) {
 
-    $table_rslts.= "<tr> <th><a href='check-visit.php?visit_id=$row[visit_id]'>$row[visit_id]</a></th>
+    $table_rslts.= "<tr> <th><a href='show-visit.php?visit_id=$row[visit_id]'>$row[visit_id]</a></th>
     <td style='text-align:center;'>$row[snr]</td>
     <td>$row[slist]</td>
     <td>$row[sample_method]</td>

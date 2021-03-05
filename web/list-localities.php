@@ -28,7 +28,7 @@ $sridnames = array(
      $clr = "#D71211";
      $msg = "mismatch between coordinates and projection";
    }
-    $table_rslts.= "<tr> <th><a href='check-visit.php?visit_id=$row[visit_id]'>$row[visit_id]</a></th>
+    $table_rslts.= "<tr> <th><a href='show-visit.php?visit_id=$row[visit_id]'>$row[visit_id]</a></th>
     <td>$row[visit_date]</td>
     <td>$row[st_x]</td>
     <td>$row[st_y]</td>

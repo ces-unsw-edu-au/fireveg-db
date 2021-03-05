@@ -1,7 +1,7 @@
 <?php
-$page_title="List of species";
 
 include("inc/hello.php");
+$page_title="List of species";
 
 
 
@@ -32,7 +32,7 @@ $table_hdr .= "<tr>
 <th>Species in literature</th>
 <th>Species in samples</th>
  </tr>";
-$main_content = "<p> List of families</p>
+$main_content = "
 <table>
 $table_hdr
 $table_rws

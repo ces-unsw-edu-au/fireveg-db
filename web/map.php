@@ -88,7 +88,7 @@ $qry = "select visit_id,ST_AsText(ST_Transform(geom,4326)) from form.field_visit
 		}
 	 while ($row = pg_fetch_row($result)) {
 	   echo  "wkt.read(\"".$row[1]."\");\n";
-       echo  "var marker = wkt.toObject().bindPopup('<a href=\"check-visit.php?visit_id=".$row[0]."\">".$row[0]."</a>');\n";
+       echo  "var marker = wkt.toObject().bindPopup('<a href=\"show-visit.php?visit_id=".$row[0]."\">".$row[0]."</a>');\n";
        echo "marker.addTo(mymap);\n";
    }
 
