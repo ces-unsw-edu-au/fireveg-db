@@ -45,6 +45,16 @@ while ($row = pg_fetch_row($result)) {
   $main_content .= "<li> <a href='species-list.php'>$row[0]</a> species with attributes extracted from the literature</li>\n";
 }
 
+$qry = "SELECT count(distinct species_code) FROM litrev.nsw_status ";
+$result = pg_query($dbconn, $qry);
+if (!$result) {
+  $foot_msg .="An error occurred.\n";
+  exit;
+}
+while ($row = pg_fetch_row($result)) {
+  $main_content .= "<li> Species listed in NSW: <a href='nsw-species-list.php'>$row[0] </a></li>\n";
+}
+
 
 $qry = "SELECT count(distinct species_code),COUNT(distinct species) AS alt_names FROM form.quadrat_samples ";
 $result = pg_query($dbconn, $qry);
@@ -55,6 +65,7 @@ if (!$result) {
 while ($row = pg_fetch_row($result)) {
   $main_content .= "<li> Field data for $row[1] taxa, including <a href='species-list.php'>$row[0] identified to species</a></li>\n";
 }
+
 
 
 $main_content .= "</ul>\n";
