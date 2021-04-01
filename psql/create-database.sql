@@ -215,6 +215,18 @@ ALTER TABLE litrev.raw_annotations
   REFERENCES simple_ref_list(ref_code)
   ON DELETE CASCADE ON UPDATE CASCADE;
 
+CREATE TABLE IF NOT EXISTS litrev.nsw_status (
+species VARCHAR(255),
+species_code int PRIMARY KEY,
+common_name VARCHAR(255),
+nsw_status varchar(50),
+source text,
+access_date DATE
+);
+
+--ALTER TABLE litrev.nsw_status   ADD CONSTRAINT nsw_status_code_fkey  FOREIGN KEY (species_code)  REFERENCES ...(...)  ON DELETE CASCADE ON UPDATE CASCADE;
+
+
 -- https://epsg.io/28356
 -- GDA94 / MGA zone 56
 -- EPSG:28356

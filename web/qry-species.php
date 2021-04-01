@@ -106,6 +106,9 @@ if ($table_rslt2!="") {
 }
 $main_content="
 <table>$table_spp</table>
+
+<p>Conservation status (NSW) / (COMMONWEALTH) / (GLOBAL):</br>TO DO</p>
+
 $table2
 $table1
 
