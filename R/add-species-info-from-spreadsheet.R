@@ -43,10 +43,11 @@ for (qry in qries)
 qry="INSERT INTO simple_ref_list(ref_code,ref_cite) values ('NSWFFRDv2.1','NSW Flora Fire Response Database. Version 2.1. February 2010 (last update May 2014)') ON CONFLICT DO NOTHING"
 dbSendQuery(con,qry)
 
-dts <- read_excel("~/proyectos/UNSW/fireveg-db/input/NSWFFRDv2.1.xlsx",sheet=2)
+dts <- read_excel("~/proyectos/UNSW/fireveg-db/input/NSWFFRDv2.1.xlsx",sheet=2,skip=1)
  colnames(dts)
 
 
+require(dplyr)
 
 dts$ESspecies<- NA
 for (k in 1:nrow(dts)) {
@@ -59,13 +60,23 @@ dts %>% filter(!is.na(Fireresponse)) %>% select(`Current Scientific Name`,`Speci
 for (qry in qries)
    dbSendQuery(con,qry)
 
-   dts %>% filter(!is.na(`Resprout location`)) %>% select(`Current Scientific Name`,`Species Code`,`Resprout location`,ESspecies) %>% transmute(qry=sprintf("INSERT INTO litrev.raw_annotations(species,species_code,attribute,value,ref_code) values ('%s',%s,'Resprout location','%s','NSWFFRDv2.1') ON CONFLICT DO NOTHING",`ESspecies`,ifelse(`Species Code` %in% 'n/a',"NULL",sprintf("'%s'",`Species Code`)),`Resprout location`)) %>% pull(qry) -> qries
 
-   dts %>% filter(!is.na(`Comments on regeneration`)) %>% select(`Current Scientific Name`,`Species Code`,`Comments on regeneration`,ESspecies) %>% transmute(qry=sprintf("INSERT INTO litrev.raw_annotations(species,species_code,attribute,value,ref_code) values ('%s',%s,'Comments on regeneration','%s','NSWFFRDv2.1') ON CONFLICT DO NOTHING",`ESspecies`,ifelse(`Species Code` %in% 'n/a',"NULL",sprintf("'%s'",`Species Code`)),`Comments on regeneration`)) %>% pull(qry) -> qries
+#error
+slc.var <- "Post-fire recruitment"
 
+#good
+slc.var <- "Germination cue"
+slc.var <- "Seed storage"
+slc.var <- "Comments on regeneration"
+slc.var <- "Resprout location"
+slc.var <- "Establishment"
 
-   for (qry in qries)
-      dbSendQuery(con,qry)
+slc.var <- "Flowering time"
+slc.var <- "Seed dispersal mechanism"
 
+ dts %>% filter(!is.na(!!sym(slc.var))) %>% select(`Current Scientific Name`,`Species Code`,!!slc.var,ESspecies) %>% transmute(qry=sprintf("INSERT INTO litrev.raw_annotations(species,species_code,attribute,value,ref_code) values ('%s',%s,'%s','%s','NSWFFRDv2.1') ON CONFLICT DO NOTHING",`ESspecies`,ifelse(`Species Code` %in% 'n/a',"NULL",sprintf("'%s'",`Species Code`)),slc.var,!!sym(slc.var))) %>% pull(qry) -> qries
+
+for (qry in qries)
+dbSendQuery(con,qry)
 
 dbDisconnect(con)

@@ -42,3 +42,19 @@ sudo apt-get install aspnetcore-runtime-3.1
 sudo apt-get install dotnet-runtime-3.1
 
 ## graph database for data model: dFair67
+
+
+Translate information from NSW fire data
+Clean up data from literature (references)
+split multiple records from different sources
+
+variability in the data ?
+
+pragmatic - capture essential data
+
+Examples from Mark
+Tonny
+
+References per species
+
+Meet again with David and Mark after eastern

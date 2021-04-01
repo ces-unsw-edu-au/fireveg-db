@@ -1,5 +1,3 @@
-ALTER TABLE form.field_visit ALTER COLUMN visit_id TYPE varchar(30);
-
 CREATE TABLE IF NOT EXISTS form.field_visit (
 visit_id VARCHAR(10) ,
 visit_date date,
@@ -74,6 +72,8 @@ DateUpdated timestamp NOT NULL,
 PRIMARY KEY (visit_id)
 
 );
+ALTER TABLE form.field_visit ALTER COLUMN visit_id TYPE varchar(30);
+
 
 --
 -- This is copied from tblObserver of Atlas data model
@@ -177,6 +177,16 @@ FOREIGN KEY (visit_id, sample_nr) REFERENCES form.field_samples (visit_id,sample
 ALTER TABLE form.quadrat_samples ADD column record_id SERIAL before visit_id;
 ALTER TABLE  form.quadrat_samples ADD PRIMARY KEY (record_id);
 ALTER TABLE  form.quadrat_samples DROP INDEX ix_quadrat;
+
+ALTER TABLE form.quadrat_samples ALTER COLUMN visit_id TYPE varchar(30);
+
+ALTER TABLE form.quadrat_samples
+  DROP CONSTRAINT quadrat_samples_visit_id_fkey;
+ALTER TABLE form.quadrat_samples
+ ADD CONSTRAINT quadrat_samples_visit_id_fkey
+ FOREIGN KEY (visit_id)
+ REFERENCES form.field_visit(visit_id)
+ ON DELETE CASCADE ON UPDATE CASCADE;
 
 --CREATE PRIMARY KEY ix_quadrat ON form.quadrat_samples (record_id);
 --CONSTRAINT rec_quadrat PRIMARY KEY(column_1, column_2,...);
