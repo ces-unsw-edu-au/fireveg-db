@@ -65,6 +65,10 @@ if (!$result) {
 while ($row = pg_fetch_row($result)) {
   $main_content .= "<li> Field data for $row[1] taxa, including <a href='species-list.php'>$row[0] identified to species</a></li>\n";
 }
+ $main_content .= "<li> Parameters calculated from field data:
+ <ol><li> <a href='stats-standing-plant-longevity.php'>Primary juvenile period and Standing plant longevity</a></li>
+ </ol>
+ </li>\n";
 
 
 
