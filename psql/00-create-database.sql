@@ -139,7 +139,7 @@ CREATE TYPE resprout_type AS ENUM ('epicormic', 'ligno', 'crown','basal','tuber'
 CREATE TYPE resprout_type AS ENUM ('epicormic', 'ligno', 'crown','basal','tuber','rhizoma','stolon', 'none', 'other');
 
 ALTER TYPE resprout_type ADD VALUE 'lignotuber';
-ALTER TYPE resprout_type ADD VALUE 'postfire recruit';
+ALTERe TYPE resprout_type ADD VALUE 'postfire recruit';
 ALTER TYPE resprout_type ADD VALUE 'root';
 ALTER TYPE resprout_type ADD VALUE 'tiller';
 ALTER TYPE resprout_type ADD VALUE 'tussock';
