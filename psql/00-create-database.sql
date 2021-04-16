@@ -226,6 +226,26 @@ access_date DATE
 
 --ALTER TABLE litrev.nsw_status   ADD CONSTRAINT nsw_status_code_fkey  FOREIGN KEY (species_code)  REFERENCES ...(...)  ON DELETE CASCADE ON UPDATE CASCADE;
 
+CREATE TYPE resprouting_types AS ENUM ('none','few','half','most','all', 'unknown');
+
+CREATE TABLE IF NOT EXISTS litrev.traits(
+   species VARCHAR(255),
+   species_code int,
+   resprouting resprouting_types,
+   regenerative_organ text[],
+   seedbank seedbank_type,
+   information_type text[],
+   ref_code varchar(100),
+   refs text[],
+   PRIMARY KEY (species,species_code)
+);
+
+ALTER TABLE litrev.traits
+  ADD CONSTRAINT traits_ref_fkey
+  FOREIGN KEY (ref_code)
+  REFERENCES simple_ref_list(ref_code)
+  ON DELETE CASCADE ON UPDATE CASCADE;
+
 
 -- https://epsg.io/28356
 -- GDA94 / MGA zone 56
