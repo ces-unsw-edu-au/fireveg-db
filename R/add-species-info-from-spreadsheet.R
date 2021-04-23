@@ -1,6 +1,8 @@
 #!R --vanilla
 require(readxl)
 require("RPostgreSQL")
+require(dplyr)
+
 drv <- dbDriver("PostgreSQL") ## remember to update .pgpass file
 con <- dbConnect(drv, dbname = "fireveg",
                  host = "localhost", port = 5432,
@@ -46,8 +48,6 @@ dbSendQuery(con,qry)
 dts <- read_excel("~/proyectos/UNSW/fireveg-db/input/NSWFFRDv2.1.xlsx",sheet=2,skip=1)
  colnames(dts)
 
-
-require(dplyr)
 
 dts$ESspecies<- NA
 for (k in 1:nrow(dts)) {
