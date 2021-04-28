@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<spplist>
+  <species name="Adriana tomentosa var. tomentosa" code="10564">
+    <Resprouting>
+      <value ref="Auld_2014" show_as="default" original="S" input="DAK-xwalk">None</value>
+      <value ref="Clarke_2015" site_id="Eucalypt Forest" observation_id="Clarke_2015_0326" value_type="expert_mean" input="Austraits-import">fire_killed</value>
+      <value ref="White_2020" observation_id="White_2020_0352" value_type="expert_mean" input="Austraits-import">fire_killed</value>
+      <value ref="White_2020" observation_id="White_2020_0353" value_type="expert_mean" input="Austraits-import">fire_killed</value>
+      <value ref="White_2020" observation_id="White_2020_0354" value_type="expert_mean" input="Austraits-import">fire_killed</value>
+      <value ref="White_2020" observation_id="White_2020_0363" value_type="expert_mean" input="Austraits-import">fire_killed</value>
+    </Resprouting>
+    <RegenerativeOrgan>
+      <value ref="Auld_2014" show_as="default" original="NA" input="DAK-xwalk">NA</value>
+    </RegenerativeOrgan>
+  </species>
+</spplist>

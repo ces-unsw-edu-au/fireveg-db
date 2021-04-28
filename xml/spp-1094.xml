@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<spplist>
+  <species name="Actinotus helianthi" code="1094">
+    <Resprouting>
+      <value ref="Auld_2014" show_as="default" original="S" input="DAK-xwalk">None</value>
+      <value ref="Falster_2005_2" site_id="Myall_Lakes" observation_id="Falster_2005_2_05" value_type="expert_mean" input="Austraits-import">fire_killed</value>
+    </Resprouting>
+    <RegenerativeOrgan>
+      <value ref="Auld_2014" show_as="default" original="NA" input="DAK-xwalk">NA</value>
+    </RegenerativeOrgan>
+  </species>
+</spplist>

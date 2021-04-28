@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<spplist>
+  <species name="Acronychia imperforata" code="8418">
+    <Resprouting>
+      <value ref="Auld_2014" show_as="default" original="R" input="DAK-xwalk">All</value>
+      <value ref="Baker_2019" site_id="East Ballina -28.859895_and_153.5921631" observation_id="Baker_2019_50" value_type="expert_mean" input="Austraits-import">resprouts</value>
+    </Resprouting>
+    <RegenerativeOrgan>
+      <value ref="Auld_2014" show_as="default" original="basal" input="DAK-xwalk">Basal</value>
+    </RegenerativeOrgan>
+  </species>
+</spplist>

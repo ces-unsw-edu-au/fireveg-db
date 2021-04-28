@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<spplist>
+  <species name="Acacia meiantha" code="8973">
+    <Resprouting>
+      <value ref="Auld_2014" show_as="default" original="R" input="DAK-xwalk">All</value>
+    </Resprouting>
+    <RegenerativeOrgan>
+      <value ref="Auld_2014" show_as="default" original="rootstock" input="DAK-xwalk">Lignotuber</value>
+    </RegenerativeOrgan>
+  </species>
+</spplist>

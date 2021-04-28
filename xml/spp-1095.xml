@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<spplist>
+  <species name="Actinotus minor" code="1095">
+    <Resprouting>
+      <value ref="Auld_2014" show_as="default" original="Sr" input="DAK-xwalk">Few</value>
+    </Resprouting>
+    <RegenerativeOrgan>
+      <value ref="Auld_2014" show_as="default" original="NA" input="DAK-xwalk">NA</value>
+    </RegenerativeOrgan>
+  </species>
+</spplist>

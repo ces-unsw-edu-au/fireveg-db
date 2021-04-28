@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<spplist>
+  <species name="Acacia jennerae" code="3797">
+    <Resprouting>
+      <value ref="Auld_2014" show_as="default" original="R" input="DAK-xwalk">All</value>
+      <value ref="Clarke_2015" site_id="Eucalypt Shrubland" observation_id="Clarke_2015_0144" value_type="expert_mean" input="Austraits-import">resprouts</value>
+      <value ref="Gosper_2018" site_id="Lake Cronin-Yellowdine area, Western Australia" observation_id="Gosper_2018_007" value_type="expert_mean" input="Austraits-import">resprouts</value>
+    </Resprouting>
+    <RegenerativeOrgan>
+      <value ref="Auld_2014" show_as="default" original="NA" input="DAK-xwalk">NA</value>
+    </RegenerativeOrgan>
+  </species>
+</spplist>

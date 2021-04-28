@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<spplist>
+  <species name="Acrophyllum australe" code="2265">
+    <Resprouting>
+      <value ref="Auld_2014" show_as="default" original="R" input="DAK-xwalk">All</value>
+    </Resprouting>
+    <RegenerativeOrgan>
+      <value ref="Auld_2014" show_as="default" original="lignotuber" input="DAK-xwalk">Lignotuber</value>
+    </RegenerativeOrgan>
+  </species>
+</spplist>

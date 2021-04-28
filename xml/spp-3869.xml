@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<spplist>
+  <species name="Acacia rubida" code="3869">
+    <Resprouting>
+      <value ref="Auld_2014" show_as="default" original="Sr" input="DAK-xwalk">Few</value>
+      <value ref="Cheal_2017" observation_id="Cheal_2017_0125" value_type="expert_mean" input="Austraits-import">resprouts</value>
+      <value ref="Clarke_2015" site_id="Eucalypt Forest" observation_id="Clarke_2015_0242" value_type="expert_mean" input="Austraits-import">resprouts</value>
+      <value ref="Meers_2007" site_id="Delatite Peninsula" observation_id="Meers_2007_006" value_type="expert_mean" input="Austraits-import">resprouts</value>
+      <value ref="White_2020" observation_id="White_2020_0214" value_type="expert_mean" input="Austraits-import">resprouts</value>
+    </Resprouting>
+    <RegenerativeOrgan>
+      <value ref="Auld_2014" show_as="default" original="root suckers" input="DAK-xwalk">NA</value>
+    </RegenerativeOrgan>
+  </species>
+</spplist>

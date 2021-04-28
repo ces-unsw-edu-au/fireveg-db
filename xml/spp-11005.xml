@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<spplist>
+  <species name="Acacia nova-anglica ms" code="11005">
+    <Resprouting>
+      <value ref="Auld_2014" show_as="default" original="R" input="DAK-xwalk">All</value>
+    </Resprouting>
+    <RegenerativeOrgan>
+      <value ref="Auld_2014" show_as="default" original="root buds" input="DAK-xwalk">Long rhizome or root sucker</value>
+    </RegenerativeOrgan>
+  </species>
+</spplist>

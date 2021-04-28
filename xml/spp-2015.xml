@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<spplist>
+  <species name="Allocasuarina paludosa" code="2015">
+    <Resprouting>
+      <value ref="Auld_2014" show_as="default" original="R" input="DAK-xwalk">All</value>
+      <value ref="Cheal_2017" observation_id="Cheal_2017_0278" value_type="expert_mean" input="Austraits-import">resprouts</value>
+      <value ref="Clarke_2015" site_id="Eucalypt Shrubland" observation_id="Clarke_2015_0363" value_type="expert_mean" input="Austraits-import">resprouts</value>
+      <value ref="White_2020" observation_id="White_2020_0432" value_type="expert_mean" input="Austraits-import">resprouts</value>
+    </Resprouting>
+    <RegenerativeOrgan>
+      <value ref="Auld_2014" show_as="default" original="rootstock" input="DAK-xwalk">Lignotuber</value>
+    </RegenerativeOrgan>
+  </species>
+</spplist>

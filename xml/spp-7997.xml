@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<spplist>
+  <species name="Adiantum aethiopicum" code="7997">
+    <Resprouting>
+      <value ref="Auld_2014" show_as="default" original="R" input="DAK-xwalk">All</value>
+      <value ref="Meers_2007" site_id="Delatite Peninsula" observation_id="Meers_2007_123" value_type="expert_mean" input="Austraits-import">resprouts</value>
+      <value ref="White_2020" observation_id="White_2020_0340" value_type="expert_mean" input="Austraits-import">resprouts</value>
+    </Resprouting>
+    <RegenerativeOrgan>
+      <value ref="Auld_2014" show_as="default" original="rhizome" input="DAK-xwalk">Long rhizome or root sucker</value>
+    </RegenerativeOrgan>
+  </species>
+</spplist>

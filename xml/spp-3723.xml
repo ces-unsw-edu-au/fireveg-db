@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<spplist>
+  <species name="Acacia brownii" code="3723">
+    <Resprouting>
+      <value ref="Auld_2014" show_as="default" original="Rs" input="DAK-xwalk">Most</value>
+      <value ref="Clarke_2015" site_id="Eucalypt Forest" observation_id="Clarke_2015_0051" value_type="expert_mean" input="Austraits-import">resprouts</value>
+      <value ref="White_2020" observation_id="White_2020_0050" value_type="expert_mean" input="Austraits-import">fire_killed</value>
+      <value ref="White_2020" observation_id="White_2020_0131" value_type="expert_mean" input="Austraits-import">fire_killed</value>
+    </Resprouting>
+    <RegenerativeOrgan>
+      <value ref="Auld_2014" show_as="default" original="basal" input="DAK-xwalk">Basal</value>
+    </RegenerativeOrgan>
+  </species>
+</spplist>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<spplist>
+  <species name="Actinobole uliginosum" code="1253">
+    <Resprouting>
+      <value ref="Auld_2014" show_as="default" original="S" input="DAK-xwalk">None</value>
+      <value ref="Cheal_2017" observation_id="Cheal_2017_0200" value_type="expert_mean" input="Austraits-import">fire_killed</value>
+      <value ref="White_2020" observation_id="White_2020_0330" value_type="expert_mean" input="Austraits-import">fire_killed</value>
+    </Resprouting>
+    <RegenerativeOrgan>
+      <value ref="Auld_2014" show_as="default" original="NA" input="DAK-xwalk">NA</value>
+    </RegenerativeOrgan>
+  </species>
+</spplist>

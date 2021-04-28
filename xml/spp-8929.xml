@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<spplist>
+  <species name="Acacia havilandiorum" code="8929">
+    <Resprouting>
+      <value ref="Auld_2014" show_as="default" original="S" input="DAK-xwalk">None</value>
+      <value ref="Cheal_2017" observation_id="Cheal_2017_0066" value_type="expert_mean" input="Austraits-import">fire_killed</value>
+      <value ref="White_2020" observation_id="White_2020_0119" value_type="expert_mean" input="Austraits-import">resprouts</value>
+      <value ref="White_2020" observation_id="White_2020_0120" value_type="expert_mean" input="Austraits-import">resprouts</value>
+    </Resprouting>
+    <RegenerativeOrgan>
+      <value ref="Auld_2014" show_as="default" original="NA" input="DAK-xwalk">NA</value>
+    </RegenerativeOrgan>
+  </species>
+</spplist>

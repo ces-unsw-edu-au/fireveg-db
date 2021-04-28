@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<spplist>
+  <species name="Acacia obtusifolia" code="3839">
+    <Resprouting>
+      <value ref="Auld_2014" show_as="default" original="Sr" input="DAK-xwalk">Few</value>
+      <value ref="Cheal_2017" observation_id="Cheal_2017_0106" value_type="expert_mean" input="Austraits-import">fire_killed</value>
+      <value ref="Clarke_2015" site_id="Eucalypt Forest" observation_id="Clarke_2015_0206" value_type="expert_mean" input="Austraits-import">resprouts</value>
+      <value ref="Knox_2011" site_id="nutrient-rich wet sclerophyll forest" observation_id="Knox_2011_03" value_type="expert_mean" input="Austraits-import">resprouts</value>
+      <value ref="Knox_2011" site_id="nutrient-poor dry sclerophyll forest" observation_id="Knox_2011_04" value_type="expert_mean" input="Austraits-import">resprouts</value>
+      <value ref="White_2020" observation_id="White_2020_0185" value_type="expert_mean" input="Austraits-import">resprouts</value>
+    </Resprouting>
+    <RegenerativeOrgan>
+      <value ref="Auld_2014" show_as="default" original="basal &amp; root suckers" input="DAK-xwalk">NA</value>
+    </RegenerativeOrgan>
+  </species>
+</spplist>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<spplist>
+  <species name="Acalypha nemorum" code="2674">
+    <Resprouting>
+      <value ref="Auld_2014" show_as="default" original="S" input="DAK-xwalk">None</value>
+    </Resprouting>
+    <RegenerativeOrgan>
+      <value ref="Auld_2014" show_as="default" original="NA" input="DAK-xwalk">NA</value>
+    </RegenerativeOrgan>
+  </species>
+</spplist>

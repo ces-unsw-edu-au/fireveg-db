@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<spplist>
+  <species name="Acacia longissima" code="3817">
+    <Resprouting>
+      <value ref="Auld_2014" show_as="default" original="S" input="DAK-xwalk">None</value>
+      <value ref="Clarke_2015" site_id="Eucalypt Forest" observation_id="Clarke_2015_0171" value_type="expert_mean" input="Austraits-import">fire_killed</value>
+    </Resprouting>
+    <RegenerativeOrgan>
+      <value ref="Auld_2014" show_as="default" original="NA" input="DAK-xwalk">NA</value>
+    </RegenerativeOrgan>
+  </species>
+</spplist>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<spplist>
+  <species name="Acacia terminalis" code="3885">
+    <Resprouting>
+      <value ref="Auld_2014" show_as="default" original="Sr" input="DAK-xwalk">Few</value>
+      <value ref="Cheal_2017" observation_id="Cheal_2017_0144" value_type="expert_mean" input="Austraits-import">fire_killed</value>
+      <value ref="Clarke_2015" site_id="Eucalypt Forest" observation_id="Clarke_2015_0277" value_type="expert_mean" input="Austraits-import">fire_killed</value>
+      <value ref="Falster_2005_2" site_id="Myall_Lakes" observation_id="Falster_2005_2_03" value_type="expert_mean" input="Austraits-import">fire_killed</value>
+      <value ref="White_2020" observation_id="White_2020_0242" value_type="expert_mean" input="Austraits-import">fire_killed</value>
+      <value ref="White_2020" observation_id="White_2020_0245" value_type="expert_mean" input="Austraits-import">fire_killed</value>
+    </Resprouting>
+    <RegenerativeOrgan>
+      <value ref="Auld_2014" show_as="default" original="basal" input="DAK-xwalk">Basal</value>
+    </RegenerativeOrgan>
+  </species>
+</spplist>

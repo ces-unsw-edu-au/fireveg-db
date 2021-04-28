@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<spplist>
+  <species name="Daviesia brevifolia" code="2819">
+    <Resprouting>
+      <value ref="Auld_2014" show_as="default" original="R" input="DAK-xwalk">All</value>
+      <value ref="Clarke_2015" site_id="Heath" observation_id="Clarke_2015_1074" value_type="expert_mean" input="Austraits-import">resprouts</value>
+      <value ref="White_2020" observation_id="White_2020_2307" value_type="expert_mean" input="Austraits-import">not_fire_killed_does_not_resprout</value>
+    </Resprouting>
+    <RegenerativeOrgan>
+      <value ref="Auld_2014" show_as="default" original="lignotuber" input="DAK-xwalk">Lignotuber</value>
+    </RegenerativeOrgan>
+  </species>
+</spplist>

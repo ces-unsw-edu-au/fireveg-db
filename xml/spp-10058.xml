@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<spplist>
+  <species name="Acacia mucronata subsp. longifolia" code="10058">
+    <Resprouting>
+      <value ref="Auld_2014" show_as="default" original="Rs" input="DAK-xwalk">Most</value>
+      <value ref="White_2020" observation_id="White_2020_0174" value_type="expert_mean" input="Austraits-import">fire_killed</value>
+    </Resprouting>
+    <RegenerativeOrgan>
+      <value ref="Auld_2014" show_as="default" original="stem bases" input="DAK-xwalk">NA</value>
+    </RegenerativeOrgan>
+  </species>
+</spplist>

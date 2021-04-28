@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<spplist>
+  <species name="Acacia suaveolens" code="3881">
+    <Resprouting>
+      <value ref="Auld_2014" show_as="default" original="Sr" input="DAK-xwalk">Few</value>
+      <value ref="Cheal_2017" observation_id="Cheal_2017_0140" value_type="expert_mean" input="Austraits-import">fire_killed</value>
+      <value ref="Clarke_2015" site_id="Eucalypt Forest" observation_id="Clarke_2015_0272" value_type="expert_mean" input="Austraits-import">fire_killed</value>
+      <value ref="Falster_2005_2" site_id="Myall_Lakes" observation_id="Falster_2005_2_02" value_type="expert_mean" input="Austraits-import">fire_killed</value>
+      <value ref="Knox_2011" site_id="nutrient-poor dry sclerophyll forest" observation_id="Knox_2011_05" value_type="expert_mean" input="Austraits-import">fire_killed</value>
+      <value ref="White_2020" observation_id="White_2020_0235" value_type="expert_mean" input="Austraits-import">fire_killed</value>
+      <value ref="White_2020" observation_id="White_2020_0236" value_type="expert_mean" input="Austraits-import">fire_killed</value>
+      <value ref="White_2020" observation_id="White_2020_0237" value_type="expert_mean" input="Austraits-import">fire_killed</value>
+    </Resprouting>
+    <RegenerativeOrgan>
+      <value ref="Auld_2014" show_as="default" original="root buds" input="DAK-xwalk">Long rhizome or root sucker</value>
+    </RegenerativeOrgan>
+  </species>
+</spplist>

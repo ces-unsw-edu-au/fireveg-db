@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<spplist>
+  <species name="Acacia victoriae" code="3898">
+    <Resprouting>
+      <value ref="Auld_2014" show_as="default" original="Rs" input="DAK-xwalk">Most</value>
+      <value ref="Clarke_2015" site_id="Grassland" observation_id="Clarke_2015_0299" value_type="expert_mean" input="Austraits-import">resprouts</value>
+    </Resprouting>
+    <RegenerativeOrgan>
+      <value ref="Auld_2014" show_as="default" original="basal" input="DAK-xwalk">Basal</value>
+    </RegenerativeOrgan>
+  </species>
+</spplist>

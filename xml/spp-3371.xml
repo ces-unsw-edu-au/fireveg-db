@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<spplist>
+  <species name="Ajuga australis" code="3371">
+    <Resprouting>
+      <value ref="Auld_2014" show_as="default" original="S/R" input="DAK-xwalk">Half</value>
+      <value ref="Cheal_2017" observation_id="Cheal_2017_0249" value_type="expert_mean" input="Austraits-import">resprouts</value>
+      <value ref="Meers_2007" site_id="Delatite Peninsula" observation_id="Meers_2007_012" value_type="expert_mean" input="Austraits-import">resprouts</value>
+      <value ref="White_2020" observation_id="White_2020_0397" value_type="expert_mean" input="Austraits-import">resprouts</value>
+      <value ref="White_2020" observation_id="White_2020_0398" value_type="expert_mean" input="Austraits-import">resprouts</value>
+      <value ref="White_2020" observation_id="White_2020_0399" value_type="expert_mean" input="Austraits-import">resprouts</value>
+    </Resprouting>
+    <RegenerativeOrgan>
+      <value ref="Auld_2014" show_as="default" original="NA" input="DAK-xwalk">NA</value>
+    </RegenerativeOrgan>
+  </species>
+</spplist>

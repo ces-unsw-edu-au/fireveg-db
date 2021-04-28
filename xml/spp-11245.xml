@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<spplist>
+  <species name="Acacia verticillata subsp. verticillata" code="11245">
+    <Resprouting>
+      <value ref="Auld_2014" show_as="default" original="Sr" input="DAK-xwalk">Few</value>
+      <value ref="Cheal_2017" observation_id="Cheal_2017_0153" value_type="expert_mean" input="Austraits-import">fire_killed</value>
+      <value ref="White_2020" observation_id="White_2020_0262" value_type="expert_mean" input="Austraits-import">fire_killed</value>
+    </Resprouting>
+    <RegenerativeOrgan>
+      <value ref="Auld_2014" show_as="default" original="basal" input="DAK-xwalk">Basal</value>
+    </RegenerativeOrgan>
+  </species>
+</spplist>
