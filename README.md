@@ -41,7 +41,7 @@ Use 'dotnet --help' to see available commands or visit: https://aka.ms/dotnet-cl
 sudo apt-get install aspnetcore-runtime-3.1
 sudo apt-get install dotnet-runtime-3.1
 
-## graph database for data model: dFair67
+## graph database for data model:
 
 
 Translate information from NSW fire data
@@ -57,4 +57,13 @@ Tonny
 
 References per species
 
-Meet again with David and Mark after eastern
+
+## documentation:
+
+
+Render R markdown file using `Rscript`:
+
+```sh
+RSTUDIO_PANDOC="/Applications/RStudio.app/Contents/MacOS/pandoc"
+Rscript -e "rmarkdown::render('~/proyectos/UNSW/fireveg-db/documentation/supplementary-methods-1.Rmd',output_format='pdf_document')"
+```
