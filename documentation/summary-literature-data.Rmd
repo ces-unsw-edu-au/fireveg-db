@@ -20,7 +20,7 @@ require(magrittr)
 input.dir <- "~/proyectos/UNSW/fireveg-db/input"
 ```
 
-Brief (and very preliminary) summary of fire-related plant traits extracted from literature and unpublished references by two main sources: the NSW Flora Fire Response Database (v2.1, 2010, updated 2014), and Austraits (data provided by Will Cornwell, 23 April 2021). This document is currently under development. 
+Brief (and very preliminary) summary of fire-related plant traits extracted from literature and unpublished references by two main sources: the NSW Flora Fire Response Database (v2.1, 2010, updated 2014), and Austraits (data provided by Will Cornwell, 23 April 2021). This document is currently under development.
 
 # Data sources and formats
 
@@ -165,7 +165,7 @@ nswffrd.data %>% group_by(`Seed storage`) %>% summarise(count=n())
 Some attributes (coded as text colors, references in hyperlinks) are lost when reading the data in this way. Some fields start with `a-` or have multiple values joined by `&` or `/`, others have notes in parenthesis.
 
 
-In Austraits: according to the Sync table suggested by Will and Mark this is currently represented in three columns:  serotiny + soil_seedbank +  seed_storage_location.	
+In Austraits: according to the Sync table suggested by Will and Mark this is currently represented in three columns:  serotiny + soil_seedbank +  seed_storage_location.
 
 > *Canopy seedbank*: Seeds retained in serotinos or bradysporous woody fruits in the plant canopy and released after scorch (may also be released spontaneously)	Some species of Banksia, Hakea, Allocasuarina, Leptosperum, Eucalypts, Callitris
 
