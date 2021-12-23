@@ -67,3 +67,10 @@ Render R markdown file using `Rscript`:
 RSTUDIO_PANDOC="/Applications/RStudio.app/Contents/MacOS/pandoc"
 Rscript -e "rmarkdown::render('~/proyectos/UNSW/fireveg-db/documentation/supplementary-methods-1.Rmd',output_format='pdf_document')"
 ```
+
+```sh
+psql -h terra.ad.unsw.edu.au -d fireveg -c '\d "Species_list" ' >> ~/proyectos/UNSW/fireveg-db/documentation/database-schemata.Rmd 
+psql -h terra.ad.unsw.edu.au -d fireveg -c "\d simple_ref_list " >> ~/proyectos/UNSW/fireveg-db/documentation/database-schemata.Rmd
+psql -h terra.ad.unsw.edu.au -d fireveg -c "\d form. " >> ~/proyectos/UNSW/fireveg-db/documentation/database-schemata.Rmd
+psql -h terra.ad.unsw.edu.au -d fireveg -c "\d litrev. " >> ~/proyectos/UNSW/fireveg-db/documentation/database-schemata.Rmd
+```
