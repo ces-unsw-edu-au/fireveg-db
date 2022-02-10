@@ -1,7 +1,101 @@
+-- Schema for storing information from the field (field forms)
+CREATE SCHEMA form;
+
+-- Create controlled vocabularies for some variables:
+CREATE TYPE sampling_method AS ENUM ('quadrat', 'transect', 'other');
+
+CREATE TYPE resprout_type AS ENUM ('epicormic', 'ligno', 'crown','basal','tuber','rhizoma','stolon', 'none', 'other');
+
+ALTER TYPE resprout_type ADD VALUE 'lignotuber';
+ALTER TYPE resprout_type ADD VALUE 'postfire recruit';
+ALTER TYPE resprout_type ADD VALUE 'root';
+ALTER TYPE resprout_type ADD VALUE 'tiller';
+ALTER TYPE resprout_type ADD VALUE 'tussock';
+ALTER TYPE resprout_type ADD VALUE 'basal, epicormic';
+ALTER TYPE resprout_type ADD VALUE 'basal, root';
+ALTER TYPE resprout_type ADD VALUE 'apical';
+
+CREATE TYPE seedbank_type AS ENUM ('soil-persistent', 'transient', 'canopy','non-canopy','other');
+
+
+CREATE TYPE resprout_organ AS ENUM ('epicormic', 'apical', 'lignotuber', 'basal','tuber','tussock','short rhizome', 'long rhizome or root sucker', 'stolon', 'none', 'other');
+CREATE TYPE post_seed_recruit AS ENUM ('abundant','present','absent','other');
+
+CREATE TYPE seedbank_type AS ENUM ('soil-persistent', 'transient', 'canopy','non-canopy','other');
+
+-- DROP TYPE seedbank_type CASCADE;
+-- ALTER TYPE seedbank_type ADD VALUE 'non-canopy' AFTER 'canopy';
+-- ALTER TYPE seedbank_type RENAME VALUE 'soil' TO 'soil-persistent';
+-- \dT
+CREATE TYPE age_group AS ENUM ('adult','juvenile', 'other');
+
+CREATE TYPE resprouting_types AS ENUM ('none','few','half','most','all', 'unknown');
+
+--
+-- This is copied from tblObserver of Atlas data model
+
+CREATE TABLE IF NOT EXISTS form.observerID (
+UserKey SERIAL PRIMARY KEY,
+GivenNames varchar(60) NULL,
+Surname varchar(60) NOT NULL,
+AddressLine1 varchar(50) NULL,
+AddressLine2 varchar(50) NULL,
+City varchar(30) NULL,
+Postcode numeric(4) NULL,
+StateID int NULL,
+Email varchar(75) NULL,
+Occupation varchar(40) NULL,
+Notes varchar(255) NULL,
+RowTimeStamp timestamp NOT NULL,
+CreatedBySystemUserID int NOT NULL,
+DateCreated timestamp NOT NULL,
+UpdatedBySystemUserID int NOT NULL,
+DateUpdated timestamp NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS form.field_site (
+site_label VARCHAR(30) ,
+location_description text,
+geom geometry,
+elevation numeric,
+PRIMARY KEY (site_label)
+);
+
+
+CREATE TABLE IF NOT EXISTS form.surveys (
+survey_name VARCHAR(40) ,
+survey_description text,
+observers text,
+PRIMARY KEY (survey_name)
+);
+
+COMMENT ON TABLE form.surveys IS 'A single survey is consistent for methods, often has a limited set of recorders and is usually defined in terms of a spatial limit.';
+COMMENT ON COLUMN form.surveys.survey_name IS 'Unique identifier of an individual survey, primary reference for queries regarding survey data.';
+
+select obj_description('form.surveys'::regclass);
+\d+ form.surveys
+
 CREATE TABLE IF NOT EXISTS form.field_visit (
-visit_id VARCHAR(10) ,
+visit_id VARCHAR(30),
 visit_date date,
 visit_description text,
+mainObserver INT REFERENCES form.observerID ON DELETE RESTRICT,
+otherObserver VARCHAR(20),
+CreatedBySystemUserID int NOT NULL,
+DateCreated timestamp NOT NULL,
+UpdatedBySystemUserID int NOT NULL,
+DateUpdated timestamp NOT NULL,
+PRIMARY KEY (visit_id,visit_date)
+);
+ALTER TABLE form.field_visit ADD COLUMN survey_name VARCHAR(40) DEFAULT 'TO BE CLASSIFIED';
+ALTER TABLE form.field_visit
+  ADD CONSTRAINT field_visit_survey_fkey
+  FOREIGN KEY (survey_name)
+  REFERENCES form.surveys(survey_name)
+  ON DELETE CASCADE ON UPDATE CASCADE;
+
+
+CREATE TABLE IF NOT EXISTS form.field_visit_vegetation (
 location_description text,
 geom geometry,
 elevation numeric,
@@ -9,8 +103,6 @@ VegType text,
 VegCategoryID int,
 ConfidenceID int,
 ThreatenedEcologicalCommunity text,
-mainObserver INT REFERENCES form.observerID ON DELETE RESTRICT,
-otherObserver VARCHAR(20),
 tree_canopy_height_best numeric,
 tree_canopy_height_lower numeric,
 tree_canopy_height_upper numeric,
@@ -65,37 +157,10 @@ largest_twigs_consumed_raw varchar(255),
 CHECK (largest_twigs_consumed_best >= largest_twigs_consumed_lower AND largest_twigs_consumed_best <= largest_twigs_consumed_upper),
 peat_consumption_area numeric,
 peat_consumption_maxdepth numeric,
-CreatedBySystemUserID int NOT NULL,
-DateCreated timestamp NOT NULL,
-UpdatedBySystemUserID int NOT NULL,
-DateUpdated timestamp NOT NULL,
-PRIMARY KEY (visit_id)
 
 );
-ALTER TABLE form.field_visit ALTER COLUMN visit_id TYPE varchar(30);
 
 
---
--- This is copied from tblObserver of Atlas data model
-
-CREATE TABLE IF NOT EXISTS form.observerID (
-UserKey SERIAL PRIMARY KEY,
-GivenNames varchar(60) NULL,
-Surname varchar(60) NOT NULL,
-AddressLine1 varchar(50) NULL,
-AddressLine2 varchar(50) NULL,
-City varchar(30) NULL,
-Postcode numeric(4) NULL,
-StateID int NULL,
-Email varchar(75) NULL,
-Occupation varchar(40) NULL,
-Notes varchar(255) NULL,
-RowTimeStamp timestamp NOT NULL,
-CreatedBySystemUserID int NOT NULL,
-DateCreated timestamp NOT NULL,
-UpdatedBySystemUserID int NOT NULL,
-DateUpdated timestamp NOT NULL
-);
 
 --
 -- Test tables:
@@ -111,8 +176,6 @@ PRIMARY KEY (visit_id, fire_date)
 );
 ALTER TABLE form.fire_history ALTER COLUMN visit_id TYPE varchar(30);
 
-
-CREATE TYPE sampling_method AS ENUM ('quadrat', 'transect', 'other');
 
 CREATE TABLE IF NOT EXISTS form.field_samples (
 visit_id VARCHAR(10) REFERENCES form.field_visit ON DELETE CASCADE,
@@ -134,25 +197,6 @@ ALTER TABLE form.field_samples
   REFERENCES form.field_visit(visit_id)
   ON DELETE CASCADE ON UPDATE CASCADE;
 
-CREATE TYPE resprout_type AS ENUM ('epicormic', 'ligno', 'crown','basal','tuber','rhizoma','stolon', 'none', 'other');
-
-CREATE TYPE resprout_type AS ENUM ('epicormic', 'ligno', 'crown','basal','tuber','rhizoma','stolon', 'none', 'other');
-
-ALTER TYPE resprout_type ADD VALUE 'lignotuber';
-ALTERe TYPE resprout_type ADD VALUE 'postfire recruit';
-ALTER TYPE resprout_type ADD VALUE 'root';
-ALTER TYPE resprout_type ADD VALUE 'tiller';
-ALTER TYPE resprout_type ADD VALUE 'tussock';
-ALTER TYPE resprout_type ADD VALUE 'basal, epicormic';
-ALTER TYPE resprout_type ADD VALUE 'basal, root';
-ALTER TYPE resprout_type ADD VALUE 'apical';
-
-CREATE TYPE seedbank_type AS ENUM ('soil-persistent', 'transient', 'canopy','non-canopy','other');
--- DROP TYPE seedbank_type CASCADE;
--- ALTER TYPE seedbank_type ADD VALUE 'non-canopy' AFTER 'canopy';
--- ALTER TYPE seedbank_type RENAME VALUE 'soil' TO 'soil-persistent';
--- \dT
-CREATE TYPE age_group AS ENUM ('adult','juvenile', 'other');
 
 CREATE TABLE IF NOT EXISTS form.quadrat_samples (
 visit_id VARCHAR(10),
@@ -226,17 +270,18 @@ access_date DATE
 
 --ALTER TABLE litrev.nsw_status   ADD CONSTRAINT nsw_status_code_fkey  FOREIGN KEY (species_code)  REFERENCES ...(...)  ON DELETE CASCADE ON UPDATE CASCADE;
 
-CREATE TYPE resprouting_types AS ENUM ('none','few','half','most','all', 'unknown');
 
 CREATE TABLE IF NOT EXISTS litrev.traits(
    species VARCHAR(255),
    species_code int,
    resprouting resprouting_types,
-   regenerative_organ text[],
-   seedbank seedbank_type,
-   information_type text[],
-   ref_code varchar(100),
-   refs text[],
+   regenerative_organ resprout_organ,
+   -- regenerative_organ text[],
+   seedbank_type seedbank_type,
+   postfire_seedling_recruitment post_seed_recruit,
+   -- information_type text[],
+   -- ref_code varchar(100),
+   -- refs text[],
    PRIMARY KEY (species,species_code)
 );
 
