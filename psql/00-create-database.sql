@@ -1,39 +1,21 @@
--- Schema for storing information from the field (field forms)
+,-- Schema for storing information from the field (field forms)
 CREATE SCHEMA form;
 
 -- Create controlled vocabularies for some variables:
 CREATE TYPE sampling_method AS ENUM ('quadrat', 'transect', 'other');
-
-CREATE TYPE resprout_type AS ENUM ('epicormic', 'ligno', 'crown','basal','tuber','rhizoma','stolon', 'none', 'other');
-
-ALTER TYPE resprout_type ADD VALUE 'lignotuber';
-ALTER TYPE resprout_type ADD VALUE 'postfire recruit';
-ALTER TYPE resprout_type ADD VALUE 'root';
-ALTER TYPE resprout_type ADD VALUE 'tiller';
-ALTER TYPE resprout_type ADD VALUE 'tussock';
-ALTER TYPE resprout_type ADD VALUE 'basal, epicormic';
-ALTER TYPE resprout_type ADD VALUE 'basal, root';
-ALTER TYPE resprout_type ADD VALUE 'apical';
-
 CREATE TYPE seedbank_type AS ENUM ('soil-persistent', 'transient', 'canopy','non-canopy','other');
-
-
 CREATE TYPE resprout_organ AS ENUM ('epicormic', 'apical', 'lignotuber', 'basal','tuber','tussock','short rhizome', 'long rhizome or root sucker', 'stolon', 'none', 'other');
 CREATE TYPE post_seed_recruit AS ENUM ('abundant','present','absent','other');
-
 CREATE TYPE seedbank_type AS ENUM ('soil-persistent', 'transient', 'canopy','non-canopy','other');
-
 -- DROP TYPE seedbank_type CASCADE;
 -- ALTER TYPE seedbank_type ADD VALUE 'non-canopy' AFTER 'canopy';
 -- ALTER TYPE seedbank_type RENAME VALUE 'soil' TO 'soil-persistent';
 -- \dT
 CREATE TYPE age_group AS ENUM ('adult','juvenile', 'other');
-
 CREATE TYPE resprouting_types AS ENUM ('none','few','half','most','all', 'unknown');
 
 --
 -- This is copied from tblObserver of Atlas data model
-
 CREATE TABLE IF NOT EXISTS form.observerID (
 UserKey SERIAL PRIMARY KEY,
 GivenNames varchar(60) NULL,
@@ -96,77 +78,68 @@ ALTER TABLE form.field_visit
 
 
 CREATE TABLE IF NOT EXISTS form.field_visit_vegetation (
-location_description text,
-geom geometry,
-elevation numeric,
-VegType text,
-VegCategoryID int,
-ConfidenceID int,
-ThreatenedEcologicalCommunity text,
-tree_canopy_height_best numeric,
-tree_canopy_height_lower numeric,
-tree_canopy_height_upper numeric,
-tree_canopy_cover numeric,
-tree_canopy_scorch_best numeric,
-tree_canopy_scorch_lower numeric,
-tree_canopy_scorch_upper numeric,
-CHECK (tree_canopy_height_best >= tree_canopy_height_lower AND tree_canopy_height_best <= tree_canopy_height_upper),
-CHECK (tree_canopy_scorch_best >= tree_canopy_scorch_lower AND tree_canopy_scorch_best <= tree_canopy_scorch_upper),
-CHECK (tree_canopy_scorch_upper  <= tree_canopy_height_upper),
-mid_canopy_height_best numeric,
-mid_canopy_height_lower numeric,
-mid_canopy_height_upper numeric,
-mid_canopy_cover numeric,
-mid_canopy_scorch_best numeric,
-mid_canopy_scorch_lower numeric,
-mid_canopy_scorch_upper numeric,
-CHECK (mid_canopy_height_best >= mid_canopy_height_lower AND mid_canopy_height_best <= mid_canopy_height_upper),
-CHECK (mid_canopy_scorch_best >= mid_canopy_scorch_lower AND mid_canopy_scorch_best <= mid_canopy_scorch_upper),
-CHECK (mid_canopy_scorch_upper  <= mid_canopy_height_upper),
-shrub_height_best numeric,
-shrub_height_lower numeric,
-shrub_height_upper numeric,
-shrub_cover numeric,
-shrub_scorch_best numeric,
-shrub_scorch_lower numeric,
-shrub_scorch_upper numeric,
-CHECK (shrub_height_best >= shrub_height_lower AND shrub_height_best <= shrub_height_upper),
-CHECK (shrub_scorch_best >= shrub_scorch_lower AND shrub_scorch_best <= shrub_scorch_upper),
-CHECK (shrub_scorch_upper  <= shrub_height_upper),
-ground_burnt_best numeric,
-ground_burnt_lower numeric,
-ground_burnt_upper numeric,
-ground_cover numeric,
-CHECK (ground_burnt_best >= ground_burnt_lower AND ground_burnt_best <= ground_burnt_upper),
-tree_foliage_biomass_consumed_best numeric,
-tree_foliage_biomass_consumed_lower numeric,
-tree_foliage_biomass_consumed_upper numeric,
-CHECK (tree_foliage_biomass_consumed_best >= tree_foliage_biomass_consumed_lower AND tree_foliage_biomass_consumed_best <= tree_foliage_biomass_consumed_upper),
-shrub_foliage_biomass_consumed_best numeric,
-shrub_foliage_biomass_consumed_lower numeric,
-shrub_foliage_biomass_consumed_upper numeric,
-CHECK (shrub_foliage_biomass_consumed_best >= shrub_foliage_biomass_consumed_lower AND shrub_foliage_biomass_consumed_best <= shrub_foliage_biomass_consumed_upper),
-ground_foliage_biomass_consumed_best numeric,
-ground_foliage_biomass_consumed_lower numeric,
-ground_foliage_biomass_consumed_upper numeric,
-CHECK (ground_foliage_biomass_consumed_best >= ground_foliage_biomass_consumed_lower AND ground_foliage_biomass_consumed_best <= ground_foliage_biomass_consumed_upper),
-largest_twigs_consumed_best numeric,
-largest_twigs_consumed_lower numeric,
-largest_twigs_consumed_upper numeric,
-largest_twigs_consumed_raw varchar(255),
-CHECK (largest_twigs_consumed_best >= largest_twigs_consumed_lower AND largest_twigs_consumed_best <= largest_twigs_consumed_upper),
-peat_consumption_area numeric,
-peat_consumption_maxdepth numeric,
+  visit_id VARCHAR(30),
+  visit_date date,
+  VegType text,
+  VegCategoryID int,
+  ConfidenceID int,
+  ThreatenedEcologicalCommunity text);
+  ALTER TABLE form.field_visit_vegetation
+    ADD CONSTRAINT field_visit_date_fkey
+    FOREIGN KEY (visit_id,visit_date)
+    REFERENCES form.field_visit(visit_id,visit_date)
+    ON DELETE CASCADE ON UPDATE CASCADE;
 
+
+
+CREATE TYPE vegvars AS ENUM ('tree canopy height', 'tree canopy scorch', 'tree canopy cover',
+  'mid canopy height', 'mid canopy scorch', 'mid canopy cover',
+  'shrub height', 'shrub scorch', 'shrub cover',
+  'ground cover','ground burnt', 'tree foliage biomass consumed', 'shrub foliage biomass consumed', 'ground foliage biomass consumed',  'largest twigs consumed', 'peat cons+umption area', 'peat consumption max depth');
+
+CREATE TABLE IF NOT EXISTS form.field_visit_vegetation_estimates (
+  visit_id VARCHAR(30),
+  visit_date date,
+  measured_var vegvars,
+  best numeric,
+  lower numeric,
+  upper numeric,
+  CHECK (best >= lower AND best <= upper),
+
+
+CREATE TABLE IF NOT EXISTS form.field_visit_vegetation_raw_values (
+  visit_id VARCHAR(30),
+  visit_date date,
+  measured_variable vegvars,
+  single_value numeric,
 );
 
+ALTER TABLE form.field_visit_vegetation
+  ADD CONSTRAINT field_visit_date_fkey
+  FOREIGN KEY (visit_id,visit_date)
+  REFERENCES form.field_visit(visit_id,visit_date)
+  ON DELETE CASCADE ON UPDATE CASCADE;
 
-
+INSERT INTO form.field_visit_vegetation
+SELECT visit_id, visit_date, VegType, VegCategoryID, ConfidenceID, ThreatenedEcologicalCommunity,
+  tree_canopy_height_best, tree_canopy_height_lower, tree_canopy_height_upper, tree_canopy_cover,
+  tree_canopy_scorch_best, tree_canopy_scorch_lower, tree_canopy_scorch_upper,
+  mid_canopy_height_best, mid_canopy_height_lower, mid_canopy_height_upper, mid_canopy_cover,
+  mid_canopy_scorch_best, mid_canopy_scorch_lower, mid_canopy_scorch_upper,
+  shrub_height_best, shrub_height_lower, shrub_height_upper, shrub_cover,
+  shrub_scorch_best, shrub_scorch_lower, shrub_scorch_upper, ground_burnt_best,
+  ground_burnt_lower, ground_burnt_upper, ground_cover,
+  tree_foliage_biomass_consumed_best, tree_foliage_biomass_consumed_lower, tree_foliage_biomass_consumed_upper,
+  shrub_foliage_biomass_consumed_best, shrub_foliage_biomass_consumed_lower, shrub_foliage_biomass_consumed_upper,
+  ground_foliage_biomass_consumed_best, ground_foliage_biomass_consumed_lower, ground_foliage_biomass_consumed_upper,
+  largest_twigs_consumed_best, largest_twigs_consumed_lower, largest_twigs_consumed_upper, largest_twigs_consumed_raw,
+  peat_consumption_area, peat_consumption_maxdepth
+  FROM form.old_field_visit;
 --
 -- Test tables:
 
 CREATE TABLE IF NOT EXISTS form.fire_history (
-visit_id VARCHAR(10) REFERENCES form.field_visit ON DELETE CASCADE,
+visit_id VARCHAR(30) REFERENCES form.field_visit ON DELETE CASCADE,
 fire_name varchar(100),
 fire_date date,
 fire_date_uncertain interval,
@@ -174,11 +147,11 @@ how_inferred varchar(100),
 cause_of_ignition varchar(100),
 PRIMARY KEY (visit_id, fire_date)
 );
-ALTER TABLE form.fire_history ALTER COLUMN visit_id TYPE varchar(30);
 
 
 CREATE TABLE IF NOT EXISTS form.field_samples (
-visit_id VARCHAR(10) REFERENCES form.field_visit ON DELETE CASCADE,
+visit_id VARCHAR(30),
+visit_date date,
 sample_nr SMALLINT,
 sample_method sampling_method,
 quadrat_area numeric,
@@ -187,19 +160,16 @@ comments text,
 PRIMARY KEY (visit_id, sample_nr)
 );
 
-ALTER TABLE form.field_samples ALTER COLUMN visit_id TYPE varchar(30);
-
- ALTER TABLE form.field_samples
-   DROP CONSTRAINT field_samples_visit_id_fkey;
 ALTER TABLE form.field_samples
   ADD CONSTRAINT field_samples_visit_id_fkey
-  FOREIGN KEY (visit_id)
-  REFERENCES form.field_visit(visit_id)
+  FOREIGN KEY (visit_id, visit_date)
+  REFERENCES form.field_visit(visit_id,visit_date)
   ON DELETE CASCADE ON UPDATE CASCADE;
 
 
 CREATE TABLE IF NOT EXISTS form.quadrat_samples (
 visit_id VARCHAR(10),
+visit_date date,
 sample_nr SMALLINT,
 species VARCHAR(255),
 species_code int,
@@ -215,7 +185,7 @@ recruits_live numeric,
 recruits_reproductive numeric,
 recruits_died numeric,
 comments text,
-FOREIGN KEY (visit_id, sample_nr) REFERENCES form.field_samples (visit_id,sample_nr) ON DELETE CASCADE
+FOREIGN KEY (visit_id, visit_date,sample_nr) REFERENCES form.field_samples (visit_id,visit_date,sample_nr) ON DELETE CASCADE
 );
 
 ALTER TABLE form.quadrat_samples ADD column record_id SERIAL before visit_id;
