@@ -28,10 +28,16 @@ CREATE TABLE IF NOT EXISTS litrev.survival_traits(
    regenerative_organ resprout_organ,
    standing_plant_longevity int,
    seedbank_halflife int,
-   seed_longevity int
+   seed_longevity int,
    PRIMARY KEY (species,species_code)
 );
 
+-- we will accept all entries and then match them a posteriori.
+-- ALTER TABLE litrev.survival_traits
+--   ADD CONSTRAINT traits_ref_fkey
+--   FOREIGN KEY (species_code,species)
+--   REFERENCES species.caps("currentScientificNameCode","currentScientificName") -- speciesID is a new code
+--   ON DELETE CASCADE ON UPDATE CASCADE;
 
 CREATE TABLE IF NOT EXISTS litrev.germination_traits(
   species VARCHAR(255),
