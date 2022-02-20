@@ -83,60 +83,54 @@ CREATE TABLE IF NOT EXISTS form.field_visit_vegetation (
   VegType text,
   VegCategoryID int,
   ConfidenceID int,
-  ThreatenedEcologicalCommunity text);
+  ThreatenedEcologicalCommunity text,
+  PRIMARY KEY (visit_id,visit_date)
+);
   ALTER TABLE form.field_visit_vegetation
     ADD CONSTRAINT field_visit_date_fkey
     FOREIGN KEY (visit_id,visit_date)
     REFERENCES form.field_visit(visit_id,visit_date)
     ON DELETE CASCADE ON UPDATE CASCADE;
 
-
-
 CREATE TYPE vegvars AS ENUM ('tree canopy height', 'tree canopy scorch', 'tree canopy cover',
   'mid canopy height', 'mid canopy scorch', 'mid canopy cover',
   'shrub height', 'shrub scorch', 'shrub cover',
   'ground cover','ground burnt', 'tree foliage biomass consumed', 'shrub foliage biomass consumed', 'ground foliage biomass consumed',  'largest twigs consumed', 'peat cons+umption area', 'peat consumption max depth');
+  CREATE TYPE varunits AS ENUM('mm','cm','m');
+  -- ALTER TYPE varunits ADD VALUE '%' AFTER 'm';
+ALTER TYPE vegvars RENAME VALUE 'peat cons+umption area' TO 'peat consumption area';
 
 CREATE TABLE IF NOT EXISTS form.field_visit_vegetation_estimates (
   visit_id VARCHAR(30),
   visit_date date,
   measured_var vegvars,
+  units varunits,
   best numeric,
   lower numeric,
   upper numeric,
   CHECK (best >= lower AND best <= upper),
-
+  PRIMARY KEY (visit_id,visit_date,measured_var)
+);
+  ALTER TABLE form.field_visit_vegetation_estimates
+    ADD CONSTRAINT field_visit_date_fkey
+    FOREIGN KEY (visit_id,visit_date)
+    REFERENCES form.field_visit(visit_id,visit_date)
+    ON DELETE CASCADE ON UPDATE CASCADE;
 
 CREATE TABLE IF NOT EXISTS form.field_visit_vegetation_raw_values (
   visit_id VARCHAR(30),
   visit_date date,
   measured_variable vegvars,
-  single_value numeric,
+  units varunits,
+  single_value numeric
 );
 
-ALTER TABLE form.field_visit_vegetation
+ALTER TABLE form.field_visit_vegetation_raw_values
   ADD CONSTRAINT field_visit_date_fkey
   FOREIGN KEY (visit_id,visit_date)
   REFERENCES form.field_visit(visit_id,visit_date)
   ON DELETE CASCADE ON UPDATE CASCADE;
 
-INSERT INTO form.field_visit_vegetation
-SELECT visit_id, visit_date, VegType, VegCategoryID, ConfidenceID, ThreatenedEcologicalCommunity,
-  tree_canopy_height_best, tree_canopy_height_lower, tree_canopy_height_upper, tree_canopy_cover,
-  tree_canopy_scorch_best, tree_canopy_scorch_lower, tree_canopy_scorch_upper,
-  mid_canopy_height_best, mid_canopy_height_lower, mid_canopy_height_upper, mid_canopy_cover,
-  mid_canopy_scorch_best, mid_canopy_scorch_lower, mid_canopy_scorch_upper,
-  shrub_height_best, shrub_height_lower, shrub_height_upper, shrub_cover,
-  shrub_scorch_best, shrub_scorch_lower, shrub_scorch_upper, ground_burnt_best,
-  ground_burnt_lower, ground_burnt_upper, ground_cover,
-  tree_foliage_biomass_consumed_best, tree_foliage_biomass_consumed_lower, tree_foliage_biomass_consumed_upper,
-  shrub_foliage_biomass_consumed_best, shrub_foliage_biomass_consumed_lower, shrub_foliage_biomass_consumed_upper,
-  ground_foliage_biomass_consumed_best, ground_foliage_biomass_consumed_lower, ground_foliage_biomass_consumed_upper,
-  largest_twigs_consumed_best, largest_twigs_consumed_lower, largest_twigs_consumed_upper, largest_twigs_consumed_raw,
-  peat_consumption_area, peat_consumption_maxdepth
-  FROM form.old_field_visit;
---
--- Test tables:
 
 CREATE TABLE IF NOT EXISTS form.fire_history (
 visit_id VARCHAR(30) REFERENCES form.field_visit ON DELETE CASCADE,
@@ -148,7 +142,7 @@ cause_of_ignition varchar(100),
 PRIMARY KEY (visit_id, fire_date)
 );
 
-
+-- ALTER TABLE form.field_samples RENAME TO old_field_samples;
 CREATE TABLE IF NOT EXISTS form.field_samples (
 visit_id VARCHAR(30),
 visit_date date,
@@ -157,7 +151,7 @@ sample_method sampling_method,
 quadrat_area numeric,
 transect_length numeric,
 comments text,
-PRIMARY KEY (visit_id, sample_nr)
+PRIMARY KEY (visit_id, visit_date, sample_nr)
 );
 
 ALTER TABLE form.field_samples
@@ -168,15 +162,17 @@ ALTER TABLE form.field_samples
 
 
 CREATE TABLE IF NOT EXISTS form.quadrat_samples (
-visit_id VARCHAR(10),
+  record_id SERIAL PRIMARY KEY,
+visit_id VARCHAR(30),
 visit_date date,
 sample_nr SMALLINT,
 species VARCHAR(255),
 species_code int,
+species_notes text,
 -- confidenceID int,
-agegroup age_group,
 resprout_organ resprout_type,
 seedbank seedbank_type,
+adults_unburnt numeric,
 resprouts_live numeric,
 resprouts_died numeric,
 resprouts_kill numeric,
@@ -185,83 +181,5 @@ recruits_live numeric,
 recruits_reproductive numeric,
 recruits_died numeric,
 comments text,
-FOREIGN KEY (visit_id, visit_date,sample_nr) REFERENCES form.field_samples (visit_id,visit_date,sample_nr) ON DELETE CASCADE
+FOREIGN KEY (visit_id, visit_date, sample_nr) REFERENCES form.field_samples (visit_id,visit_date, sample_nr) ON DELETE CASCADE ON UPDATE CASCADE
 );
-
-ALTER TABLE form.quadrat_samples ADD column record_id SERIAL before visit_id;
-ALTER TABLE  form.quadrat_samples ADD PRIMARY KEY (record_id);
-ALTER TABLE  form.quadrat_samples DROP INDEX ix_quadrat;
-
-ALTER TABLE form.quadrat_samples ALTER COLUMN visit_id TYPE varchar(30);
-
-ALTER TABLE form.quadrat_samples
-  DROP CONSTRAINT quadrat_samples_visit_id_fkey;
-ALTER TABLE form.quadrat_samples
- ADD CONSTRAINT quadrat_samples_visit_id_fkey
- FOREIGN KEY (visit_id)
- REFERENCES form.field_visit(visit_id)
- ON DELETE CASCADE ON UPDATE CASCADE;
-
---CREATE PRIMARY KEY ix_quadrat ON form.quadrat_samples (record_id);
---CONSTRAINT rec_quadrat PRIMARY KEY(column_1, column_2,...);
-
-CREATE TABLE IF NOT EXISTS simple_ref_list (
-ref_code varchar(100) PRIMARY KEY,
-ref_cite text,
-ref_json text
-);
-
-
-CREATE SCHEMA litrev ;
-CREATE TABLE IF NOT EXISTS litrev.raw_annotations (
-species VARCHAR(255),
-species_code int NULL,
-attribute text,
-value text,
-ref_code varchar(100),
-refs text[]
-);
-ALTER TABLE litrev.raw_annotations ADD PRIMARY KEY (species,attribute,ref_code);
-
-ALTER TABLE litrev.raw_annotations
-  ADD CONSTRAINT raw_annotations_ref_fkey
-  FOREIGN KEY (ref_code)
-  REFERENCES simple_ref_list(ref_code)
-  ON DELETE CASCADE ON UPDATE CASCADE;
-
-CREATE TABLE IF NOT EXISTS litrev.nsw_status (
-species VARCHAR(255),
-species_code int PRIMARY KEY,
-common_name VARCHAR(255),
-nsw_status varchar(50),
-source text,
-access_date DATE
-);
-
---ALTER TABLE litrev.nsw_status   ADD CONSTRAINT nsw_status_code_fkey  FOREIGN KEY (species_code)  REFERENCES ...(...)  ON DELETE CASCADE ON UPDATE CASCADE;
-
-
-CREATE TABLE IF NOT EXISTS litrev.traits(
-   species VARCHAR(255),
-   species_code int,
-   resprouting resprouting_types,
-   regenerative_organ resprout_organ,
-   -- regenerative_organ text[],
-   seedbank_type seedbank_type,
-   postfire_seedling_recruitment post_seed_recruit,
-   -- information_type text[],
-   -- ref_code varchar(100),
-   -- refs text[],
-   PRIMARY KEY (species,species_code)
-);
-
-ALTER TABLE litrev.traits
-  ADD CONSTRAINT traits_ref_fkey
-  FOREIGN KEY (ref_code)
-  REFERENCES simple_ref_list(ref_code)
-  ON DELETE CASCADE ON UPDATE CASCADE;
-
-
--- https://epsg.io/28356
--- GDA94 / MGA zone 56
--- EPSG:28356

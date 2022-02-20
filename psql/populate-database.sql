@@ -1,31 +1,89 @@
--- add field_samples
-INSERT INTO form.field_samples (visit_id,sample_nr,sample_method,comments) values ('ROY001','1','quadrat','reported as 20x20m, original proforma'),('ROY001','2','quadrat','original proforma subplots, discarded, data incorporated in sample 1'),('ROY002','1','quadrat','reported as 5x5m, original proforma');
+-- import from the old tables before deleting
 
--- reload data for field visits:
+INSERT INTO form.field_visit_vegetation_estimates
+SELECT visit_id,visit_date,'tree canopy height','m', tree_canopy_height_best, tree_canopy_height_lower, tree_canopy_height_upper FROM form.old_field_visit WHERE tree_canopy_height_best is not NULL
+ON CONFLICT DO NOTHING;
 
-INSERT INTO form.field_visit (visit_id, visit_date,visit_description,location_description,
-    geom,elevation,plantcommunitytype,threatenedecologicalcommunity,
-    mainobserver,otherobserver,tree_canopy_height_best,tree_canopy_height_lower,tree_canopy_height_upper,tree_canopy_cover,tree_canopy_scorch_best,tree_canopy_scorch_lower,tree_canopy_scorch_upper,mid_canopy_height_best,mid_canopy_height_lower,mid_canopy_height_upper,mid_canopy_cover,mid_canopy_scorch_best,mid_canopy_scorch_lower,mid_canopy_scorch_upper,shrub_height_best,shrub_height_lower,shrub_height_upper,shrub_cover,shrub_scorch_best,shrub_scorch_lower,shrub_scorch_upper,ground_burnt_best,ground_burnt_lower,ground_burnt_upper,ground_cover,tree_foliage_biomass_consumed_best,tree_foliage_biomass_consumed_lower,tree_foliage_biomass_consumed_upper,shrub_foliage_biomass_consumed_best,shrub_foliage_biomass_consumed_lower,shrub_foliage_biomass_consumed_upper,ground_foliage_biomass_consumed_best,ground_foliage_biomass_consumed_lower,ground_foliage_biomass_consumed_upper,largest_twigs_consumed_best,largest_twigs_consumed_lower,largest_twigs_consumed_upper,largest_twigs_consumed_raw,peat_consumption_area,peat_consumption_maxdepth,createdbysystemuserid,datecreated,updatedbysystemuserid,dateupdated) VALUES ('BER1', '2020-02-06', 'top of rage, vochy with 10% slope, medium leaf litter, grey/braun sandy 100 m soils', '100 m up beaumeand rd trail, beaumont rd', '0101000020E6100000D769A4A5F2E36240D2A92B9FE5D140C0', NULL, 'open forest, upper - A costata, C gummifera, med - L trinervium, B serrata, shrub - L formosa, Xanthorrhoeaceae', 'grand borona caustis', 8, NULL, 12, 10, 15, 40, 12, 7, 15, 6, 5, 12, 20, 12, 5, 12, 1, 0.5, 1.5, 10, 1.5, 1.5, 1.5, 0.1, 0.1, 0.1, 60, 90, 80, 100, 90, 80, 100, 100, 100, 100, 1, 0.45, 1.43, '0.75,1.19,0.45,1.43,0.84,1.33,0.57', NULL, NULL, 1, '2020-02-18 09:27:57.12274', 1, '2020-02-18 09:27:57.12274'), ('ROY001', '2019-10-25', '2.6 km w of berts stephans drive and gasie rd intersection stop, gully-mid slope', '2.6 km w of berts stephans drive and gasie rd intersection', '0101000020C46E0000000000004072134100000000DFB85741', NULL, 'wet sclorophyll forest, Ecu pilularis, Syncarpia glom', 'NA', 7, NULL, 47, 39, 52, 60, 5, 4, 8, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 10, NULL, 15, 15, 10, NULL, 15, 0.8, 0.4, 1.1, 50, 1, 0, 2, 80, 75, 90, 90, 85, 100, 1, 0.5, 1.5, NULL, NULL, NULL, 1, '2020-02-18 11:09:42.456405', 1, '2020-02-18 11:09:42.456405'), ('ROY003', '2019-12-05', 'mid slope shade soil, well pruned, w facing, hammy soils', 'wallum and track roam, boular creek', '0101000020E610000010069E7B0FE16240C3BB5CC4771241C0', 73, 'PCT 694, wet sclerophyll forest, syncarpia, Allocasuarina torulosa, Fuc pillularis', NULL, 8, NULL, 28, 25, 30, 65, 2, 1, 4, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 0.5, 1.2, 51, 1, 0.5, 1.2, 0.5, 0.2, 1.2, 10, 0, 0, 0, 80, 10, 100, 100, 100, 100, NULL, 0.51, 1.24, '1.05,0.61,1.24,0.67,0.51', NULL, NULL, 1, '2020-02-18 09:27:57.102117', 1, '2020-02-18 09:27:57.102117'), ('R0Y005', '2019-12-12', 'open sand stone, yellow/brown sand, low left litter', '50 m west of intersection of sir bertram drive and garri rd', '0101000020E61000005FB532E197E162407D5C1B2AC61541C0', 9999, 'open woodland with heath/grassy understory', '', 8, NULL, 10, 8, 12, 20, 12, 10, 12, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 3, 2, 5, 20, 5, 5, 5, 0.1, 0.1, 0.5, 60, 100, 100, 100, 100, 100, 100, 100, 100, 100, 3.5, 1.5, 5.8, '2.00,3.7,4.9,5.8,2.9,1.5', NULL, NULL, 1, '2020-02-17 11:00:32.013955', 1, '2020-02-17 11:00:32.013955'), ('Ka5', '2000-01-01', 'slight 2nd grade slope, sand stone, med leaf litter, gre/yellow sandy foam soil near wet swampy', 'heath trail', '0101000020E6100000118DEE2076E66240DB166536C8DC40C0', NULL, 'woodland tree-scribbly gum, mid canopy, shrub ground, C gumifera, L trinervium, L formosa, B ledifolia, Xanthorrhoea media, Angophora hispida', NULL, 8, NULL, 12, 10, 15, 30, 8, 5, 15, 4, 2, 5, 20, 5, 5, 5, 1, 0.5, 2, 30, 2, 2, 2, 0.2, 0.1, 0.5, 30, 60, 50, 80, 100, 100, 100, 100, 100, 100, 0.95, 0.37, 1.6, '0.37,0.99,1.27,0.92,1.6,0.72,0.8', NULL, NULL, 1, '2020-02-18 09:27:57.057727', 1, '2020-02-18 09:27:57.057727'), ('ROY002', '2019-10-25', 'lower shale gully slope', '60 m ENE juction of best steven drive and lady carrington drive ', '0101000020C46E0000000000002070134100000040E8B95741', 75, 'wet sclerophyll forest, euc pilularis, euc paniculata', NULL, 7, NULL, 22, 20, 25, 10, 3, 2, 5, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 15, 12, 18, NULL, 2, 2, 4, 85, 80, 95, NULL, 0, 0, 0, 1, 0, 2, 90, 90, 100, 0.5, 0, 1, '', NULL, NULL, 1, '2020-02-17 11:37:24.834689', 1, '2020-02-17 11:37:24.834689');
+INSERT INTO form.field_visit_vegetation_estimates
+SELECT visit_id,visit_date,'tree canopy scorch','m', tree_canopy_scorch_best, tree_canopy_scorch_lower, tree_canopy_scorch_upper FROM form.old_field_visit WHERE tree_canopy_scorch_best is not NULL
+ON CONFLICT DO NOTHING;
 
+INSERT INTO form.field_visit_vegetation_estimates
+SELECT visit_id,visit_date,'mid canopy height','m', mid_canopy_height_best, mid_canopy_height_lower, mid_canopy_height_upper FROM form.old_field_visit WHERE mid_canopy_height_best is not NULL
+ON CONFLICT DO NOTHING;
 
-
---   Fire history
-
-insert into form.fire_history (visit_id,fire_name,fire_date,fire_date_uncertain,how_inferred,cause_of_ignition) VALUES ('BER1','vals beaumont rd south','2016-10-17','1 DAY','dpie','hr');
-
-insert into form.fire_history (visit_id,fire_date,fire_date_uncertain,how_inferred,cause_of_ignition) VALUES ('ROY003','2018-02-20','1 DAY','dpie','wildfire');
-insert into form.fire_history (visit_id,fire_date,fire_date_uncertain,how_inferred,cause_of_ignition) VALUES ('ROY003','2002-11-17','1 DAY','dpie','wildfire');
-insert into form.fire_history (visit_id,fire_date,fire_date_uncertain,how_inferred,cause_of_ignition) VALUES ('ROY003','1994-11-08','1 DAY','dpie','wildfire');
-
-INSERT INTO form.fire_history VALUES ('R0Y005', NULL, '2018-02-20', '1 day', 'npns', 'wildfire');
-INSERT INTO form.fire_history VALUES ('R0Y005', NULL, '2007-01-17', '1 day', 'npns', 'wildfire');
-INSERT INTO form.fire_history VALUES ('R0Y005', NULL, '1994-01-08', '1 day', 'npns', 'wildfire');
-INSERT INTO form.fire_history VALUES ('ROY002', NULL, '2018-02-20', '1 day', 'npws', 'backburn-arson');
-INSERT INTO form.fire_history VALUES ('ROY002', NULL, '2019-01-17', '1 day', 'npws', 'backburn-arson');
+INSERT INTO form.field_visit_vegetation_estimates
+SELECT visit_id,visit_date,'mid canopy scorch','m', mid_canopy_scorch_best, mid_canopy_scorch_lower, mid_canopy_scorch_upper FROM form.old_field_visit WHERE mid_canopy_scorch_best is not NULL
+ON CONFLICT DO NOTHING;
 
 
-insert into form.fire_history (visit_id,fire_date,fire_date_uncertain,how_inferred,cause_of_ignition) VALUES ('Ka5','2016-03-06','1 DAY','dpie','hr');
+INSERT INTO form.field_visit_vegetation_estimates
+SELECT visit_id,visit_date,'shrub height','m', shrub_height_best, shrub_height_lower, shrub_height_upper FROM form.old_field_visit WHERE shrub_height_best is not NULL
+ON CONFLICT DO NOTHING;
 
-insert into form.fire_history (visit_id,fire_date,fire_date_uncertain,how_inferred,cause_of_ignition) VALUES ('Ka5','1999-01-01','1 YEAR','dpie','prescribed');
+INSERT INTO form.field_visit_vegetation_estimates
+SELECT visit_id,visit_date,'shrub scorch','m', shrub_scorch_best, shrub_scorch_lower, shrub_scorch_upper FROM form.old_field_visit WHERE shrub_scorch_best is not NULL
+ON CONFLICT DO NOTHING;
 
-insert into form.fire_history (visit_id,fire_date,fire_date_uncertain,how_inferred,cause_of_ignition) VALUES ('Ka5','1995-01-01','1 YEAR','dpie','prescribed');
+
+INSERT INTO form.field_visit_vegetation_estimates(visit_id,visit_date,measured_var,units,best)
+SELECT visit_id,visit_date,'tree canopy cover','%', tree_canopy_cover FROM form.old_field_visit WHERE tree_canopy_cover is not NULL
+ON CONFLICT DO NOTHING;
+
+
+INSERT INTO form.field_visit_vegetation_estimates(visit_id,visit_date,measured_var,units,best)
+SELECT visit_id,visit_date,'mid canopy cover','%', mid_canopy_cover FROM form.old_field_visit WHERE mid_canopy_cover is not NULL
+ON CONFLICT DO NOTHING;
+
+
+INSERT INTO form.field_visit_vegetation_estimates(visit_id,visit_date,measured_var,units,best)
+SELECT visit_id,visit_date,'shrub cover','%', shrub_cover FROM form.old_field_visit WHERE shrub_cover is not NULL
+ON CONFLICT DO NOTHING;
+
+INSERT INTO form.field_visit_vegetation_estimates(visit_id,visit_date,measured_var,units,best)
+SELECT visit_id,visit_date,'ground cover','%', ground_cover FROM form.old_field_visit WHERE ground_cover is not NULL
+ON CONFLICT DO NOTHING;
+
+
+INSERT INTO form.field_visit_vegetation_estimates(visit_id,visit_date,measured_var,units,best)
+SELECT visit_id,visit_date,'peat consumption area','%', peat_consumption_area FROM form.old_field_visit WHERE peat_consumption_area is not NULL
+ON CONFLICT DO NOTHING;
+
+INSERT INTO form.field_visit_vegetation_estimates(visit_id,visit_date,measured_var,units,best)
+SELECT visit_id,visit_date,'peat consumption max depth','cm', peat_consumption_maxdepth FROM form.old_field_visit WHERE peat_consumption_maxdepth is not NULL
+ON CONFLICT DO NOTHING;
+
+
+INSERT INTO form.field_visit_vegetation_estimates
+SELECT visit_id,visit_date,'tree foliage biomass consumed','%', tree_foliage_biomass_consumed_best, tree_foliage_biomass_consumed_lower, tree_foliage_biomass_consumed_upper FROM form.old_field_visit WHERE tree_foliage_biomass_consumed_best is not NULL
+ON CONFLICT DO NOTHING;
+
+
+
+INSERT INTO form.field_visit_vegetation_estimates
+SELECT visit_id,visit_date,'shrub foliage biomass consumed','%', shrub_foliage_biomass_consumed_best, shrub_foliage_biomass_consumed_lower, shrub_foliage_biomass_consumed_upper FROM form.old_field_visit WHERE shrub_foliage_biomass_consumed_best is not NULL
+ON CONFLICT DO NOTHING;
+
+
+
+INSERT INTO form.field_visit_vegetation_estimates
+SELECT visit_id,visit_date,'ground burnt','m', ground_burnt_best, ground_burnt_lower, ground_burnt_upper FROM form.old_field_visit WHERE ground_burnt_best is not NULL
+ON CONFLICT DO NOTHING;
+
+
+INSERT INTO form.field_visit_vegetation_estimates
+SELECT visit_id,visit_date,'ground foliage biomass consumed','%', ground_foliage_biomass_consumed_best, ground_foliage_biomass_consumed_lower, ground_foliage_biomass_consumed_upper FROM form.old_field_visit WHERE ground_foliage_biomass_consumed_best is not NULL
+ON CONFLICT DO NOTHING;
+
+INSERT INTO form.field_visit_vegetation_estimates
+SELECT visit_id,visit_date,'largest twigs consumed','cm', largest_twigs_consumed_best, largest_twigs_consumed_lower, largest_twigs_consumed_upper FROM form.old_field_visit WHERE largest_twigs_consumed_best is not NULL
+ON CONFLICT DO NOTHING;
+
+
+
+INSERT INTO form.field_visit_vegetation(visit_id,visit_date,vegtype,ThreatenedEcologicalCommunity)
+SELECT visit_id,visit_date,plantcommunitytype,ThreatenedEcologicalCommunity FROM form.old_field_visit
+ON CONFLICT DO NOTHING;
+
+INSERT INTO form.field_samples
+SELECT visit_id,min(v.visit_date),sample_nr,sample_method,quadrat_area,transect_length,comments FROM form.old_field_samples LEFT JOIN form.field_visit v USING(visit_id) GROUP BY visit_id,sample_nr,sample_method,quadrat_area,transect_length,comments;

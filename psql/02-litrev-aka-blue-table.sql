@@ -19,6 +19,13 @@ CREATE TYPE heat_smoke_interaction AS ENUM ('Additive/synergistic','Compensatory
 CREATE TYPE months AS ENUM ('January','February','March','April','May','June','July', 'August', 'September', 'October', 'November', 'December')
 CREATE TYPE postfire_response AS ENUM ('Exclusive','Facultative','Negligible','Unknown')
 --
+CREATE TYPE method_vocabulary AS ENUM ('Direct measure', 'Qualitative estimate', 'Inferred from plant morphology', 'Unknown');
+
+CREATE TABLE IF NOT EXISTS litrev.ref_list (
+    ref_code varchar(50) PRIMARY KEY,
+    ref_cite text,
+    alt_code varchar(30)
+);
 
 
 CREATE TABLE IF NOT EXISTS litrev.survival_traits(
@@ -124,6 +131,20 @@ access_date DATE
 
 --ALTER TABLE litrev.nsw_status   ADD CONSTRAINT nsw_status_code_fkey  FOREIGN KEY (species_code)  REFERENCES ...(...)  ON DELETE CASCADE ON UPDATE CASCADE;
 
+CREATE TABLE IF NOT EXISTS litrev.resprouting (
+  record_id SERIAL PRIMARY KEY,
+  species VARCHAR(255),
+  species_code VARCHAR(10),
+  main_source VARCHAR(50) ,
+  original_sources text[],
+  norm_value resprouting_types,
+  method_of_estimation method_vocabulary,
+  raw_value text[],
+  original_notes text[],
+  additional_notes text[],
+  weight smallint NOT NULL DEFAULT 1,
+  FOREIGN KEY (main_source) REFERENCES litrev.ref_list (ref_code) ON DELETE CASCADE ON UPDATE CASCADE
+);
 
 
 -- https://epsg.io/28356
