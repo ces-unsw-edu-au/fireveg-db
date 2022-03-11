@@ -3,10 +3,10 @@ CREATE SCHEMA form;
 
 -- Create controlled vocabularies for some variables:
 CREATE TYPE sampling_method AS ENUM ('quadrat', 'transect', 'other');
-CREATE TYPE seedbank_type AS ENUM ('soil-persistent', 'transient', 'canopy','non-canopy','other');
 CREATE TYPE resprout_organ AS ENUM ('epicormic', 'apical', 'lignotuber', 'basal','tuber','tussock','short rhizome', 'long rhizome or root sucker', 'stolon', 'none', 'other');
 CREATE TYPE post_seed_recruit AS ENUM ('abundant','present','absent','other');
-CREATE TYPE seedbank_type AS ENUM ('soil-persistent', 'transient', 'canopy','non-canopy','other');
+-- CREATE TYPE seedbank_type AS ENUM ('soil-persistent', 'transient', 'canopy','non-canopy','other');
+-- CREATE TYPE seedbank_type AS ENUM ('soil-persistent', 'transient', 'canopy','non-canopy','other');
 -- DROP TYPE seedbank_type CASCADE;
 -- ALTER TYPE seedbank_type ADD VALUE 'non-canopy' AFTER 'canopy';
 -- ALTER TYPE seedbank_type RENAME VALUE 'soil' TO 'soil-persistent';
@@ -171,7 +171,7 @@ species_code int,
 species_notes text,
 -- confidenceID int,
 resprout_organ resprout_type,
-seedbank seedbank_type,
+seedbank seedbank_vocabulary,
 adults_unburnt numeric,
 resprouts_live numeric,
 resprouts_died numeric,

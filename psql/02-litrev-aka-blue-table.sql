@@ -4,7 +4,6 @@ CREATE SCHEMA litrev;
 -- Create controlled vocabularies for some variables:
 CREATE TYPE sampling_method AS ENUM ('quadrat', 'transect', 'other');
 CREATE TYPE seedbank_type AS ENUM ('soil-persistent', 'transient', 'canopy','non-canopy','other');
-CREATE TYPE resprout_organ AS ENUM ('epicormic', 'apical', 'lignotuber', 'basal','tuber','tussock','short rhizome', 'long rhizome or root sucker', 'stolon', 'none', 'other');
 CREATE TYPE post_seed_recruit AS ENUM ('abundant','present','absent','other');
 CREATE TYPE seedbank_type AS ENUM ('soil-persistent', 'transient', 'canopy','non-canopy','other');
 -- DROP TYPE seedbank_type CASCADE;
@@ -12,12 +11,10 @@ CREATE TYPE seedbank_type AS ENUM ('soil-persistent', 'transient', 'canopy','non
 -- ALTER TYPE seedbank_type RENAME VALUE 'soil' TO 'soil-persistent';
 -- \dT
 CREATE TYPE age_group AS ENUM ('adult','juvenile', 'other');
-CREATE TYPE resprouting_types AS ENUM ('none','few','half','most','all', 'unknown');
-CREATE TYPE establishment_types AS ENUM ('Intolerant', 'Intolerant-Tolerant', 'Tolerant', 'Tolerant-Requiring', 'Requiring', 'Unknown');
+
 CREATE TYPE yes_no_indet AS ENUM ('Yes','No','Indeterminate');
 CREATE TYPE heat_smoke_interaction AS ENUM ('Additive/synergistic','Compensatory','Independent','Unknown');
 CREATE TYPE months AS ENUM ('January','February','March','April','May','June','July', 'August', 'September', 'October', 'November', 'December')
-CREATE TYPE postfire_response AS ENUM ('Exclusive','Facultative','Negligible','Unknown')
 --
 CREATE TYPE method_vocabulary AS ENUM ('Direct measure', 'Qualitative estimate', 'Inferred from plant morphology', 'Unknown');
 
@@ -130,23 +127,3 @@ access_date DATE
 );
 
 --ALTER TABLE litrev.nsw_status   ADD CONSTRAINT nsw_status_code_fkey  FOREIGN KEY (species_code)  REFERENCES ...(...)  ON DELETE CASCADE ON UPDATE CASCADE;
-
-CREATE TABLE IF NOT EXISTS litrev.resprouting (
-  record_id SERIAL PRIMARY KEY,
-  species VARCHAR(255),
-  species_code VARCHAR(10),
-  main_source VARCHAR(50) ,
-  original_sources text[],
-  norm_value resprouting_types,
-  method_of_estimation method_vocabulary,
-  raw_value text[],
-  original_notes text[],
-  additional_notes text[],
-  weight smallint NOT NULL DEFAULT 1,
-  FOREIGN KEY (main_source) REFERENCES litrev.ref_list (ref_code) ON DELETE CASCADE ON UPDATE CASCADE
-);
-
-
--- https://epsg.io/28356
--- GDA94 / MGA zone 56
--- EPSG:28356
