@@ -56,7 +56,6 @@ CREATE TABLE IF NOT EXISTS litrev.rect2 (
 );
 
 
-CREATE TYPE seedbank_vocabulary AS ENUM ('Soil-persistent', 'Transient', 'Canopy','Non-canopy','Other');
 
 CREATE TABLE IF NOT EXISTS litrev.germ1 (
   record_id SERIAL PRIMARY KEY,
@@ -74,7 +73,6 @@ CREATE TABLE IF NOT EXISTS litrev.germ1 (
   FOREIGN KEY (main_source) REFERENCES litrev.ref_list (ref_code) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
-CREATE TYPE resprout_organ_vocabulary AS ENUM ('Epicormic', 'Apical', 'Lignotuber', 'Basal','Tuber','Tussock','Short rhizome', 'Long rhizome or root sucker', 'Stolon', 'None', 'Other');
 
 CREATE TABLE IF NOT EXISTS litrev.surv4 (
   record_id SERIAL PRIMARY KEY,

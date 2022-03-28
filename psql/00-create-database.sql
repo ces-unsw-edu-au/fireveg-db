@@ -1,19 +1,5 @@
 ,-- Schema for storing information from the field (field forms)
 CREATE SCHEMA form;
-
--- Create controlled vocabularies for some variables:
-CREATE TYPE sampling_method AS ENUM ('quadrat', 'transect', 'other');
-CREATE TYPE resprout_organ AS ENUM ('epicormic', 'apical', 'lignotuber', 'basal','tuber','tussock','short rhizome', 'long rhizome or root sucker', 'stolon', 'none', 'other');
-CREATE TYPE post_seed_recruit AS ENUM ('abundant','present','absent','other');
--- CREATE TYPE seedbank_type AS ENUM ('soil-persistent', 'transient', 'canopy','non-canopy','other');
--- CREATE TYPE seedbank_type AS ENUM ('soil-persistent', 'transient', 'canopy','non-canopy','other');
--- DROP TYPE seedbank_type CASCADE;
--- ALTER TYPE seedbank_type ADD VALUE 'non-canopy' AFTER 'canopy';
--- ALTER TYPE seedbank_type RENAME VALUE 'soil' TO 'soil-persistent';
--- \dT
-CREATE TYPE age_group AS ENUM ('adult','juvenile', 'other');
-CREATE TYPE resprouting_types AS ENUM ('none','few','half','most','all', 'unknown');
-
 --
 -- This is copied from tblObserver of Atlas data model
 CREATE TABLE IF NOT EXISTS form.observerID (
@@ -163,23 +149,23 @@ ALTER TABLE form.field_samples
 
 CREATE TABLE IF NOT EXISTS form.quadrat_samples (
   record_id SERIAL PRIMARY KEY,
-visit_id VARCHAR(30),
-visit_date date,
-sample_nr SMALLINT,
-species VARCHAR(255),
-species_code int,
-species_notes text,
--- confidenceID int,
-resprout_organ resprout_type,
-seedbank seedbank_vocabulary,
-adults_unburnt numeric,
-resprouts_live numeric,
-resprouts_died numeric,
-resprouts_kill numeric,
-resprouts_reproductive numeric,
-recruits_live numeric,
-recruits_reproductive numeric,
-recruits_died numeric,
-comments text,
-FOREIGN KEY (visit_id, visit_date, sample_nr) REFERENCES form.field_samples (visit_id,visit_date, sample_nr) ON DELETE CASCADE ON UPDATE CASCADE
+  visit_id VARCHAR(30),
+  visit_date date,
+  sample_nr SMALLINT,
+  species VARCHAR(255),
+  species_code int,
+  species_notes text,
+  -- confidenceID int,
+  resprout_organ resprout_organ_vocabulary,
+  seedbank seedbank_vocabulary, -- updated, capital values
+  adults_unburnt numeric,
+  resprouts_live numeric,
+  resprouts_died numeric,
+  resprouts_kill numeric,
+  resprouts_reproductive numeric,
+  recruits_live numeric,
+  recruits_reproductive numeric,
+  recruits_died numeric,
+  comments text[],
+  FOREIGN KEY (visit_id, visit_date, sample_nr) REFERENCES form.field_samples (visit_id,visit_date, sample_nr) ON DELETE CASCADE ON UPDATE CASCADE
 );

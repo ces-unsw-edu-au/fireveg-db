@@ -45,3 +45,8 @@ UPDATE form.field_visit SET geom=ST_GeomFromText('POINT(151.12337 -33.63982)',43
  UPDATE form.field_visit SET geom=ST_GeomFromText('POINT(151.06018 -33.72733)',4326)where visit_id='BER2'      ;
 
  UPDATE form.field_visit SET geom=ST_GeomFromText('POINT(6297045.91112 241682.834307999)',4326)where visit_id='HV2'       ;
+
+\x on;
+ SELECT * FROM pg_type WHERE typname='seedbank_vocabulary';
+\x off;
+ SELECT * FROM pg_enum where enumtypid='19412';

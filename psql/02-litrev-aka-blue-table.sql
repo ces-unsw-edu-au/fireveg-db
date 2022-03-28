@@ -1,22 +1,6 @@
 -- Schema for storing information from the field (field forms)
 CREATE SCHEMA litrev;
 
--- Create controlled vocabularies for some variables:
-CREATE TYPE sampling_method AS ENUM ('quadrat', 'transect', 'other');
-CREATE TYPE seedbank_type AS ENUM ('soil-persistent', 'transient', 'canopy','non-canopy','other');
-CREATE TYPE post_seed_recruit AS ENUM ('abundant','present','absent','other');
-CREATE TYPE seedbank_type AS ENUM ('soil-persistent', 'transient', 'canopy','non-canopy','other');
--- DROP TYPE seedbank_type CASCADE;
--- ALTER TYPE seedbank_type ADD VALUE 'non-canopy' AFTER 'canopy';
--- ALTER TYPE seedbank_type RENAME VALUE 'soil' TO 'soil-persistent';
--- \dT
-CREATE TYPE age_group AS ENUM ('adult','juvenile', 'other');
-
-CREATE TYPE yes_no_indet AS ENUM ('Yes','No','Indeterminate');
-CREATE TYPE heat_smoke_interaction AS ENUM ('Additive/synergistic','Compensatory','Independent','Unknown');
-CREATE TYPE months AS ENUM ('January','February','March','April','May','June','July', 'August', 'September', 'October', 'November', 'December')
---
-CREATE TYPE method_vocabulary AS ENUM ('Direct measure', 'Qualitative estimate', 'Inferred from plant morphology', 'Unknown');
 
 CREATE TABLE IF NOT EXISTS litrev.ref_list (
     ref_code varchar(50) PRIMARY KEY,
