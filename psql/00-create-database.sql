@@ -25,6 +25,8 @@ CREATE TABLE IF NOT EXISTS form.field_site (
 site_label VARCHAR(30) ,
 location_description text,
 geom geometry,
+gps_uncertainty_m int,
+gps_geom_description text,
 elevation numeric,
 PRIMARY KEY (site_label)
 );
@@ -48,14 +50,15 @@ visit_id VARCHAR(30),
 visit_date date,
 visit_description text,
 mainObserver INT REFERENCES form.observerID ON DELETE RESTRICT,
-otherObserver VARCHAR(20),
-CreatedBySystemUserID int NOT NULL,
-DateCreated timestamp NOT NULL,
-UpdatedBySystemUserID int NOT NULL,
-DateUpdated timestamp NOT NULL,
+observerlist text[],
+-- CreatedBySystemUserID int NOT NULL,
+-- DateCreated timestamp NOT NULL,
+-- UpdatedBySystemUserID int NOT NULL,
+-- DateUpdated timestamp NOT NULL,
+survey_name VARCHAR(40) DEFAULT 'TO BE CLASSIFIED',
 PRIMARY KEY (visit_id,visit_date)
 );
-ALTER TABLE form.field_visit ADD COLUMN survey_name VARCHAR(40) DEFAULT 'TO BE CLASSIFIED';
+-- ALTER TABLE form.field_visit ADD COLUMN survey_name VARCHAR(40) DEFAULT 'TO BE CLASSIFIED';
 ALTER TABLE form.field_visit
   ADD CONSTRAINT field_visit_survey_fkey
   FOREIGN KEY (survey_name)
@@ -72,6 +75,9 @@ CREATE TABLE IF NOT EXISTS form.field_visit_vegetation (
   ThreatenedEcologicalCommunity text,
   PRIMARY KEY (visit_id,visit_date)
 );
+ALTER TABLE form.field_visit_vegetation
+  DROP CONSTRAINT IF EXISTS field_visit_date_fkey;
+
   ALTER TABLE form.field_visit_vegetation
     ADD CONSTRAINT field_visit_date_fkey
     FOREIGN KEY (visit_id,visit_date)
