@@ -48,6 +48,7 @@ select obj_description('form.surveys'::regclass);
 CREATE TABLE IF NOT EXISTS form.field_visit (
 visit_id VARCHAR(30),
 visit_date date,
+replicate_nr smallint,
 visit_description text,
 mainObserver INT REFERENCES form.observerID ON DELETE RESTRICT,
 observerlist text[],
