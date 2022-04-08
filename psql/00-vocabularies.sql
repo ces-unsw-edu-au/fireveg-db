@@ -4,6 +4,7 @@
 CREATE TYPE seedbank_vocabulary AS ENUM ('Soil-persistent', 'Transient', 'Canopy','Non-canopy','Other');
 CREATE TYPE resprout_organ_vocabulary AS ENUM ('Epicormic', 'Apical', 'Lignotuber', 'Basal','Tuber','Tussock','Short rhizome', 'Long rhizome or root sucker', 'Stolon', 'None', 'Other');
 
+CREATE TYPE scorch_vocabulary AS ENUM ('Full canopy scorch','Partial scorch','Other');
 
 CREATE TYPE sampling_method AS ENUM ('quadrat', 'transect', 'other');
 CREATE TYPE resprout_organ AS ENUM ('epicormic', 'apical', 'lignotuber', 'basal','tuber','tussock','short rhizome', 'long rhizome or root sucker', 'stolon', 'none', 'other');
@@ -26,7 +27,6 @@ CREATE TYPE seedbank_type AS ENUM ('soil-persistent', 'transient', 'canopy','non
 -- ALTER TYPE seedbank_type ADD VALUE 'non-canopy' AFTER 'canopy';
 -- ALTER TYPE seedbank_type RENAME VALUE 'soil' TO 'soil-persistent';
 -- \dT
-CREATE TYPE age_group AS ENUM ('adult','juvenile', 'other');
 
 CREATE TYPE yes_no_indet AS ENUM ('Yes','No','Indeterminate');
 CREATE TYPE heat_smoke_interaction AS ENUM ('Additive/synergistic','Compensatory','Independent','Unknown');

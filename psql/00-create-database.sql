@@ -1,24 +1,24 @@
 ,-- Schema for storing information from the field (field forms)
 CREATE SCHEMA form;
 --
--- This is copied from tblObserver of Atlas data model
+-- This was originally copied from tblObserver of Atlas data model, we just need a core of columns
 CREATE TABLE IF NOT EXISTS form.observerID (
 UserKey SERIAL PRIMARY KEY,
 GivenNames varchar(60) NULL,
-Surname varchar(60) NOT NULL,
-AddressLine1 varchar(50) NULL,
-AddressLine2 varchar(50) NULL,
-City varchar(30) NULL,
-Postcode numeric(4) NULL,
-StateID int NULL,
-Email varchar(75) NULL,
-Occupation varchar(40) NULL,
-Notes varchar(255) NULL,
-RowTimeStamp timestamp NOT NULL,
-CreatedBySystemUserID int NOT NULL,
-DateCreated timestamp NOT NULL,
-UpdatedBySystemUserID int NOT NULL,
-DateUpdated timestamp NOT NULL
+Surname varchar(60) NOT NULL
+-- AddressLine1 varchar(50) NULL,
+-- AddressLine2 varchar(50) NULL,
+-- City varchar(30) NULL,
+-- Postcode numeric(4) NULL,
+-- StateID int NULL,
+-- Email varchar(75) NULL,
+-- Occupation varchar(40) NULL,
+-- Notes varchar(255) NULL,
+-- RowTimeStamp timestamp NOT NULL,
+-- CreatedBySystemUserID int NOT NULL,
+-- DateCreated timestamp NOT NULL,
+-- UpdatedBySystemUserID int NOT NULL,
+-- DateUpdated timestamp NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS form.field_site (
@@ -66,6 +66,7 @@ ALTER TABLE form.field_visit
   REFERENCES form.surveys(survey_name)
   ON DELETE CASCADE ON UPDATE CASCADE;
 
+ALTER TABLE form.field_visit ADD CONSTRAINT field_visit_mainobserver_fkey2 FOREIGN KEY (mainobserver) REFERENCES form.observerid(userkey) ON DELETE RESTRICT
 
 CREATE TABLE IF NOT EXISTS form.field_visit_vegetation (
   visit_id VARCHAR(30),
@@ -173,6 +174,8 @@ CREATE TABLE IF NOT EXISTS form.quadrat_samples (
   recruits_live numeric,
   recruits_reproductive numeric,
   recruits_died numeric,
+  scorch scorch_vocabulary,
+  life_stage age_group,
   comments text[],
   FOREIGN KEY (visit_id, visit_date, sample_nr) REFERENCES form.field_samples (visit_id,visit_date, sample_nr) ON DELETE CASCADE ON UPDATE CASCADE
 );
