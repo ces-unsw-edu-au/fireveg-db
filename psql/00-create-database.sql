@@ -127,13 +127,15 @@ ALTER TABLE form.field_visit_vegetation_raw_values
 
 
 CREATE TABLE IF NOT EXISTS form.fire_history (
-visit_id VARCHAR(30) REFERENCES form.field_visit ON DELETE CASCADE,
+site_label VARCHAR(30) REFERENCES form.field_site ON DELETE CASCADE,
 fire_name varchar(100),
-fire_date date,
-fire_date_uncertain interval,
+fire_date VARCHAR(30),
+earliest_date date,
+latest_date date,
 how_inferred varchar(100),
 cause_of_ignition varchar(100),
-PRIMARY KEY (visit_id, fire_date)
+notes text[],
+PRIMARY KEY (site_label, fire_date)
 );
 
 -- ALTER TABLE form.field_samples RENAME TO old_field_samples;

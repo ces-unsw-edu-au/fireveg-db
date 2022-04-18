@@ -1,8 +1,6 @@
 -- Create controlled vocabularies for some variables:
 
 -- used in form. and litrev. tables:
-CREATE TYPE seedbank_vocabulary AS ENUM ('Soil-persistent', 'Transient', 'Canopy','Non-canopy','Other');
-CREATE TYPE resprout_organ_vocabulary AS ENUM ('Epicormic', 'Apical', 'Lignotuber', 'Basal','Tuber','Tussock','Short rhizome', 'Long rhizome or root sucker', 'Stolon', 'None', 'Other');
 
 CREATE TYPE scorch_vocabulary AS ENUM ('Full canopy scorch','Partial scorch','Other');
 
@@ -16,7 +14,6 @@ CREATE TYPE post_seed_recruit AS ENUM ('abundant','present','absent','other');
 -- ALTER TYPE seedbank_type RENAME VALUE 'soil' TO 'soil-persistent';
 -- \dT
 CREATE TYPE age_group AS ENUM ('adult','juvenile', 'other');
-CREATE TYPE resprouting_types AS ENUM ('none','few','half','most','all', 'unknown');
 
 -- Create controlled vocabularies for some variables:
 CREATE TYPE sampling_method AS ENUM ('quadrat', 'transect', 'other');
@@ -33,3 +30,5 @@ CREATE TYPE heat_smoke_interaction AS ENUM ('Additive/synergistic','Compensatory
 CREATE TYPE months AS ENUM ('January','February','March','April','May','June','July', 'August', 'September', 'October', 'November', 'December')
 --
 CREATE TYPE method_vocabulary AS ENUM ('Direct measure', 'Qualitative estimate', 'Inferred from plant morphology', 'Unknown');
+
+CREATE TYPE resprouting_types AS ENUM ('none','few','half','most','all', 'unknown');
