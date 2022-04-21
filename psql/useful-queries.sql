@@ -9,6 +9,12 @@ select typarray,typname,enumsortorder,enumlabel from pg_type typ left join pg_en
 select obj_description('form.surveys'::regclass);
 \d+ form.surveys
 
+
+--  select code, name, value_type, method_vocabulary, priority from litrev.trait_info where value_type='numerical';
+--  select code, name, priority, category_vocabulary, method_vocabulary from litrev.trait_info where value_type='categorical';
+-- select code, name, value_type, method_vocabulary, priority from litrev.trait_info where value_type='TO DO';
+
+
 UPDATE form.field_visit SET geom=ST_GeomFromText('POINT(151.12337 -33.63982)',4326) where visit_id='BER1';
 
  UPDATE form.field_visit SET geom=ST_GeomFromText('POINT(237789.51251 6304112.19457)',4326)  where visit_id='SS1'       ;

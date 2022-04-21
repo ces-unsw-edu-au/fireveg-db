@@ -7,12 +7,7 @@ CREATE TYPE scorch_vocabulary AS ENUM ('Full canopy scorch','Partial scorch','Ot
 CREATE TYPE sampling_method AS ENUM ('quadrat', 'transect', 'other');
 CREATE TYPE resprout_organ AS ENUM ('epicormic', 'apical', 'lignotuber', 'basal','tuber','tussock','short rhizome', 'long rhizome or root sucker', 'stolon', 'none', 'other');
 CREATE TYPE post_seed_recruit AS ENUM ('abundant','present','absent','other');
--- CREATE TYPE seedbank_type AS ENUM ('soil-persistent', 'transient', 'canopy','non-canopy','other');
--- CREATE TYPE seedbank_type AS ENUM ('soil-persistent', 'transient', 'canopy','non-canopy','other');
--- DROP TYPE seedbank_type CASCADE;
--- ALTER TYPE seedbank_type ADD VALUE 'non-canopy' AFTER 'canopy';
--- ALTER TYPE seedbank_type RENAME VALUE 'soil' TO 'soil-persistent';
--- \dT
+
 CREATE TYPE age_group AS ENUM ('adult','juvenile', 'other');
 
 -- Create controlled vocabularies for some variables:
