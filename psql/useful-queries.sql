@@ -6,6 +6,8 @@ select names from functional_groups order by names;
 select biome_code,code,name from functional_groups order by biome_code,code;
 select typarray,typname,enumsortorder,enumlabel from pg_type typ left join pg_enum enu on enu.enumtypid=typ.oid where typname ='sampling_method'
 
+select obj_description('form.surveys'::regclass);
+\d+ form.surveys
 
 UPDATE form.field_visit SET geom=ST_GeomFromText('POINT(151.12337 -33.63982)',4326) where visit_id='BER1';
 
