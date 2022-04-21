@@ -66,6 +66,10 @@ INSERT INTO litrev.trait_info (code,name,value_type,description,life_stage,life_
 ('disp1', 'Propagule dispersal mode', 'TO DO', NULL, 'Seed', 'Dispersal')
 ON CONFLICT ON CONSTRAINT trait_info_pkey DO UPDATE set name=EXCLUDED.name, description=EXCLUDED.description;
 
+
+INSERT INTO litrev.trait_info (code,name,value_type,life_stage,life_history_process) VALUES
+('germ10', 'Postfire residual seedbank', 'categorical','Seed', 'Germination') ON CONFLICT DO NOTHING;
+
 UPDATE litrev.trait_info set category_vocabulary = 'resprouting_vocabulary' WHERE code='surv1';
 UPDATE litrev.trait_info set category_vocabulary = 'resprout_organ_vocabulary' WHERE code='surv4';
 UPDATE litrev.trait_info set category_vocabulary = 'postfire_response' WHERE code='repr2';
@@ -73,6 +77,28 @@ UPDATE litrev.trait_info set category_vocabulary = 'establishment_vocabulary' WH
 UPDATE litrev.trait_info set category_vocabulary = 'seedbank_vocabulary' WHERE code='germ1';
 UPDATE litrev.trait_info set category_vocabulary = 'seed_dormancy_vocabulary' WHERE code='germ8';
 
+UPDATE litrev.trait_info set method_vocabulary = 'method_surv1_vocabulary' WHERE code='surv1';
+UPDATE litrev.trait_info set method_vocabulary = 'method_surv2_vocabulary' WHERE code='surv2';
+UPDATE litrev.trait_info set method_vocabulary = 'method_surv3_vocabulary' WHERE code='surv3';
+UPDATE litrev.trait_info set method_vocabulary = 'method_grow1_vocabulary' WHERE code='grow1';
+UPDATE litrev.trait_info set method_vocabulary = 'method_grow2_vocabulary' WHERE code='grow2';
+
+UPDATE litrev.trait_info set method_vocabulary = 'method_repr3_vocabulary' WHERE code='repr3';
+UPDATE litrev.trait_info set method_vocabulary = 'method_repr3a_vocabulary' WHERE code='repr3a';
+UPDATE litrev.trait_info set method_vocabulary = 'method_repr4_vocabulary' WHERE code='repr4';
+
+
+UPDATE litrev.trait_info set method_vocabulary = 'method_germ8_vocabulary' WHERE code='germ8';
+
+UPDATE litrev.trait_info set method_vocabulary = 'method_rect3_vocabulary' WHERE code='rect3';
+
+
+UPDATE litrev.trait_info set method_vocabulary = 'method_disp1_vocabulary' WHERE code='disp1';
+
+
+--  select code, name, value_type, method_vocabulary, priority from litrev.trait_info where value_type='numerical';
+--  select code, name, priority, category_vocabulary, method_vocabulary from litrev.trait_info where value_type='categorical';
+-- select code, name, value_type, method_vocabulary, priority from litrev.trait_info where value_type='TO DO';
 
 -- CREATE TABLE IF NOT EXISTS litrev.survival_traits(
 --    species VARCHAR(255),

@@ -21,6 +21,9 @@ CREATE TABLE IF NOT EXISTS litrev.repr3 (
   FOREIGN KEY (main_source) REFERENCES litrev.ref_list (ref_code) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
+COMMENT ON COLUMN litrev.repr3.best IS '{"years": "The time taken for first individual in a recruitment cohort to produce their first reproductive organs (e.g. flowers, sporophylls)"}';
+
+
 -- first flower production (secondary juvenile period)
 
 CREATE TABLE IF NOT EXISTS litrev.repr3a (
