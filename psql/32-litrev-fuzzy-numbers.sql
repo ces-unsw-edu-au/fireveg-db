@@ -45,6 +45,8 @@ CREATE TABLE IF NOT EXISTS litrev.repr3a (
   FOREIGN KEY (main_source) REFERENCES litrev.ref_list (ref_code) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
+COMMENT ON COLUMN litrev.repr3a.best IS '{"years": "The time taken after fire for first reproductive organs (e.g. flowers, sporophylls) to be produced in a population of resprouting individuals"}';
+
 
 CREATE TABLE IF NOT EXISTS litrev.repr4 (
   record_id SERIAL PRIMARY KEY,
@@ -66,6 +68,8 @@ CREATE TABLE IF NOT EXISTS litrev.repr4 (
 );
 
 
+COMMENT ON COLUMN litrev.repr4.best IS '{"years": "The time taken for 50% of individuals in a cohort [even aged recruits] to produce their first viable seed"}';
+
 CREATE TABLE IF NOT EXISTS litrev.grow1 (
   record_id SERIAL PRIMARY KEY,
   species VARCHAR(255),
@@ -84,6 +88,9 @@ CREATE TABLE IF NOT EXISTS litrev.grow1 (
   CHECK (best >= lower AND best <= upper),
   FOREIGN KEY (main_source) REFERENCES litrev.ref_list (ref_code) ON DELETE CASCADE ON UPDATE CASCADE
 );
+
+
+COMMENT ON COLUMN litrev.grow1.best IS '{"years": "The time taken to develop organs or tissues enabling at least 50% of cohort survival when fully scorched in a fire"}';
 
 
 CREATE TABLE IF NOT EXISTS litrev.surv5 (
@@ -105,6 +112,7 @@ CREATE TABLE IF NOT EXISTS litrev.surv5 (
   FOREIGN KEY (main_source) REFERENCES litrev.ref_list (ref_code) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
+COMMENT ON COLUMN litrev.surv5.best IS '{"years": "Age at which 50% of individuals in a cohort (excluding outliers) have died from senescence"}';
 
 CREATE TABLE IF NOT EXISTS litrev.surv6 (
   record_id SERIAL PRIMARY KEY,
@@ -126,6 +134,9 @@ CREATE TABLE IF NOT EXISTS litrev.surv6 (
 );
 
 
+COMMENT ON COLUMN litrev.surv6.best IS '{"years": "Age at which 50% of a seed cohort in an in situ seedbank have decayed or become inviable"}';
+
+
 CREATE TABLE IF NOT EXISTS litrev.surv7 (
   record_id SERIAL PRIMARY KEY,
   species VARCHAR(255),
@@ -144,3 +155,5 @@ CREATE TABLE IF NOT EXISTS litrev.surv7 (
   CHECK (best >= lower AND best <= upper),
   FOREIGN KEY (main_source) REFERENCES litrev.ref_list (ref_code) ON DELETE CASCADE ON UPDATE CASCADE
 );
+
+COMMENT ON COLUMN litrev.surv7.best IS '{"years": "Age at which all seeds in a cohort (excluding outliers, e.g. 95th percentile) have decayed or become inviable"}';

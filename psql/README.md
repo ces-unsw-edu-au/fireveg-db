@@ -15,7 +15,7 @@ This directory contains SQL code to create types and tables for the database in 
 
 
 ```sh
-psql -h $DBHOST -d $DBNAME -c "\d species " >> database-schemata.Rmd
-psql -h $DBHOST -d $DBNAME -c "\d form. " >> database-schemata.Rmd
-psql -h $DBHOST -d $DBNAME -c "\d litrev. " >> database-schemata.Rmd
+psql -h $DBHOST -d $DBNAME -c "\d species " >> database-schemata.md
+psql -h $DBHOST -d $DBNAME -c "\d form. " >> database-schemata.md
+psql -h $DBHOST -d $DBNAME -c "\d litrev. " >> database-schemata.md
 ```
