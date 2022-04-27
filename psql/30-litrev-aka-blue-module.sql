@@ -96,6 +96,9 @@ UPDATE litrev.trait_info set method_vocabulary = 'method_rect3_vocabulary' WHERE
 UPDATE litrev.trait_info set method_vocabulary = 'method_disp1_vocabulary' WHERE code='disp1';
 
 
+update litrev.trait_info set value_type='categorical',priority='needed for VA group',category_vocabulary='propagule_dispersal_vocabulary' WHERE code='disp1'
+;
+
 -- CREATE TABLE IF NOT EXISTS litrev.nsw_status (
 -- species VARCHAR(255),
 -- species_code int PRIMARY KEY,

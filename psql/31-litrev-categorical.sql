@@ -150,3 +150,34 @@ CREATE TABLE IF NOT EXISTS litrev.germ8 (
   weight_notes text[],
   FOREIGN KEY (main_source) REFERENCES litrev.ref_list (ref_code) ON DELETE CASCADE ON UPDATE CASCADE
 );
+
+CREATE TYPE propagule_dispersal_vocabulary AS ENUM ('wind-hairs','wind-wing', 'wind-unspec.','animal-ingestion','animal-cohesion', 'animal-unspec.', 'ant', 'water', 'ballistic', 'passive', 'other');
+
+COMMENT ON TYPE propagule_dispersal_vocabulary IS
+'{"wind-hairs":	"Diaspores with wings large enough to significantly reduce terminal velocity",
+"wind-wing":	"Diaspores with hairs long and dense enough to significantly reduce terminal velocity",
+"wind-unspec.": "Wind dispersal by unspecified mechanism",
+"animal-ingestion":	"Diaspores with fleshy pericarp ingestable by vertebrates",
+"animal-cohesion": "Diaspores with external structures/substances promoting adhesion to vertebrate fur/feathers by vertebrates",
+"animal-unspec.":	"Animal dispersal by unspecified mechanism",
+"ant":	"Diaspores with elaiosome (various structures including epicarp) harvested by ants",
+"water":	"Buoyancy in water (e.g. >24 hrs). Primarily relevant to species in riparian, floodplain or littoral habitats (buoyancy/saltation in sheet flow interpreted as ''passive'' dispersal",
+"ballistic":	"Diaspores with explosive release from parent plant",
+"passive":	"Diaspores with no specialised structures for dispersal",
+"other": "Other"}';
+
+CREATE TABLE IF NOT EXISTS litrev.disp1 (
+  record_id SERIAL PRIMARY KEY,
+  species VARCHAR(255),
+  species_code VARCHAR(10),
+  main_source VARCHAR(50) ,
+  original_sources text[],
+  norm_value propagule_dispersal_vocabulary,
+  method_of_estimation method_disp1_vocabulary,
+  raw_value text[],
+  original_notes text[],
+  additional_notes text[],
+  weight smallint NOT NULL DEFAULT 1,
+  weight_notes text[],
+  FOREIGN KEY (main_source) REFERENCES litrev.ref_list (ref_code) ON DELETE CASCADE ON UPDATE CASCADE
+);
