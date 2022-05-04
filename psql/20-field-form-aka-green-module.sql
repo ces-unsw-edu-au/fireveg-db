@@ -49,48 +49,7 @@ ALTER TABLE form.field_visit
 
 ALTER TABLE form.field_visit ADD CONSTRAINT field_visit_mainobserver_fkey2 FOREIGN KEY (mainobserver) REFERENCES form.observerid(userkey) ON DELETE RESTRICT
 
-CREATE TABLE IF NOT EXISTS form.field_visit_vegetation (
-  visit_id VARCHAR(30),
-  visit_date date,
-  VegType text,
-  VegCategoryID int,
-  ConfidenceID int,
-  ThreatenedEcologicalCommunity text,
-  PRIMARY KEY (visit_id,visit_date)
-);
-ALTER TABLE form.field_visit_vegetation
-  DROP CONSTRAINT IF EXISTS field_visit_date_fkey;
 
-  ALTER TABLE form.field_visit_vegetation
-    ADD CONSTRAINT field_visit_date_fkey
-    FOREIGN KEY (visit_id,visit_date)
-    REFERENCES form.field_visit(visit_id,visit_date)
-    ON DELETE CASCADE ON UPDATE CASCADE;
-
-CREATE TYPE vegvars AS ENUM ('tree canopy height', 'tree canopy scorch', 'tree canopy cover',
-  'mid canopy height', 'mid canopy scorch', 'mid canopy cover',
-  'shrub height', 'shrub scorch', 'shrub cover',
-  'ground cover','ground burnt', 'tree foliage biomass consumed', 'shrub foliage biomass consumed', 'ground foliage biomass consumed',  'largest twigs consumed', 'peat cons+umption area', 'peat consumption max depth');
-  CREATE TYPE varunits AS ENUM('mm','cm','m');
-  -- ALTER TYPE varunits ADD VALUE '%' AFTER 'm';
-ALTER TYPE vegvars RENAME VALUE 'peat cons+umption area' TO 'peat consumption area';
-
-CREATE TABLE IF NOT EXISTS form.field_visit_vegetation_estimates (
-  visit_id VARCHAR(30),
-  visit_date date,
-  measured_var vegvars,
-  units varunits,
-  best numeric,
-  lower numeric,
-  upper numeric,
-  CHECK (best >= lower AND best <= upper),
-  PRIMARY KEY (visit_id,visit_date,measured_var)
-);
-  ALTER TABLE form.field_visit_vegetation_estimates
-    ADD CONSTRAINT field_visit_date_fkey
-    FOREIGN KEY (visit_id,visit_date)
-    REFERENCES form.field_visit(visit_id,visit_date)
-    ON DELETE CASCADE ON UPDATE CASCADE;
 
 CREATE TABLE IF NOT EXISTS form.field_visit_vegetation_raw_values (
   visit_id VARCHAR(30),
