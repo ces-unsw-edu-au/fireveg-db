@@ -43,28 +43,30 @@ INSERT INTO litrev.trait_info (code,name,value_type,description,life_stage,life_
 ('surv3', 'Survival - basal scorch', 'TO DO', 'Ordinal categories of survival and resprouting proportions for plants subjected to LESS THAN 100% canopy scorch', 'Standing plant', 'Survival'),
 ('grow2', 'Age to reach maximum growth stage', 'TO DO', 'Age of a cohort at which 50% of individuals reach their maximum growth stage', 'Standing plant', 'Growth'),
 
-('grow2a', 'Maximum growth stage', 'TO DO', NULL, 'Standing plant', 'Growth'),
-('grow3', 'Maximum bark thickness', 'TO DO', NULL, 'Standing plant', 'Growth'),
-('grow4', 'Maximum plant height', 'TO DO', NULL, 'Standing plant', 'Growth'),
-('repr1', 'Flowering time', 'TO DO', NULL, 'Standing plant', 'Reproduction'),
-('repr5', 'Age at maximum seed production', 'TO DO', NULL, 'Standing plant', 'Reproduction'),
-('repr6', 'Age of maximum seed bank size', 'TO DO', NULL, 'Standing plant', 'Reproduction'),
-('repr7a', 'Resprout flowering response to summer fire', 'TO DO', NULL, 'Standing plant', 'Reproduction'),
-('repr7b', 'Flowering response to autumn fire', 'TO DO', NULL, 'Standing plant', 'Reproduction'),
-('repr7c', 'Flowering response to winter fire', 'TO DO', NULL, 'Standing plant', 'Reproduction'),
-('repr7d', 'Flowering response to spring fire', 'TO DO', NULL, 'Standing plant', 'Reproduction'),
-('germ2', 'Heat-pulse-cued germination', 'TO DO', NULL, 'Seed', 'Germination'),
-('germ3', 'Smoke-cued germination', 'TO DO', NULL, 'Seed', 'Germination'),
-('germ4', 'Heat shock-smoke interactive germination cue', 'TO DO', NULL, 'Seed', 'Germination'),
-('germ5', 'H50', 'TO DO', NULL, 'Seed', 'Germination'),
-('germ6', 'H-max', 'TO DO', NULL, 'Seed', 'Germination'),
-('germ7', 'H-lethal', 'TO DO', NULL, 'Seed', 'Germination'),
-('germ9', '???', 'TO DO',NULL,'Seed', 'Germination'),
-('rect1', 'Postfire seedling recruitment', 'TO DO', NULL, 'Seedling', 'Recruitment'),
-('rect3', 'Seedling emergence phenology', 'TO DO', 'The  month(s) of seedling emergence event. Enter either: i) square brackets with comma-separated first month, peak month and last month of seedling emergence event; or ii) single month of observed emergence if first, peak & last unknown)', 'Seedling', 'Recruitment'),
-('rect3a', 'Seedling emergence phenology - rainfall context', 'TO DO', NULL, 'Seedling', 'Recruitment'),
-('disp1', 'Propagule dispersal mode', 'TO DO', NULL, 'Seed', 'Dispersal')
-ON CONFLICT ON CONSTRAINT trait_info_pkey DO UPDATE set name=EXCLUDED.name, description=EXCLUDED.description;
+('grow2a', 'Maximum growth stage', 'text', 'Taxon-specific definition of maximum growth stage (e.g. specify a minimum plant height, canopy diam. organ development (e.g. rhizome), dbh, presence of hollows, etc.)', 'Standing plant', 'Growth'),
+('grow3', 'Maximum bark thickness', 'numeric', 'Maximum bark thickness [mm]', 'Standing plant', 'Growth'),
+('grow4', 'Maximum plant height', 'numeric', 'Maximum plant height [m]', 'Standing plant', 'Growth'),
+('repr1', 'Flowering time', 'TBA', 'Earliest (1st decile of individuals) and latest (10th decile of individuals) month flowering was observed', 'Standing plant', 'Reproduction'),
+('repr5', 'Age at maximum seed production', 'numeric', 'Age of a cohort at which seed production reaches a peak, before declining with age', 'Standing plant', 'Reproduction'),
+('repr6', 'Age of maximum seed bank size', 'numeric', 'Age of a cohort at which the accumulated seedbank reaches a peak (usually derived from models of seedbank dynamics)', 'Standing plant', 'Reproduction'),
+('repr7a', 'Resprout flowering response to summer fire', 'TBA', 'Proportion of surviving resprouting individuals that produce a seed/spore crop within the first five years after a summer (Dec-Feb sth hemisphere) fire', 'Standing plant', 'Reproduction'),
+('repr7b', 'Flowering response to autumn fire', 'TBA', 'Proportion of surviving resprouting individuals that produce a seed/spore crop within the first five years after an autumn (Mar-May sth hemisphere) fire', 'Standing plant', 'Reproduction'),
+('repr7c', 'Flowering response to winter fire', 'TBA', 'Proportion of surviving resprouting individuals that produce a seed/spore crop within the first five years after a winter (Jun-Aug sth hemisphere) fire', 'Standing plant', 'Reproduction'),
+('repr7d', 'Flowering response to spring fire', 'TBA', 'Proportion of surviving resprouting individuals that produce a seed/spore crop within the first five years after a winter (Jun-Aug sth hemisphere) fire', 'Standing plant', 'Reproduction'),
+
+('germ2', 'Heat-pulse-cued germination', 'categorical','Germination response to heat pulse', 'Seed', 'Germination'),
+('germ3', 'Smoke-cued germination', 'categorical', 'Germination response to smoke treatments', 'Seed', 'Germination'),
+('germ4', 'Heat shock-smoke interactive germination cue', 'categorical', 'Germination response to combined heat and smoke treatments', 'Seed', 'Germination'),
+('germ5', 'H50', 'numerical', 'Minimum temperature of heat pulse (exposure time up to 10 mins) producing 50% germination from viable fraction', 'Seed', 'Germination'),
+('germ6', 'H-max', 'numerical', 'Temperature of heat pulse (exposure time up to 10 mins) producing maximum % germination from dormant fraction', 'Seed', 'Germination'),
+('germ7', 'H-lethal', 'numerical', 'Minimum temperature of heat pulse (exposure time up to 10 mins) at which all seeds are killed', 'Seed', 'Germination'),
+('germ9', 'TBA', 'TBA','TBA','Seed', 'Germination'),
+
+('rect1', 'Postfire seedling recruitment', 'categorical', 'The observed incidence of post-fire (within first 5 years after fire) seedling recruitment', 'Seedling', 'Recruitment'),
+('rect3', 'Seedling emergence phenology', 'categorical', 'The  month(s) of seedling emergence event. Enter either: i) square brackets with comma-separated first month, peak month and last month of seedling emergence event; or ii) single month of observed emergence if first, peak & last unknown)', 'Seedling', 'Recruitment'),
+('rect3a', 'Seedling emergence phenology - rainfall context', 'categorical', 'Occurrence of significant dry spell (>3 months with <10 mm in any week) during the period between fire and seedling emergence', 'Seedling', 'Recruitment'),
+('disp1', 'Propagule dispersal mode', 'categorical', 'Propagule dispersal mode', 'Seed', 'Dispersal')
+ON CONFLICT ON CONSTRAINT trait_info_pkey DO UPDATE set name=EXCLUDED.name, description=EXCLUDED.description, value_type=EXCLUDED.value_type;
 
 
 INSERT INTO litrev.trait_info (code,name,value_type,life_stage,life_history_process) VALUES
