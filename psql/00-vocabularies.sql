@@ -27,3 +27,48 @@ CREATE TYPE months AS ENUM ('January','February','March','April','May','June','J
 CREATE TYPE method_vocabulary AS ENUM ('Direct measure', 'Qualitative estimate', 'Inferred from plant morphology', 'Unknown');
 
 CREATE TYPE resprouting_types AS ENUM ('none','few','half','most','all', 'unknown');
+
+-- Vocabularies for vegetation variables and variable units:
+CREATE TYPE varunits AS ENUM('mm','cm','m','%');
+
+CREATE TYPE vegvars AS ENUM (
+  'tree canopy height', 'tree canopy scorch', 'tree canopy cover',
+  'mid canopy height', 'mid canopy scorch', 'mid canopy cover',
+  'shrub height', 'shrub scorch', 'shrub cover',
+  'ground cover','ground burnt',
+  'tree foliage biomass consumed', 'shrub foliage biomass consumed', 'ground foliage biomass consumed',
+  'largest twigs consumed',
+);
+
+-- ALTER TYPE varunits ADD VALUE '%' AFTER 'm';
+-- ALTER TYPE vegvars RENAME VALUE 'peat cons+umption area' TO 'peat consumption area';
+ALTER TYPE vegvars ADD VALUE 'stratum E height';
+ALTER TYPE vegvars ADD VALUE 'stratum E cover';
+ALTER TYPE vegvars ADD VALUE 'stratum E scorch';
+
+ALTER TYPE vegvars ADD VALUE 'stratum T height';
+ALTER TYPE vegvars ADD VALUE 'stratum T cover';
+ALTER TYPE vegvars ADD VALUE 'stratum T scorch';
+ALTER TYPE vegvars ADD VALUE 'stratum T2 height';
+ALTER TYPE vegvars ADD VALUE 'stratum T2 cover';
+ALTER TYPE vegvars ADD VALUE 'stratum T2 scorch';
+ALTER TYPE vegvars ADD VALUE 'stratum T1 height';
+ALTER TYPE vegvars ADD VALUE 'stratum T1 cover';
+ALTER TYPE vegvars ADD VALUE 'stratum T1 scorch';
+ALTER TYPE vegvars ADD VALUE 'stratum M1 height';
+ALTER TYPE vegvars ADD VALUE 'stratum M1 cover';
+ALTER TYPE vegvars ADD VALUE 'stratum M1 scorch';
+ALTER TYPE vegvars ADD VALUE 'stratum M2 height';
+ALTER TYPE vegvars ADD VALUE 'stratum M2 cover';
+ALTER TYPE vegvars ADD VALUE 'stratum M2 scorch';
+ALTER TYPE vegvars ADD VALUE 'stratum L1 height';
+ALTER TYPE vegvars ADD VALUE 'stratum L1 cover';
+ALTER TYPE vegvars ADD VALUE 'stratum L1 scorch';
+ALTER TYPE vegvars ADD VALUE 'stratum L2 height';
+ALTER TYPE vegvars ADD VALUE 'stratum L2 cover';
+ALTER TYPE vegvars ADD VALUE 'stratum L2 scorch';
+
+ALTER TYPE vegvars ADD VALUE 'scorch height';
+ALTER TYPE vegvars ADD VALUE 'tree foliage scorch';
+ALTER TYPE vegvars ADD VALUE 'shrub foliage scorch';
+ALTER TYPE vegvars ADD VALUE 'herb foliage scorch';
