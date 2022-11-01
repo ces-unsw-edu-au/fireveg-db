@@ -72,3 +72,4 @@ ALTER TYPE vegvars ADD VALUE 'scorch height';
 ALTER TYPE vegvars ADD VALUE 'tree foliage scorch';
 ALTER TYPE vegvars ADD VALUE 'shrub foliage scorch';
 ALTER TYPE vegvars ADD VALUE 'herb foliage scorch';
+ALTER TYPE vegvars ADD VALUE 'twig diameter';

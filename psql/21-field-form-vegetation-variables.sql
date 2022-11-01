@@ -45,3 +45,19 @@ ALTER TABLE form.field_visit_vegetation_estimates
   FOREIGN KEY (visit_id,visit_date)
   REFERENCES form.field_visit(visit_id,visit_date)
   ON DELETE CASCADE ON UPDATE CASCADE;
+
+
+
+CREATE TABLE IF NOT EXISTS form.field_visit_vegetation_raw_values (
+  visit_id VARCHAR(30),
+  visit_date date,
+  measured_variable vegvars,
+  units varunits,
+  single_value numeric
+);
+
+ALTER TABLE form.field_visit_vegetation_raw_values
+  ADD CONSTRAINT field_visit_date_fkey
+  FOREIGN KEY (visit_id,visit_date)
+  REFERENCES form.field_visit(visit_id,visit_date)
+  ON DELETE CASCADE ON UPDATE CASCADE;

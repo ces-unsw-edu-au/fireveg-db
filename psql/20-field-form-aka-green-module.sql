@@ -50,22 +50,6 @@ ALTER TABLE form.field_visit
 ALTER TABLE form.field_visit ADD CONSTRAINT field_visit_mainobserver_fkey2 FOREIGN KEY (mainobserver) REFERENCES form.observerid(userkey) ON DELETE RESTRICT
 
 
-
-CREATE TABLE IF NOT EXISTS form.field_visit_vegetation_raw_values (
-  visit_id VARCHAR(30),
-  visit_date date,
-  measured_variable vegvars,
-  units varunits,
-  single_value numeric
-);
-
-ALTER TABLE form.field_visit_vegetation_raw_values
-  ADD CONSTRAINT field_visit_date_fkey
-  FOREIGN KEY (visit_id,visit_date)
-  REFERENCES form.field_visit(visit_id,visit_date)
-  ON DELETE CASCADE ON UPDATE CASCADE;
-
-
 CREATE TABLE IF NOT EXISTS form.fire_history (
 site_label VARCHAR(30) REFERENCES form.field_site ON DELETE CASCADE,
 fire_name varchar(100),
