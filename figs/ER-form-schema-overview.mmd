@@ -1,0 +1,18 @@
+---
+title: SCHEMA form
+---
+%%{init: {'theme': 'base', 'themeVariables': { 'primaryColor': '#e0e0fc', 'edgeLabelBackground':'#e0e0fc', 'tertiaryColor': '#cec0f0'}}}%%
+erDiagram
+    observerID 
+    field_site 
+    surveys 
+    field_visit 
+    fire_history 
+    quadrat_samples
+    field_samples
+    observerID ||--o{ field_visit : "of main observer"
+    surveys ||--o{ field_visit : "survey includes"
+    field_site ||--o{ field_visit : "site is visited"
+    fire_history }|--||field_site : "records fire events at site"
+    field_visit ||--|{field_samples: "sampled during visit"
+    quadrat_samples }|--||field_samples: "data from sample"

@@ -1,0 +1,29 @@
+erdiagram Model
+
+notation=default
+
+entity observerID {
+   id key
+}
+entity field_site {
+   id key
+} 
+entity surveys {
+   id key
+}
+entity field_visit {
+   id key
+}
+entity fire_history {
+   id key
+}
+entity quadrat_samples {
+   id key
+}
+entity field_samples {
+   id key
+}
+
+relationship has {
+   quadrat_samples -> field_samples
+}

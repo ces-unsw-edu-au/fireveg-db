@@ -1,0 +1,46 @@
+---
+title: SCHEMA form
+---
+%%{init: {'theme': 'base', 'themeVariables': { 'primaryColor': '#8e6aec', 'edgeLabelBackground':'#012074', 'tertiaryColor': '#8e6aec'}}}%%
+erDiagram
+    observerID {
+        serial UserKey PK
+        varchar GivenNames
+        varchar Surname
+    }
+    field_site {
+        varchar site_label PK 
+        text location_description
+        geometry geom
+        int gps_uncertainty_m 
+        text gps_geom_description 
+        numeric elevation 
+    }
+    surveys {
+        varchar survey_name PK
+        text survey_description
+        text observers
+    }
+    field_visit {
+        varchar visit_id PK, FK
+        date visit_date PK
+        smallint replicate_nr 
+        text visit_description 
+        int mainObserver FK
+        text[] observerlist 
+        varchar survey_name FK
+    }
+    fire_history {
+        varchar site_label PK, FK
+        varchar fire_name 
+        varchar fire_date PK
+        date earliest_date 
+        date latest_date 
+        varchar how_inferred
+        varchar cause_of_ignition 
+        text[] notes 
+    }
+    observerID ||--o{ field_visit : "main observer of visit"
+    surveys ||--o{ field_visit : "visit is part of survey"
+    field_site ||--o{ field_visit : "site is visited"
+    fire_history }o--|| field_site : "has fire event"
