@@ -17,18 +17,19 @@ SELECT table_name
 CREATE TEMP TABLE species_traits (species_code,trait_codes) AS (
   WITH A AS (
     SELECT 'repr2' AS table_name, species_code FROM litrev.repr2
-    UNION SELECT 'germ8' AS table_name, species_code FROM litrev.germ8
+    UNION SELECT 'repr3' AS table_name, species_code FROM litrev.repr3
+    UNION SELECT 'repr3a' AS table_name, species_code FROM litrev.repr3a
+    UNION SELECT 'repr4' AS table_name, species_code FROM litrev.repr4
     UNION SELECT 'rect2' AS table_name, species_code FROM litrev.rect2
     UNION SELECT 'germ1' AS table_name, species_code FROM litrev.germ1
     UNION SELECT 'grow1' AS table_name, species_code FROM litrev.grow1
-    UNION SELECT 'repr4' AS table_name, species_code FROM litrev.repr4
+    UNION SELECT 'germ8' AS table_name, species_code FROM litrev.germ8
+    UNION SELECT 'surv1' AS table_name, species_code FROM litrev.surv1
+    UNION SELECT 'surv4' AS table_name, species_code FROM litrev.surv4
     UNION SELECT 'surv5' AS table_name, species_code FROM litrev.surv5
     UNION SELECT 'surv6' AS table_name, species_code FROM litrev.surv6
     UNION SELECT 'surv7' AS table_name, species_code FROM litrev.surv7
     UNION SELECT 'disp1' AS table_name, species_code FROM litrev.disp1
-    UNION SELECT 'repr3' AS table_name, species_code FROM litrev.repr3
-    UNION SELECT 'surv4' AS table_name, species_code FROM litrev.surv4
-    UNION SELECT 'surv1' AS table_name, species_code FROM litrev.surv1
   )
   SELECT species_code,array_agg(table_name) FROM A GROUP BY species_code
 )
