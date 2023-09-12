@@ -4,7 +4,7 @@ The ***Fire Ecology Traits for Plants*** project is being developed by  [José R
 
 Please cite this work as:
 
-> Ferrer-Paris, J. R. and Keith, D. A. (2022) Fire Ecology Traits for Plants: A database for fire research and management. Version 1.00. Centre for Ecosystem Science, University of New South Wales, Sydney, Australia.
+> Ferrer-Paris, J. R. and Keith, D. A. (2022) Fire Ecology Traits for Plants: A database for fire research and management. Version 1.00. Centre for Ecosystem Science, University of New South Wales, Sydney, Australia. Retrieved from osf.io/hu96w
 
 
 This work has been supported by:
@@ -18,11 +18,18 @@ This work has been supported by:
 
 ### SQL structure of the database
 
-[This repository](https://github.com/jrfep/fireveg-db) contains sql commands for defining the basic structure of the tables in a PostgreSQL database.
+[This repository](https://github.com/ces-unsw-edu-au/fireveg-db) contains sql commands for defining the basic structure of the tables in a PostgreSQL database.
+
+This repository is part of the OSF project component:
+
+> Ferrer-Paris, J. R., & Sánchez-Mercado, A. (2023, September 12). SQL structure of the fireveg database. Retrieved from osf.io/4csyz
+
 
 ### Database content
 
-Data not available yet.
+An export of the SQL structure and iniitial data is available in Figshare:
+
+> Ferrer-Paris, José R.; Keith, David A. (2023). Fire Ecology Traits for Plants: Database snapshot (SQL dump). figshare. Dataset. https://doi.org/10.6084/m9.figshare.23361002.v1
 
 ### WebApp
 

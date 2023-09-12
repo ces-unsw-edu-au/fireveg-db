@@ -2,6 +2,7 @@
 .DS_*
 ~$*
 __*
+dump/
 
 # History files
 .Rhistory
