@@ -19,5 +19,3 @@ jobs:
 
       - name: Validate CITATION.cff
         uses: dieghernan/cff-validator@v3
-          echo Add other actions to build,
-          echo test, and deploy your project.
