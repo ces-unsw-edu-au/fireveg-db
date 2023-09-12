@@ -1,10 +1,10 @@
 cff-version: 1.2.0
 title: >-
-  Fire Ecology Traits for Plants: A database for fire
-  research and management
+  "Fire Ecology Traits for Plants: A database for fire
+  research and management"
 message: >-
-  If you use this software, please use the
-  preferred-citation.
+  "If you use this software, please use the
+  preferred-citation.""
 type: software
 authors:
   - family-names: Ferrer-Paris
