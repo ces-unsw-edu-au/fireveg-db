@@ -40,7 +40,40 @@ erDiagram
         varchar cause_of_ignition 
         text[] notes 
     }
+    field_samples {
+        varchar visit_id PK, FK
+        date visit_date PK, FK
+        smallint sample_nr PK
+        sampling_method sample_method
+        numeric quadrat_area 
+        numeric transect_length 
+        text comments
+    }
+    quadrat_samples {
+        serial record_id PK
+        varchar visit_id FK
+        date visit_date FK
+        smallint sample_nr FK
+        varchar species 
+        int species_code 
+        int species_notes 
+        resprout_organ_vocabulary resprout_organ
+        seedbank_vocabulary seedbank 
+        numeric adults_unburnt 
+        numeric resprouts_live 
+        numeric resprouts_died 
+        numeric resprouts_kill 
+        numeric resprouts_reproductive 
+        numeric recruits_live 
+        numeric recruits_reproductive 
+        numeric recruits_died 
+        scorch_vocabulary scorch 
+        age_group life_stage 
+        text[] comments 
+    }
     observerID ||--o{ field_visit : "main observer of visit"
     surveys ||--o{ field_visit : "visit is part of survey"
     field_site ||--o{ field_visit : "site is visited"
     fire_history }o--|| field_site : "has fire event"
+    field_visit ||--o{ field_sample : "sampled during visit"
+    field_sample ||--o{ quadrat_sample : "quadrat belongs to field sample"
