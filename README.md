@@ -33,8 +33,8 @@ An export of the SQL structure and iniitial data is available in Figshare:
 
 ### WebApp
 
-Code for running a Flask webapp available in the [fireveg-webapp](https://github.com/jrfep/fireveg-webapp) repository.
+Code for running a Flask webapp available in the [fireveg-webapp](https://github.com/ces-unsw-edu-au/fireveg-webapp) repository.
 
 ### Code for managing the database
 
-Code and instruction to perform several tasks in the database is available in the [fire-veg-aust](https://github.com/jrfep/fire-veg-aust) repository.
+Code and instruction to perform several tasks in the database is available in the [fire-veg-aust](https://github.com/ces-unsw-edu-au/fire-veg-aust) repository.

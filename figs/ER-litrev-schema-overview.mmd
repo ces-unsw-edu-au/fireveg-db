@@ -1,13 +1,9 @@
 ---
-title: SCHEMA form
+title: SCHEMA litrev
 ---
-%%{init: {'theme': 'base', 'themeVariables': { 'primaryColor': '#e0e0fc', 'edgeLabelBackground':'#e0e0fc', 'tertiaryColor': '#cec0f0'}}}%%
+%%{init: {'theme': 'base', 'themeVariables': { 'primaryColor': '#63bce5', 'edgeLabelBackground':'#63bce5', 'tertiaryColor': '#3778c2'}}}%%
 erDiagram
-    reflist
-    
-    observerID ||--o{ field_visit : "of main observer"
-    surveys ||--o{ field_visit : "survey includes"
-    field_site ||--o{ field_visit : "site is visited"
-    fire_history }|--||field_site : "records fire events at site"
-    field_visit ||--|{field_samples: "sampled during visit"
-    quadrat_samples }|--||field_samples: "data from sample"
+    categorical_traits }o--o{ reflist : "extracted from"
+    numeric_traits }o--o{ reflist : "extracted from"
+    species_traits }|--|{ categorical_traits : "union"
+    species_traits }|--|{ numeric_traits : "union"
