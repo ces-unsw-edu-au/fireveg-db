@@ -38,3 +38,7 @@ Code for running a Flask webapp available in the [fireveg-webapp](https://github
 ### Code for managing the database
 
 Code and instruction to perform several tasks in the database is available in the [fire-veg-aust](https://github.com/ces-unsw-edu-au/fire-veg-aust) repository.
+
+## Project overview
+
+<div style="width: 640px; height: 480px; margin: 10px; position: relative;"><iframe allowfullscreen frameborder="0" style="width:640px; height:480px" src="https://lucid.app/documents/embedded/61d9bcce-07fd-464f-84c0-378bdf2b8bd6" id="VjGXxFiU-FXe"></iframe></div>
