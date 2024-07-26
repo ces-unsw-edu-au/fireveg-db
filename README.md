@@ -41,4 +41,4 @@ Code and instruction to perform several tasks in the database is available in th
 
 ## Project overview
 
-<div style="width: 640px; height: 480px; margin: 10px; position: relative;"><iframe allowfullscreen frameborder="0" style="width:640px; height:480px" src="https://lucid.app/documents/embedded/61d9bcce-07fd-464f-84c0-378bdf2b8bd6" id="VjGXxFiU-FXe"></iframe></div>
+![Overview of project resources](figs/Fireveg-project-resources.png)
