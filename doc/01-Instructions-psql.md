@@ -10,3 +10,10 @@ psql -d fireveg -c "CREATE EXTENSION postgis_topology;"
 ```
 
 Update file ~/.pgpass
+
+## Manually create tables
+
+Run SQL code in folder `/psql`.
+
+## Replicate database using SQL dump
+
