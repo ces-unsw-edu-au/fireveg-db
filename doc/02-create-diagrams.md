@@ -1,7 +1,8 @@
+# fireveg-db
+
+Vegetation response to fire in New South Wales, Australia
 
 ## Entity Relationship Diagrams
-
-Ada had a go at a large diagram but has to be edited online.
 
 We can create shareable, textbased Entity Relationship Diagrams using [mermaid.js](https://mermaid.js.org/syntax/entityRelationshipDiagram.html) but customising colours is not straightforward:
 
@@ -10,11 +11,13 @@ We can create shareable, textbased Entity Relationship Diagrams using [mermaid.j
 
 Other options include ERD format (`.er` files)  or the bigER modeling tool (`.erd` files). 
 
-## Lucid charts
+### Lucid charts
 
-Register user with unsw email to activate EDU account.
+Using <https://lucid.app> it is possible to create an Entity Relationship Diagram based on a the database table information. 
 
-To create a ERD document, run this query to export schema from postgresql database:
+We registered with a UNSW email to activate EDU account. We then used the `Database ER diagram (crow's foot)`.
+
+To import data into the document, run this query to export schema from postgresql database:
 
 ```{sql}
 SET enable_nestloop=0;
@@ -23,4 +26,4 @@ SET enable_nestloop=0;
 
 ```
 
-[Published document](https://lucid.app/lucidchart/537633dc-56b0-4b21-b6ec-377c3b6771e0/view?page=0_0&invitationId=inv_f7598dc3-a309-4e98-9439-fb73b540f7c4#) includes two traits as examples.
+We [published an example document](https://lucid.app/lucidchart/537633dc-56b0-4b21-b6ec-377c3b6771e0/view?page=0_0&invitationId=inv_f7598dc3-a309-4e98-9439-fb73b540f7c4#) including two traits to illustrate the general structure of the database.
