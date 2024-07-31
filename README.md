@@ -16,9 +16,15 @@ This work has been supported by:
 
 ## Components of the project
 
+### Project overview
+
+![Overview of project resources](figs/Fireveg-project-resources.png)
+
 ### SQL structure of the database
 
-[This repository](https://github.com/ces-unsw-edu-au/fireveg-db) contains sql commands for defining the basic structure of the tables in a PostgreSQL database.
+:dart: [This repository](https://github.com/ces-unsw-edu-au/fireveg-db) contains sql commands for defining the basic structure of the tables in a PostgreSQL database.
+
+Instructions to use this repository are in the `doc/` folder. SQL code is in the `psql/` folder. Some figures in folder `figs/`.
 
 This repository is part of the OSF project component:
 
@@ -27,7 +33,7 @@ This repository is part of the OSF project component:
 
 ### Database content
 
-An export of the SQL structure and iniitial data is available in Figshare:
+An export of the SQL structure and initial data is available in Figshare:
 
 > Ferrer-Paris, José R.; Keith, David A. (2023). Fire Ecology Traits for Plants: Database snapshot (SQL dump). figshare. Dataset. https://doi.org/10.6084/m9.figshare.23361002.v1
 
@@ -39,6 +45,3 @@ Code for running a Flask webapp available in the [fireveg-webapp](https://github
 
 Code and instruction to perform several tasks in the database is available in the [fire-veg-aust](https://github.com/ces-unsw-edu-au/fire-veg-aust) repository.
 
-## Project overview
-
-![Overview of project resources](figs/Fireveg-project-resources.png)
