@@ -43,18 +43,3 @@ pg_dump -h $DBHOST -d $DBNAME -p $DBPORT -U $DBUSER \
   --file=fireveg-schema-database.dump
 ```
 
-### Dump database conent to file
-
-Once data has been imported into the database we can create a SQL dump of schema and data. To keep versioned copies of the files, we can run the following lines of code. 
-
-```sh
-mkdir -p dump
-TODAY=$(date "+%Y-%m-%d")
-pg_dump -h $host $database  -U $user > dump/${TODAY}-firevegdb.sql
-bzip2 dump/${TODAY}-firevegdb.sql
-```
-
-We uploaded this compressed dump file as a backup of the database content in a open access repository:
-
-> Ferrer-Paris, José R.; Keith, David A. (2023). Fire Ecology Traits for Plants: Database snapshot (SQL dump). figshare. Dataset. https://doi.org/10.6084/m9.figshare.23361002.v1
-
