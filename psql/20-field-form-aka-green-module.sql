@@ -1,5 +1,7 @@
 -- Schema for storing information from the field (field forms)
 CREATE SCHEMA form;
+CREATE EXTENSION postgis;
+CREATE EXTENSION postgis_topology;
 
 -- This was originally copied from tblObserver of Atlas data model, but we just need a core of columns
 CREATE TABLE IF NOT EXISTS form.observerID (
@@ -47,7 +49,7 @@ ALTER TABLE form.field_visit
   REFERENCES form.surveys(survey_name)
   ON DELETE CASCADE ON UPDATE CASCADE;
 
-ALTER TABLE form.field_visit ADD CONSTRAINT field_visit_mainobserver_fkey2 FOREIGN KEY (mainobserver) REFERENCES form.observerid(userkey) ON DELETE RESTRICT
+ALTER TABLE form.field_visit ADD CONSTRAINT field_visit_mainobserver_fkey2 FOREIGN KEY (mainobserver) REFERENCES form.observerid(userkey) ON DELETE RESTRICT;
 
 
 CREATE TABLE IF NOT EXISTS form.fire_history (
