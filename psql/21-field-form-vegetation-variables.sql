@@ -37,8 +37,8 @@ CREATE TABLE IF NOT EXISTS form.field_visit_vegetation_estimates (
   PRIMARY KEY (visit_id,visit_date,measured_var)
 );
 ALTER TABLE form.field_visit_vegetation_estimates add comment text[];
-ALTER TABLE form.field_visit_vegetation_estimates
-  DROP CONSTRAINT field_visit_date_fkey;
+-- ALTER TABLE form.field_visit_vegetation_estimates
+--  DROP CONSTRAINT field_visit_date_fkey;
 
 ALTER TABLE form.field_visit_vegetation_estimates
   ADD CONSTRAINT field_visit_date_fkey
