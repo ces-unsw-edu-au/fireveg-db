@@ -1,3 +1,4 @@
+CREATE TYPE method_vocabulary AS ENUM ('Direct measure', 'Qualitative estimate', 'Inferred from plant morphology', 'Unknown');
 
 CREATE TYPE method_surv1_vocabulary AS ENUM ('Direct field observation or measure (unknown sample size)', 'Direct observation (small sample)', 'Direct observation (large sample)', 'Estimated by extrapolation from observed values', 'Inferred from plant / organ / growth stage morphology', 'Inferred from related taxa', 'Manipulative experiment', 'Qualitative estimate', 'Unspecified methods');
 

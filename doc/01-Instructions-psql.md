@@ -25,6 +25,19 @@ For managing an instance of the database using the `psql` interactive terminal y
 
 Run SQL code in folder `/psql`.
 
+```sh
+psql -h $DBHOST -U $DBUSER -d $DBNAME < 00-vocabularies.sql 
+psql -h $DBHOST -U $DBUSER -d $DBNAME < 01-vocabularies-litrev.sql
+psql -h $DBHOST -U $DBUSER -d $DBNAME < 02-vocabularies-litrev-methods.sql 
+psql -h $DBHOST -U $DBUSER -d $DBNAME < 10-spp-table.sql 
+psql -h $DBHOST -U $DBUSER -d $DBNAME < 10-veg-table.sql   
+psql -h $DBHOST -U $DBUSER -d $DBNAME < 20-field-form-aka-green-module.sql
+psql -h $DBHOST -U $DBUSER -d $DBNAME < 21-field-form-vegetation-variables.sql
+psql -h $DBHOST -U $DBUSER -d $DBNAME < 30-litrev-aka-blue-module.sql 
+psql -h $DBHOST -U $DBUSER -d $DBNAME < 31-litrev-categorical.sql   
+psql -h $DBHOST -U $DBUSER -d $DBNAME < 32-litrev-fuzzy-numbers.sql
+```
+
 ## Replicate database using SQL dump
 
 ### Dump database schema to file

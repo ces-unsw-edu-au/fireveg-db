@@ -32,7 +32,7 @@ CREATE TEMP TABLE species_traits (species_code,trait_codes) AS (
     UNION SELECT 'disp1' AS table_name, species_code FROM litrev.disp1
   )
   SELECT species_code,array_agg(table_name) FROM A GROUP BY species_code
-)
+);
 
 CREATE SCHEMA vag;
 
