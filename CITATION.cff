@@ -1,25 +1,46 @@
+# This CITATION.cff file was generated with cffinit.
+# Visit https://bit.ly/cffinit to generate yours today!
+
 cff-version: 1.2.0
-title: >-
-  "Fire Ecology Traits for Plants: A database for fire
-  research and management"
+title: '"Fire Ecology database - SQL structure of the database"'
+message: >-
+  If you use this software, please use the
+  preferred-citation.
 type: software
 authors:
   - family-names: Ferrer-Paris
     given-names: José R.
     orcid: 'https://orcid.org/0000-0002-9554-3395'
     affiliation: UNSW
+    email: j.ferrer@unsw.edu.au
   - family-names: Keith
     given-names: David
     affiliation: UNSW
-version: v1.1
-date-released: '2022-04-15'
+    orcid: 'https://orcid.org/0000-0002-7627-4150'
+identifiers:
+  - type: url
+    value: 'https://osf.io/4csyz/'
+    description: OSF project component
+url: 'http://fireecologyplants.net'
+repository: 'https://osf.io/4csyz/'
+keywords:
+  - fire ecology
+  - vegetation dynamics
+  - plant traits
+version: v1.1.1
+date-released: '2025-02-04'
 preferred-citation:
+  type: software
   authors:
-    - family-names: "Ferrer-Paris"
-      given-names: "José R."
-      orcid: https://orcid.org/0000-0002-9554-3395
+    - family-names: Ferrer-Paris
+      given-names: José R.
+      orcid: 'https://orcid.org/0000-0002-9554-3395'
     - family-names: Keith
       given-names: David A.
-  title: "Fire Ecology Traits for Plants: A database for fire research and management. Version 1.10. Centre for Ecosystem Science, University of New South Wales, Sydney, Australia."
-  year: 2024
-message: "If you use this software, please use the preferred-citation."
+      orcid: 'https://orcid.org/0000-0002-7627-4150'
+  doi: 10.17605/OSF.IO/HU96W
+  title: >-
+    Fire Ecology database to inform fire ecology research and management.
+    Version 1.1.1. Centre for Ecosystem Science, University of New South Wales,
+    Sydney, Australia.
+  year: 2025
