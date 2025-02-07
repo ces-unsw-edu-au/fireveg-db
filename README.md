@@ -47,8 +47,10 @@ This project consists of several linked components:
     - :label: Data in Figshare DOI:[10.6084/m9.figshare.23361002](https://doi.org/10.6084/m9.figshare.23361002)
     - :label: Data in Figshare DOI:[10.6084/m9.figshare.24125088](https://doi.org/10.6084/m9.figshare.24125088)
   - :technologist: **Data analysis and visualisation** / OSF project component [osf.io/kjevh](https://osf.io/kjevh)
-    - :gear: Source code in [GitHub repository](https://github.com/ces-unsw-edu-au/fireveg-analysis)
-    - :gear: Source code in [BitBucket repository](https://bitbucket.org/fireveg/fireveg-presentations)
-    - :speech_balloon: [Presentation slides](https://rpubs.com/jrfep/firevegdb-ESA2023) 
+    - Notebooks with code and plots
+      - :gear: Source code in [GitHub repository](https://github.com/ces-unsw-edu-au/fireveg-analysis)
+    - Presentations
+      - :gear: Source code in [BitBucket repository](https://bitbucket.org/fireveg/fireveg-presentations)
+      - :speech_balloon: [Presentation slides](https://rpubs.com/jrfep/firevegdb-ESA2023) 
 
 
