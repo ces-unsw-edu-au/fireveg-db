@@ -35,7 +35,7 @@ This project consists of several linked components:
 
 ***🔥 Fire Ecology database: A database for fire research and management*** OSF project [osf.io/hu96w](https://osf.io/hu96w/) with following components:
 
-  - :file_cabinet: **SQL structure of the fireveg database** [osf.io/4csyz](https://osf.io/4csyz)
+  - :file_cabinet: **SQL structure of the database** [osf.io/4csyz](https://osf.io/4csyz)
     - :gear: Source code for defining the structure of the tables in a PostgreSQL database is available in this [GitHub repository](https://github.com/ces-unsw-edu-au/fireveg-db) <-- :dart: You are here! -->
   - :briefcase: **Code for database imports and data curation** [osf.io/rj68t](https://osf.io/znuge)
     - :gear: Source code for populating and managing the database is available in this [GitHub repository](https://github.com/ces-unsw-edu-au/fireveg-db-imports)
